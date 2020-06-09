@@ -17,8 +17,8 @@ int main(int argc, char **argv)
 		N.push_back(n);
 	};
 
-	for(int i=0;i<N.size();i++)
-	cout << N[i] << endl;	
+	//for(int i=0;i<N.size();i++)
+	//cout << N[i] << endl;	
 		
 	vector<double> rho;
 
@@ -49,7 +49,12 @@ int main(int argc, char **argv)
 		rho7.push_back((rhoim3+rhoim2+rhoim1+rhoi+rhoip1+rhoip2+rhoip3)/7.0);
 	}	
 	
-		
+	for(int i=0;i<N.size();i++)
+	{
+		double IA14=0;
+		for(int j=0;j<14;j++) IA14+=(i-j>=0)?N[i-j]:0.0;
+		cout << N[i] << " " << rho[i] << " " << rho7[i] << " " << IA14 << endl;
+	}		
 	
 	
 	return 0;
