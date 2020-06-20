@@ -82,7 +82,7 @@
 <h3>Elegir Población</h3>
 
 <div class="vertical-menu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoBariloche')">Río Negro</a>
+  <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
 
   <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
 
@@ -100,14 +100,14 @@
 
 
 <!--AQUI BREVE DESCRIPCION -->
-<p>En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva". Cada punto es una foto de situación de un día dado y la curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la ciudad de Bariloche.<p>
+<p>En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva". Cada punto es una foto de situación de un día dado y la curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población elegida.<p>
 <p>La interpretación del gráfico es la siguiente: si para un dado día, el número de casos reportados tiene un dado valor y además sabemos que por cada nuevo contagio se producirán al día siguiente una cantidad de contagios calculada en base a la tasa reproductiva, podemos estimar cuantos contagiados totales habrá en los próximos días.
 Esta estimación puede no ser precisa y es por eso que debe ajustarse día a día. Aún así tiene un buen valor predictivo.<p>
 <p>En base a ésto tenemos diversos escenarios:<p> 
 <p>1) el mejor escenario es una tasa reproductiva baja (idealmente por debajo de 1) y número de nuevos contagios bajo (abajo y a la izquierda del gráfico). <p>
 <p>2) escenario moderadamente grave cuando la tasa de contagios es baja pero el número de infectados alto o viceversa.<p> 
 <p>3) escenario grave cuando ambos indicadores son altos (arriba y a la derecha del gráfico).<p>
-<p>Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones de capacidad de testeo y hospitalaria en la ciudad de Bariloche. Para no sobrepasar la capacidad de testeo, control y capacidad del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.<p>
+<p>Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones de capacidad de testeo y hospitalaria en la población elegida. Para no sobrepasar la capacidad de testeo, control y capacidad del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.<p>
 <p> Para mas detalles sobre el cálculo de este indicador 
 </ul>
 <li><a href="https://covidbariloche.gitlab.io/webpage-restricted/informes-pdf/Diagramas.de.riesgo.pdf"> Hacer click aquí</a></li>
@@ -198,7 +198,7 @@ Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>
 <!-- ############################################################################ -->
 <script>
 
-plotriesgo('./RiesgoBariloche');
+plotriesgo('./RiesgoRioNegro');
 
 function plotriesgo(ciudad){
 
@@ -403,10 +403,13 @@ function plotriesgo(ciudad){
 		var rho7i2=rho7[2];
 		var IA14i2=IA14[2];
 
+		if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
+		if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
+
 		var layout = {
 		   // title: 'Diagrama de Riesgo de Bariloche',	
 		    title: {
-		    	text: '<b>Diagrama de Riesgo: San Carlos de Bariloche</b>',
+		    	text: titulo,
 		    	x: 0,
 		    },
 		    height: 600,
