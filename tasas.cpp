@@ -21,7 +21,6 @@ int main(int argc, char **argv)
 	//cout << N[i] << endl;	
 		
 	vector<double> rho;
-
 	for(int i=0;i<N.size();i++)
 	{	
 		double Nim6=(i>=6)?(N[i-6]):(0.0);
@@ -32,6 +31,8 @@ int main(int argc, char **argv)
 		double Ni=N[i];
 			
 		double inc=(Nim1+Ni+Nip1)/(Nim6+Nim5+Nim4);
+		if((Nim6+Nim5+Nim4)==0) inc=-1.0;		
+
 		rho.push_back(inc);	
 	}	
 
@@ -42,20 +43,32 @@ int main(int argc, char **argv)
 		double rhoim2=(i>=2)?(rho[i-2]):(0.0);
 		double rhoim1=(i>=1)?(rho[i-1]):(0.0);
 		double rhoi = rho[i];
-		double rhoip3=(i<=N.size()-3)?(rho[i+3]):(0.0);
-		double rhoip2=(i<=N.size()-2)?(rho[i+2]):(0.0);
-		double rhoip1=(i<=N.size()-1)?(rho[i+1]):(0.0);
-				
-		rho7.push_back((rhoim3+rhoim2+rhoim1+rhoi+rhoip1+rhoip2+rhoip3)/7.0);
+		double rhoip3=(i<N.size()-3)?(rho[i+3]):(0.0);
+		double rhoip2=(i<N.size()-2)?(rho[i+2]):(0.0);
+		double rhoip1=(i<N.size()-1)?(rho[i+1]):(0.0);
+		
+		double inc=(rhoim3+rhoim2+rhoim1+rhoi+rhoip1+rhoip2+rhoip3)/7.0;		
+
+		rho7.push_back(inc);
 	}	
-	
-	for(int i=0;i<N.size();i++)
+
+	ofstream x1out("x1.js"); x1out << "var x1=[" << endl;	
+	ofstream y1out("y1.js"); y1out << "var y1=[" << endl;	
+	ofstream t1out("t1.js"); t1out << "var t1=[" << endl;	
+
+	for(int i=7;i<N.size();i++)
 	{
-		double IA14=0;
+		double IA14=0.0;
 		for(int j=0;j<14;j++) IA14+=(i-j>=0)?N[i-j]:0.0;
-		cout << N[i] << " " << rho[i] << " " << rho7[i] << " " << IA14 << endl;
+		cout << N[i] << " " << rho[i] << " " << rho7[i] << " " << IA14/6.88 << " " << i << endl;
+
+		x1out <<  IA14/6.88 << ",";
+		y1out <<  rho7[i]  << ",";
+		t1out << "\"" << "t=" << i  << "\"" << ",";
 	}		
-	
-	
+	x1out <<  "];" << endl;
+	y1out <<  "];" << endl;
+	t1out <<  "];" << endl;
+		
 	return 0;
 }
