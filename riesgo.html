@@ -116,9 +116,10 @@ Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>
 // lee csv actualizado
 function makeplot() {
 	Plotly.d3.csv(
-	"https://bitbucket.org/abk_balde/datos/raw/05377741176b9484f572a2fa6c6926d18aaa25a4/RiesgoBariloche.csv",
+	//"https://bitbucket.org/abk_balde/datos/raw/05377741176b9484f572a2fa6c6926d18aaa25a4/RiesgoBariloche.csv",
 	//"./riesgo/RiesgoBariloche.csv",
 	//"../tablero-privado/RiesgoBariloche",
+	"./RiesgoBariloche",
 	function(datos)
 	{ 
 		processData(datos) 
