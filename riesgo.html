@@ -82,9 +82,9 @@
 <h3>Elegir Población</h3>
 
 <div class="vertical-menu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
+  <a href="#" class="active" onclick="plotriesgo('./RiesgoBariloche')">Río Negro</a>
 
-  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Río Negro</a>
+  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
 
 <!--
   <a href="#" onclick="plotred('https://bitbucket.org/abk_balde/datos/raw/a4711462d490ab4dfa3c2fb7a3a34838b4a099f6/red14-5b.json','redvieja')">vieja red</a>
@@ -197,6 +197,8 @@ Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>
 <!-- ############################################################################ -->
 <!-- ############################################################################ -->
 <script>
+
+plotriesgo('./RiesgoBariloche');
 
 function plotriesgo(ciudad){
 
