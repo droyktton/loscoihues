@@ -9,6 +9,36 @@ Es importante aclarar que la información es puramente estadística y los índic
 
 El indicador, que ha sido usado en reportes oficiales en distintos países de Europa y Brasil, debería ser usado junto a otros indicadores para la toma de decisiones.
 
+### Tiempo de Duplicación
+
+La dinámica de la epidemia, en el actual régimen, está basicamente controlada por la tasa de contagio, ya que la facción de la población susceptible es muy grande. Es decir, estamos muy lejos de lograr una "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. Esto es, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
+
+N(t)~ N(t-dt) 2^{dt/tau}, 
+
+donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante. Sin embargo, tau no es constante, depende de medidas de control, y su evaluación esta sujeta a fuertes fluctuaciones diarias, tanto más fuertes cuanto más pequeña sea la muestra poblacional.
+
+Debido a las fluctuaciones mencionadas, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo, en nuestro caso de 7 días. 
+Tenemos dos alternativas: 
+
+#### Regresión lineal
+El crecimiento exponencial con tiempo de duplicación tau en intervalo dt es equivalente a escribir
+
+log N(t) ~ log N(t-dt) + {dt/tau} log(2), 
+
+de modo que un ajuste lineal, por cuadrados mínimos de log N(t) en dt días, dá tau como parametro de ajuste. 
+La regresión lineal da tanto el error de tau, como la desviación estandar del modelo a los datos. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo.
+
+#### Moving average
+
+Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantidad tendrá un comportamiento mas suave, y por lo tanto podemos estimar tau de la siguiente forma
+
+tau = dt log(2) / log [Ns(t)/Ns(t-dt)]  
+
+#### A partir de la Tasa reproductiva
+
+
+
+
 
 
 
