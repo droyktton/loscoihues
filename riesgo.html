@@ -318,7 +318,9 @@ function plotriesgo(ciudad){
 		  y1[i]=10+5*Math.sin(6.28*0.1*i);
 		}
 		*/
-
+		
+		var opa= [];
+		var textomarkers=[];
 		for(var i=0;i<size2;i++) {
 			opa[i]=2*(i*1.0/size2)*(i*1.0/size2);
 			taudup=Math.trunc(100*7.0/Math.log(rho7[i]))/100.0;
