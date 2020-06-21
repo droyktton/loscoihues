@@ -34,7 +34,7 @@ Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantida
 
 tau = dt log(2) / log [Ns(t)/Ns(t-dt)]  
 
-#### A partir de la Tasa reproductiva
+#### A partir de la Tasa reproductiva  
 
 
 
