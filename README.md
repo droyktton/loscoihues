@@ -15,18 +15,16 @@ La dinámica de la epidemia, en el actual régimen, está basicamente controlada
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante. Sin embargo, tau no es constante, fluctúa y además depende de la conducta de la gente y de las medidas de control. Su evaluación está dificultada por las fuertes fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional.
+donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante. Sin embargo, tau no es constante, fluctúa por variadas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, a las fluctuaciones en el número de testeos o en la carga de datos, y además su valor medio depende de las medidas de control y de la conducta de la gente. Su evaluación está entonces dificultada por fuertes fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional.
 
-Debido a las fluctuaciones mencionadas, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. 
-Tenemos varias alternativas que deberían concidir si consideraramos cuidadosamente el error de cada estimación. 
+Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos varias alternativas para estimar tau que deberían concidir si consideraramos cuidadosamente el error de cada estimación. 
 
 #### Regresión lineal
 El crecimiento exponencial con tiempo de duplicación tau en intervalo dt es equivalente a escribir
 
 log N(t) ~ log N(t-dt) + {dt/tau} log(2), 
 
-de modo que un ajuste lineal, por cuadrados mínimos de log N(t) en dt días, dá tau como parametro de ajuste. 
-La regresión lineal da tanto el error de tau, como la desviación estandar del modelo a los datos. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo.
+de modo que un ajuste lineal, por cuadrados mínimos a los datos Y={log N(t-3),log N(t-2),log N(t),log N(t+1),log N(t+2),log N(t+3)} y X={0,1,2,3,4,5,6,7} en dt=7 días por ejemplo, dá tau como parámetro de ajuste. La regresión lineal da tanto el error de tau, como la desviación estandar del modelo a los datos. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo.
 
 #### Moving average
 
@@ -34,10 +32,19 @@ Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantida
 
 tau = dt log(2) / log [Ns(t)/Ns(t-dt)]  
 
+o bien hacer nuevamente la regresión lineal del caso anterior, reemplazando N(t) por Ns(t).
+
 #### A partir de la Tasa reproductiva  
 
+La cantidad
 
+N(t)/N(t-1) ~ 2^{1/tau}, 
 
+se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Esta relacionada pero no es lo mismo que la tasa reproductiva R0, que dice a cuantos contagia hasta su recuperación un indivuduo infectado.
+
+Para minimizar el efecto de las fluctuaciones en la cantidad de arriba es conveniente definir una tasa reproductiva promedio. Para ello podemos por ejemplo usar una ventana de tres días, 
+
+rho_t = [N(t+1)+N(t)+N(t-1)]/[N(t-6)+N(t-5)+N(t-4)] 
 
 
 
