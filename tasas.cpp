@@ -60,9 +60,9 @@ int main(int argc, char **argv)
 	{
 		double IA14=0.0;
 		for(int j=0;j<14;j++) IA14+=(i-j>=0)?N[i-j]:0.0;
-		cout << N[i] << " " << rho[i] << " " << rho7[i] << " " << IA14/6.88 << " " << i << endl;
+		cout << N[i] << " " << rho[i] << " " << rho7[i] << " " << IA14 << " " << i << endl;
 
-		x1out <<  IA14/6.88 << ",";
+		x1out <<  IA14 << ",";
 		y1out <<  rho7[i]  << ",";
 		t1out << "\"" << "t=" << i  << "\"" << ",";
 	}		
