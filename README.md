@@ -15,7 +15,7 @@ La dinámica de la epidemia, en el actual régimen, está basicamente controlada
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante. Sin embargo, tau no es constante, fluctúa por variadas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, a las fluctuaciones en el número de testeos o en la carga de datos, y además su valor medio depende de las medidas de control y de la conducta de la gente. Su evaluación está entonces dificultada por fuertes fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional.
+donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante y positivo (en caso que tau sea negativo, el número estaría o bien decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, o bien estacionaridad). Sin embargo, en general tau no es constante, fluctúa por variadas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, a las fluctuaciones en el número de testeos o en la carga de datos, y además su valor medio depende de las medidas de control y de la conducta de la gente. Su evaluación está entonces dificultada por fuertes fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional.
 
 Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos varias alternativas para estimar tau que deberían concidir si consideraramos cuidadosamente el error de cada estimación. 
 
@@ -77,6 +77,7 @@ Límite de capacidad hospitalaria = C/f
 
 La interpretación sugerida es que las medidas de control se realicen, atendiendo a la cercanía del EPG a estos límites, en la trayectoria definida por las coordenadas diarias rho_7 y AI14 de la epidemia.  
 
+La trayectoria de rho_7 y AI14....
 
 
 
