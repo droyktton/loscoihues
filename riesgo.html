@@ -211,6 +211,8 @@ plotriesgo('./RiesgoRioNegro');
 
 function plotriesgo(ciudad){
 
+	if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';	
+	
 	// lee csv actualizado
 	function makeplot() {
 		Plotly.d3.csv(
