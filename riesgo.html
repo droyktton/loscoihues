@@ -6,6 +6,7 @@
 	<!-- <script src='./riesgo/varsRN.js'></script>-->
 
   <style type="text/css">
+
     #mynetwork {
       width: 800px;
       height: 800px;
@@ -72,6 +73,26 @@
   background-color: #4CAF50;
   color: white;
 }
+
+div.scrollmenu {
+  background-color: #999;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #111;
+}
+
+
 </style>
 
 </head>
@@ -89,17 +110,22 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
 
 <h3>Elegir Población</h3>
 
+<!--
 <div class="vertical-menu">
   <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
 
   <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
 
   <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
-
-<!--
-  <a href="#" onclick="plotred('https://bitbucket.org/abk_balde/datos/raw/a4711462d490ab4dfa3c2fb7a3a34838b4a099f6/red14-5b.json','redvieja')">vieja red</a>
+</div>
 -->
 
+<div class="scrollmenu">
+  <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
+
+  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
+
+  <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
 </div>
 
 <!-- 
