@@ -11,13 +11,13 @@ El indicador, que ha sido usado en reportes oficiales en distintos países de Eu
 
 ### Crecimiento Exponencial: Tiempo de Duplicación
 
-La dinámica de la epidemia, en el régimen actual en nuestro país, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy grande. Es decir, estamos muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. Esto es, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
+La dinámica de la epidemia, en el régimen actual en Argentina, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy cercana al 100%. Es decir, estamos muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. Esto es, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau fuera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien constante). Sin embargo, en la práctica y en general tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional.
+donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea.
 
-Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos varias alternativas para estimar tau. Todas estas deberían concidir si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada estimación. 
+Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
 
 #### Regresión lineal
 El crecimiento exponencial con tiempo de duplicación tau en intervalo dt es equivalente a escribir
@@ -42,7 +42,7 @@ Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantida
 tau = dt log(2) / log [Ns(t)/Ns(t-dt)]  
 
 para algun dt, o bien hacer nuevamente la regresión lineal como en el caso anterior, reemplazando N(t) por Ns(t).
-Como es un moving average centrado en el tiempo t hay que prestar atención a los efectos de borde cuando t se acerca al día actual, ya que nos quedamos sin algunos tiempos posteriores a t.
+Como es un moving average centrado en el tiempo t hay que prestar atención a los -efectos de borde- cuando t se acerca al día actual, ya que nos quedamos sin algunos tiempos posteriores a t. El efecto de borde hace que cuando t se acerca al día actual, Ns(t) tenga una contrinución más grande de días pasados. Es decir, una estimación asimétrica. Es por ello que no se debe tomar como definitivos los valores de Ns(t) en los tiempos mas recientes.
 
 #### Tasa reproductiva  
 
@@ -50,24 +50,25 @@ La cantidad
 
 N(t)/N(t-1) ~ 2^{1/tau}, 
 
-se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Esta relacionada pero en general no es lo mismo que la tasa reproductiva R0, que dice a cuantos contagia hasta su recuperación un indivuduo infectado. 
+se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Esta relacionada pero en general no es lo mismo que el numero de reproducción básico R0, que determina a priori, el inicio de una epidemia en una población 100% susceptible, sin ninguna intervención. 
 
-Para minimizar el efecto de las fluctuaciones en la cantidad de arriba es conveniente definir una tasa reproductiva promedio. Hay muchas formas de hacerlo, pero seguiremos la referencia citada más arriba para poder así comparar nuestros resultados con muchas otras poblaciones en distintos lugares del mundo donde se usó el mismo método.
+Para minimizar el efecto de las fuertes fluctuaciones en la cantidad de arriba es conveniente definir una tasa reproductiva promedio. Hay muchas formas de hacerlo, pero seguiremos la referencia citada más arriba para poder así comparar nuestros resultados con muchas otras poblaciones en distintos lugares del mundo donde se usó el mismo método.
 
 En nuestros códigos primero definimos 
 
 rho(t) = [N(t+1)+N(t)+N(t-1)]/[N(t-6)+N(t-5)+N(t-4)] 
 
-Esta tasa reproductiva es aún muy ruidosa. Por ello la promediamos en una ventana de 7 días
+usando ventanas de tres días. Esta tasa reproductiva es sin embargo aún muy ruidosa. Por ello a su vez la promediamos en una ventana de 7 días
 
 rho_7(t) = [rho(t-3)+rho(t-2)+rho(t-1)+rho(t)+rho(t+1)+rho(t+2)+rho(t+3)]/7
 
-Esta es la coordenada Y de nuestros diagramas de riesgo.
-Si conocieramos la cantidad de casos positivos hoy, podríamos utilizar rho_7 para estimar la cantidad de casos positivos mañana. Como no conocemos esta cantidad, la estimamos como el número de casos positivos acumulados los ultimos 14 das, los cuales pueden por tanto considerarse "casos activos". Llamamos a esta cantidad IA14, 
+Esta es la coordenada Y de nuestros diagramas de riesgo, a la que llamamos Tasa de Reproducción, o Número de Reproducción Efectivo.
 
-IA14(t) = [N(t-14)+N(t-13)+N(t-12)+...+N(t-3)+N(t-2)+N(t-1)+N(t)] * 100000/Npoblacion
+Si conociéramos la cantidad de casos positivos hoy, podríamos utilizar rho_7 para estimar la cantidad de casos positivos mañana. Como no conocemos esta cantidad, la estimamos como el número de casos positivos acumulados los ultimos 14 días, los cuales pueden por tanto considerarse "casos activos". Llamamos a esta cantidad IA14, 
 
-donde el último factor se introduce para medir IA14 de forma intensiva, por cada 100000 habitantes (la elección 100000 es arbitraria y se elije sólo para fijar unidades, y manipular números relativamente chicos). Si hay rho_7 nuevos positivos por cada positivo hoy, entonces mañana podemos esperar una cantidad EPG de casos positivos por cada 100000 habitantes definida como
+IA14(t) = [N(t-14)+N(t-13)+N(t-12)+...+N(t-3)+N(t-2)+N(t-1)+N(t)] * 100000/Npoblación
+
+donde el último factor se introduce para medir IA14 de forma intensiva, por cada 100000 habitantes (la elección 100000 es arbitraria y se elije sólo para fijar unidades convenientes). Si hay rho_7 nuevos positivos por cada positivo hoy, entonces mañana podemos esperar una cantidad EPG de casos positivos por cada 100000 habitantes definida como
 
 EPG(t)=rho_7(t) x IA14(t) 
 
