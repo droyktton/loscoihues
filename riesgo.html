@@ -136,19 +136,44 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
 
 
 <!--AQUI BREVE DESCRIPCION -->
-<p>En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva". Cada punto es una foto de situación de un día dado y la curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población elegida.<p>
-<p>La interpretación del gráfico es la siguiente: si para un dado día, el número de casos reportados tiene un dado valor y además sabemos que por cada nuevo contagio se producirán al día siguiente una cantidad de contagios calculada en base a la tasa reproductiva, podemos estimar cuantos contagiados totales habrá en los próximos días.
-Esta estimación puede no ser precisa y es por eso que debe ajustarse día a día. Aún así tiene un buen valor predictivo.<p>
-<p>En base a ésto tenemos diversos escenarios:<p> 
-<p>1) el mejor escenario es una tasa reproductiva baja (idealmente por debajo de 1) y número de nuevos contagios bajo (abajo y a la izquierda del gráfico). <p>
-<p>2) escenario moderadamente grave cuando la tasa de contagios es baja pero el número de infectados alto o viceversa.<p> 
-<p>3) escenario grave cuando ambos indicadores son altos (arriba y a la derecha del gráfico).<p>
-<p>Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) que se puede cuantificar usando estimaciones de la capacidad sanitaria (de testeo y hospitalaria) en la población elegida. Para no sobrepasar la capacidad de testeo, control y capacidad del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (más rojas) indicadas en el diagrama.<p>
+<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva". 
+La Tasa Reproductiva, rho7, es un estimador de la velocidad de propagación de la enfermedad en la población. 
+Mide el número de personas que en promedio serán testeadas positivo en los próximos días por cada persona 
+testeada positivamente recientemente. Asumiendo que el número de tests positivos es menor pero proporcional 
+al número real de infectados, rho7 es muy similar al "Número de Reproducción Básico R0"</i> 
+que determina el inicio de una epidemia, pero ajustado en función del tiempo. Es decir, es un 
+<i>Número de Reproducción Efectivo</i>. 
+Así, valores mayores que 1 de esta variable indican que la evolución de la epidemia tendrá un crecimiento exponencial, o multiplicativo. La Tasa de Ataque, IA14, es una medida del número de <i>casos positivos activos</i>. 
+Mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100000 habitantes.
+</p>
+
+<p style="font-family:arial;">
+Cada punto del gráfico es una foto de situación de un día dado. Los días más recientes aparecen como puntos más brillantes. La curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población seleccionada. Seleccionando un dado punto, se accede a la información del valor de rho7, IA14, y del tiempo de duplicación en el caso de encontrarse en el régimen exponencial (rho7>1).</p>
+
+<p style="font-family:arial;">
+La interpretación del gráfico es la siguiente: si para un dado día, el número de casos reportados tiene un dado valor y además sabemos que por cada nuevo contagio se producirán al día siguiente una cantidad de contagios, calculada en base a la tasa reproductiva, podemos estimar cuantos contagiados totales habrá en los próximos días. Esta estimación puede no ser precisa y es por eso que debe ajustarse día a día. Aun así tiene un buen valor predictivo.</p>
+
+<p style="font-family:arial;">
+En base a esto tenemos diversos escenarios:</p>
+
+<ol>
+<li style="font-family:arial;"> El mejor escenario es una tasa reproductiva baja (idealmente por debajo de 1) y número de nuevos contagios bajo (abajo y a la izquierda del gráfico).</li>
+
+<li style="font-family:arial;">  Escenario moderadamente grave, cuando la tasa de contagios es baja pero el número de infectados alto o viceversa.
+</li>
+
+<li style="font-family:arial;"> Escenario grave, cuando ambos indicadores son altos (arriba y a la derecha del gráfico).</p>
+</li>
+</ol>
+
+<p style="font-family:arial;">Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones diarias de la capacidad media de testeo y hospitalaria en la ciudad de Bariloche, así como tambien de la probabilidad de que un testeado desarrolle síntomas graves requiriendo cuidados intensivos. Para no sobrepasar la capacidad de testeo, control y capacidad del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.</p>
+
+<p style="font-family:arial;"><b>Este indicador es estadístico y debe ser usado en conjunto con otros indicadores.</b> </p> 
+
 <p> Para mas detalles sobre el cálculo de este indicador 
 </ul>
 <li><a href="./DiagramasRiesgoRNyBRC.pdf"> Hacer click aquí</a></li>
 </ul>
-<p> Este indicador debe ser usado en conjunto con otros indicadores.<p>
 
 
 <!--
