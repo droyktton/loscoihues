@@ -2,7 +2,7 @@
 
 Este repositorio público está dedicado al desarrolo de códigos de cálculo numérico y visualización vía web de un Diagrama de Riesgo de covid19 diario. Está basado exclusivamente en datos públicos del número de casos testeados positivos diariamente. Se puede sin embargo complementar con datos no públicos diarios para estimar, cuantitativamente, el grado de riesgo de una población concreta. 
 
-El algoritmo está descripto en https://droyktton.github.io/loscoihues/DiagramasRiesgoRNyBRC.pdf .
+El algoritmo está descripto en [la descripción técnica](https://droyktton.github.io/loscoihues/DiagramasRiesgoRNyBRC.pdf).
 Se trata básicamente de un predictor de corto término para el posible número de casos positivos en los siguientes días, basándose en la información histórica desde 14 días (no casualmente el tiempo medio esperado de recuperacíón de un infectado) atrás, hasta el de hoy. Cuando se compara este número con la capacidad sanitaria de la población referida, uno puede tener una idea cuantitativa de cuan cerca estamos de saturar esta capacidad, y por lo tanto de perder el control de la epidemia.
 
 Es importante aclarar que la información es puramente estadística y los índices tienen asociado un error. Este error depende de muchísimos factores, del tamaño de la población, de la heterogeneidad de la red de contagios, de obtención y carga de datos, de la ocurrencia de eventos inesperados, y hasta de posibles mutaciones del virus. También es importante aclarar que es un indicador global, una simplificación de la verdadera compleja propagación de la epidemia, que es espacialmente heterogénea y temporalmente fluctuante. Pero es una simplificación que tiene sus ventajas, ya que permite capturar y racionalizar algunas de sus características generales.
