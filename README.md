@@ -15,7 +15,7 @@ La dinámica de la epidemia, en el régimen actual en Argentina, está básicame
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea.
+donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
 
 Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
 
@@ -64,15 +64,23 @@ rho_7(t) = [rho(t-3)+rho(t-2)+rho(t-1)+rho(t)+rho(t+1)+rho(t+2)+rho(t+3)]/7
 
 Esta es la coordenada Y de nuestros diagramas de riesgo, a la que llamamos Tasa de Reproducción, o Número de Reproducción Efectivo.
 
+#### Tasa de Ataque  
+
 Si conociéramos la cantidad de casos positivos hoy, podríamos utilizar rho_7 para estimar la cantidad de casos positivos mañana. Como no conocemos esta cantidad, la estimamos como el número de casos positivos acumulados los ultimos 14 días, los cuales pueden por tanto considerarse "casos activos". Llamamos a esta cantidad IA14, 
 
 IA14(t) = [N(t-14)+N(t-13)+N(t-12)+...+N(t-3)+N(t-2)+N(t-1)+N(t)] * 100000/Npoblación
 
-donde el último factor se introduce para medir IA14 de forma intensiva, por cada 100000 habitantes (la elección 100000 es arbitraria y se elije sólo para fijar unidades convenientes). Si hay rho_7 nuevos positivos por cada positivo hoy, entonces mañana podemos esperar una cantidad EPG de casos positivos por cada 100000 habitantes definida como
+donde el último factor se introduce para medir IA14 de forma intensiva, por cada 100000 habitantes (la elección 100000 es arbitraria y se elije sólo para fijar unidades convenientes). 
+
+#### Predicción a corto término  
+
+Si hay rho_7 nuevos positivos por cada positivo hoy, entonces mañana podemos esperar una cantidad EPG de casos positivos por cada 100000 habitantes definida como
 
 EPG(t)=rho_7(t) x IA14(t) 
 
-Es importante por tanto que el sistema sanitario este preparado para controlarlos. 
+#### Cuantificación del Riesgo 
+
+Es importante por que el sistema sanitario este preparado para controlar los EPG nuevos casos. 
 Por un lado, es deseable que la capacidad de testeo diario por cada 100000 habitantes, TDL, alcance para testear a los nuevos casos que darán positivo, es decir que aproximadamente se de la condición
 
 EPG < TDL
@@ -88,9 +96,13 @@ Límite de capacidad hospitalaria = C/f
 
 La interpretación sugerida es que las medidas de control se realicen, atendiendo a la cercanía del EPG a estos límites, en la trayectoria definida por las coordenadas diarias rho_7 y AI14 de la epidemia.  
 
+#### Dinámica controlada por brotes
+
 La trayectoria de rho_7 y AI14 suele ser cíclica cuando la dinámica esta dominada por brotes, ya que si rho7 aumenta, esto inducirá un aumento de AI14, con lo cual un desplazamiento vertical en el diagrama termina torciéndose hacia la derecha. Si se controla el brote tomando medidas de control, rho7 disminuye, con lo cual IA14 deja de crecer. Eventualmente, si la tasa de recuperación (14 días) es más alta que la reproductiva el número de positivos activos decrecerá, aproximadamente cerrando el ciclo.
 
+#### Aplicabilidad
 
+Las predicciones más precisas del Diagrama de Riesgo se esperan para el caso de una población grande y homogénea. Como son dos requisitos dificiles de encontrar en general, en la práctica el mejor será un compromiso entre ambas. Es decir una población de tamaño intermedio.
 
 
 
