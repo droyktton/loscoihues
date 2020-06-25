@@ -163,7 +163,7 @@ En base a esto tenemos diversos escenarios:</p>
 </li>
 </ol>
 
-<p style="font-family:arial;">Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones diarias de la capacidad media de testeo y hospitalaria en la ciudad de Bariloche, así como tambien de la probabilidad de que un testeado desarrolle síntomas graves requiriendo cuidados intensivos. Para no sobrepasar la capacidad de testeo, control y capacidad del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.</p>
+<p style="font-family:arial;">Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones diarias de la capacidad media de testeo y hospitalaria en la ciudad de Bariloche, así como tambien de la probabilidad de que un testeado desarrolle síntomas graves requiriendo cuidados intensivos. Para no sobrepasar la capacidad de testeo, control y capacidad de atención del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.</p>
 
 <p style="font-family:arial;"><b>Este indicador es estadístico y debe ser usado en conjunto con otros indicadores.</b> </p> 
 
@@ -382,7 +382,7 @@ function plotriesgo(ciudad){
 		var textomarkers=[];
 		for(var i=0;i<size2;i++) {
 			opa[i]=2*(i*1.0/size2)*(i*1.0/size2);
-			taudup=Math.trunc(100*3.47/Math.log(rho7[i]))/100.0;
+			taudup=Math.trunc(100*3.47*2.0/Math.log(rho7[i]))/100.0;
 			if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
 			else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
 		}
