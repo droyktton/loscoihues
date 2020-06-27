@@ -234,15 +234,17 @@ Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>
 <!-- ############################################################################ -->
 <script>
 
-plotriesgo('./RiesgoCABA');
+plotriesgo('./RiesgoCABA_CABA');
 
 function plotriesgo(ciudad){
 
 	
-	if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
-	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
-	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
-	if(ciudad=='./RiesgoCABA') titulo="<b>Diagrama de Riesgo: CABA</b>"
+	if(ciudad=='./RiesgoCABA_CABA') titulo="<b>Diagrama de Riesgo: CABA</b>"
+	if(ciudad=='./RiesgoCABA_COMUNA1') titulo="<b>Diagrama de Riesgo: CABA Comuna 1'</b>"
+	if(ciudad=='./RiesgoCABA_COMUNA3') titulo="<b>Diagrama de Riesgo: CABA Comuna 3</b>"
+	if(ciudad=='./RiesgoCABA_COMUNA4') titulo="<b>Diagrama de Riesgo: CABA Comuna 4</b>"
+	if(ciudad=='./RiesgoCABA_COMUNA7') titulo="<b>Diagrama de Riesgo: CABA Comuna 7</b>"
+	if(ciudad=='./RiesgoCABA_COMUNA8') titulo="<b>Diagrama de Riesgo: CABA Comuna 8</b>"
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
