@@ -101,7 +101,7 @@ div.scrollmenu a:hover {
 <body>
 
 <p>
-Todos los gráficos mostrados aquí están hechos con datos públicos
+Todos los gráficos mostrados aquí están hechos con 
   <a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
 </p>
 
@@ -368,7 +368,7 @@ function plotriesgo(ciudad){
 		var textomarkers=[];
 		for(var i=0;i<size2;i++) {
 			opa[i]=2*(i*1.0/size2)*(i*1.0/size2);
-			taudup=Math.trunc(100*3.47*2/Math.log(rho7[i]))/100.0;
+			taudup=Math.trunc(100*3.47/Math.log(rho7[i]))/100.0;
 			//taudup=Math.trunc(100*3.47/Math.log(rho7[i]))/100.0;
 			if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
 			else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
