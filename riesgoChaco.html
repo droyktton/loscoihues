@@ -118,11 +118,9 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
 -->
 
 <div class="scrollmenu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
+  <a href="#" class="active" onclick="plotriesgo('./RiesgoChacoNA')">Provincia de Chaco</a>
 
-  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
-
-  <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
+  <a href="#" onclick="plotriesgo('./RiesgoSanFernando')">San Fernando</a>
 </div>
 
 <!-- 
@@ -259,14 +257,13 @@ Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>
 <!-- ############################################################################ -->
 <script>
 
-plotriesgo('./RiesgoRioNegro');
+plotriesgo('./RiesgoChacoNA');
 
 function plotriesgo(ciudad){
 
 	
-	if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
-	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
-	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
+	if(ciudad=='./RiesgoChacoNA') titulo="<b>Diagrama de Riesgo: Provincia de Chaco</b>"
+	if(ciudad=='./RiesgoSanFernando') titulo="<b>Diagrama de Riesgo: San Fernando</b>"
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 

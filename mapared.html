@@ -1,59 +1,94 @@
-<!DOCTYPE html>
-<html>
 <head>
-<style>
-html, body {
-  height: 370px;
-  padding: 0;
-  margin: 0;
-  }
-#map {
- height: 360px;
- width: 300px;
- overflow: hidden;
- float: left;
- border: thin solid #333;
- }
-#capture {
- height: 360px;
- width: 480px;
- overflow: hidden;
- float: left;
- background-color: #ECECFB;
- border: thin solid #333;
- border-left: none;
- }
-</style>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
 
-<div id="map"></div>
-<div id="capture"></div>
-<!-- Replace the value of the key parameter with your own API key. -->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
-</script>
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
 
 <script>
-var map;
-var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
+Plotly.d3.csv(
+	//"https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv",
+	"https://bitbucket.org/abk_balde/datos/raw/1e474fd783de0a1efb23410325183037ab7475d5/EDGES_AUMENTADO_COMAS.csv",
+	function(err, rows) {
+		function unpack(rows, key) {
+			return rows.map(function(row) {
+				return row[key];
+			});
+		}
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: new google.maps.LatLng(-19.257753, 146.823688),
-    zoom: 2,
-    mapTypeId: 'terrain'
-  });
+		var textos=unpack(rows, "FECHA");
+		var lonS=unpack(rows, "LONS");
+		var latS=unpack(rows, "LATS");
+		var lonT=unpack(rows, "LONT");
+		var latT=unpack(rows, "LATT");
+		var infectadoS=unpack(rows, "INFECTADO1");
+		var tipolink=unpack(rows, "TIPOLINK");
+	
+		var data=[];
 
-  var kmlLayer = new google.maps.KmlLayer(src, {
-    suppressInfoWindows: true,
-    preserveViewport: false,
-    map: map
-  });
-  kmlLayer.addListener('click', function(event) {
-    var content = event.featureData.infoWindowHtml;
-    var testimonial = document.getElementById('capture');
-    testimonial.innerHTML = content;
-  });
-}
+		//"SOURCE","TARGET","TIPOLINK","EDADS","EDADT","FECHA","INFECTADO1","LATS","LONS","LATT","LONT",
+
+		for ( var i = 0 ; i < 300; i++ ) {
+			if(Math.abs(lonS[i])*Math.abs(lonT[i])*Math.abs(latT[i])*Math.abs(latT[i]) >0.000001)
+			{
+				var result = {
+					type: "scattermapbox",
+					lon: [lonS[i],lonT[i]],
+					lat: [latS[i],latT[i]],
+					line: { 
+						color: "grey", 
+						size: 10, 
+					},
+					mode: 'lines',
+					name: '',
+				};
+	        		data.push(result);					
+			}			
+			if(infectadoS[i]==1){
+				result = {
+					type: "scattermapbox",
+					text: "fecha:"+textos[i]+" tipo:"+tipolink[i],
+					lon: [lonS[i]],
+					lat: [latS[i]],
+					marker: { 
+						color: "red", 
+						size: 10,
+						opacity: 1,
+					},
+					mode: 'markers',
+					name: '',
+				};								
+		        	data.push(result);					
+			}
+			/*if(infectadoS[i]==0){
+				result = {
+					type: "scattermapbox",
+					text: "fecha:"+textos[i]+" tipo:"+tipolink[i],
+					lon: [lonS[i]],
+					lat: [latS[i]],
+					marker: { 
+						color: "blue", 
+						size: 10,
+						opacity: 0.1,
+					},
+					mode: 'markers',
+					name: '',
+				};								
+		        	data.push(result);					
+			}*/
+		}
+
+		var layout = {
+			showlegend: false,
+			dragmode: "zoom",
+			mapbox: { style: "open-street-map", center: { lat: -41.1, lon: -71.3 }, zoom: 10 },
+			margin: { r: 0, t: 0, b: 0, l: 0 }
+		};
+
+		Plotly.newPlot("myDiv", data, layout);
+	}
+);
 </script>
 
