@@ -1,0 +1,273 @@
+<h1> Riesgómetro COVID19 </h1>
+
+<p style="font-family:arial;">Bienvenido a la página del "Riesgómetro" COVID19, para Argentina.</p>
+<p style="font-family:arial;">Este indicador de riesgo es estadístico y debe ser 
+usado en conjunto con otros indicadores.</p> 
+
+<ul>
+<li><a href="riesgo.html" style="font-family:arial;">Río Negro y localidades</a></li>
+<li><a href="riesgoCABA.html" style="font-family:arial;">CABA y localidades</a></li>
+<li><a href="riesgoBsAs.html" style="font-family:arial;">Provincia de Buenos Aires y localidades</a></li>
+<li><a href="riesgoChaco.html" style="font-family:arial;">Provincia de Chaco y localidades</a></li>
+<li style="font-family:arial;">Más poblaciones próximamente.</li>
+</ul>
+
+
+<p style="font-family:arial;"> Ideado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a>.</p>
+<p style="font-family:arial;">Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>. </p>
+<p style="font-family:arial;">Más detalles sobre el cálculo en este 
+<a href="./DiagramasRiesgoRNyBRC.pdf"> tutorial </a></li></p>
+
+</p>
+
+
+<head>
+<h2>Poblaciones analizadas </h2>
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+</body>
+
+<script>
+//var slider = document.getElementById("myRange");
+//var output = document.getElementById("demo");
+//output.innerHTML = slider.value;
+
+Plotly.d3.csv(
+	//FECHAENT,FECHAIS,ID,TEST,EDAD,LATITUDE,LONGITUDE,NROCUARTOS,CAMAIND,CUARTOIND
+//"https://bitbucket.org/abk_balde/datos/raw/658a194a4b019397e0ae1d3736dfa635a5f644bd/TESTEADOS.sorted.csv",
+//"https://bitbucket.org/abk_balde/datos/raw/a2b0afd0a48197220406c2211da73350732d5a71/TESTEADOS.sorted.csv",
+//"https://bitbucket.org/abk_balde/datos/raw/a6593250032ae5627a31f831c930519ea990f7bf/TESTEADOS.sorted.csv",
+"https://bitbucket.org/abk_balde/datos/raw/412727d7a4aead083785d5494e2b7eea831ccf75/13JUNIO.csv.TESTEADOS.sorted",
+	function(err, rows) {
+		function unpack(rows, key) {
+			return rows.map(function(row) {
+				return row[key];
+			});
+		}
+
+		var estado = unpack(rows, "TEST");
+		var fechais = unpack(rows, "FECHAENT");
+		var ids = unpack(rows, "ID");
+		var edades = unpack(rows, "EDAD");
+		var lons = unpack(rows, "LONGITUDE");
+		var lats = unpack(rows, "LATITUDE");
+
+		var colores=[];
+		var tamanios=[];
+		var textos=[];
+		var slider_steps = []
+			
+		for ( var i = 0 ; i < estado.length; i++) 
+		{
+			if(estado[i]=="POSITIVO") 
+			colores.push("red");
+			if(estado[i]=="NEGATIVO") 
+			colores.push("blue");
+			if(estado[i]=="SOSPECHOSO") 
+			colores.push("grey");
+
+			tamanios[i]=15;
+		
+			var currentText = "ID: " + ids[i] + 
+			", EDAD: " + edades[i] + 
+			", FECHAENT: " + fechais[i] +
+			", TEST: " + estado[i];
+			textos[i]=currentText;
+
+			//opacidades[i]=0.5;
+	        }
+		
+		var frames = [];
+		for ( var i = 0 ; i < estado.length; i++) 
+		{
+			var colores_frame=colores.slice(0,i);
+			var tamanios_frame=tamanios.slice(0,i);
+
+			tamanios_frame[i-1]=tamanios_frame[i-1]+10;
+			var opacidades=[];
+			var linecolors=[];
+			//for(var j = 0 ; j < i-1; j++) opacidades.push(0.5);
+			//opacidades.push(1.0);
+			var dop=1./(i-1);
+			var op=0.0;
+			for(var j = 0 ; j <= i-1; j++) {
+				var op=op+dop;
+				if(colores_frame[j]=='red') opacidades.push(op);
+				if(colores_frame[j]=='blue') opacidades.push(op*0.2);
+				linecolors.push("black");
+			}
+			//opacidades.push(1.0);
+
+			frames[i]={
+				data: 
+				[{
+					type: "scattermapbox",
+					text: textos.slice(0,i),
+					lon: lons.slice(0,i),
+					lat: lats.slice(0,i),
+					mode:'markers',
+					marker: { 
+						color: colores_frame, 
+						size: tamanios_frame, 
+						line: {color: 'black', width: 200},
+						opacity: opacidades.slice(0,i),
+					}
+				}], name: i.toString()
+			}
+			
+			slider_steps.push ({
+				label: fechais[i].toString(),
+				method: "animate",
+				args: [[i], {
+			    	mode: "immediate",
+			    	transition: {duration: 5},
+			    	frame: {duration: 5}
+			  	}]
+		      	})						
+		}		
+
+		/*var data = [
+			{
+				type: "scattermapbox",
+				text: textos,
+				lon: lons,
+				lat: lats,
+				marker: { color: colores, size: tamanios}
+			}
+		];*/
+
+		var data = [{
+		      type: "scattermapbox",
+		      text: frames[0].data[0].textos,
+		      lon: frames[0].data[0].lons,
+		      lat: frames[0].data[0].lats,
+		      marker: { 
+		      	color: frames[0].data[0].colores, 
+		      	size: frames[0].data[0].tamanios,
+		      	line: {color: 'black', width: 5}
+		      }
+		}];
+
+
+//////////////////////////////////////////////////////////////////
+/*		var layout = {
+			dragmode: "zoom",
+			mapbox: { style: "open-street-map", center: { lat: -41.13, lon: -71.3 }, zoom: 10 },
+			margin: { r: 0, t: 0, b: 0, l: 0 },
+			
+			sliders: [{
+			    pad: {
+			      t: 30,
+			      l: 0
+			    },
+			    currentvalue: {
+			      visible: true,
+			      xanchor: 'right',
+			      prefix: 'fecha: ',
+			      font: {
+				color: '#888',
+				size: 20
+			      }
+			    },
+			    steps: slider_steps
+			    }] // endsliders 
+
+		}; // endlayout		
+*/
+
+
+//////////////////////////////////////////////////////////////////
+		var layout = {
+		    title: 'Casos Testeados',
+		    dragmode: "zoom",
+		    mapbox: { 
+		    	style: "open-street-map", 
+		    	center: { lat: -41.13, lon: -71.3 }, 
+		    	zoom: 10, autosize: true,
+		    	domain: {
+        			x: [0, 1],
+        			y: [0, 1]
+      			}, 
+      			showlegend: true,
+		    },
+		    margin: { r: 0, t: 0, b: 0, l: 0 },
+			
+		    updatemenus: [{
+		      x: 0.2,
+		      y: 0.2,
+		      yanchor: "top",
+		      xanchor: "right",
+		      showactive: false,
+		      direction: "left",
+		      type: "buttons",
+		      pad: {"t": 10, "r": 30},
+		      buttons: [{
+			method: "animate",
+			args: [null, {
+			  fromcurrent: true,
+			  transition: {
+			    duration: 200,
+			  },
+			  frame: {
+			    duration: 500
+			  }
+			}],
+			label: "Animar"
+		      }, {
+			method: "animate",
+			args: [
+			  [null],
+			  {
+			    mode: "immediate",
+			    transition: {
+			      duration: 0
+			    },
+			    frame: {
+			      duration: 0
+			    }
+			  }
+			],
+			label: "Pausar"
+		      }]
+		    }],
+		    sliders: [{
+		      active: 0,
+		      steps: slider_steps,
+		      x: 0.1,
+		      len: 0.85,
+		      xanchor: "left",
+		      y: 0.1,
+		      yanchor: "top",
+		      pad: {t: 50, b: 10},
+		      currentvalue: {
+			visible: true,
+			prefix: "Fecha Entrevista:",
+			xanchor: "left",
+			font: {
+			  size: 20,
+			  color: "#666"
+			}
+		      },
+		      transition: {
+			duration: 300,
+			easing: "cubic-in-out"
+		      }
+		    }]
+		};
+//////////////////////////////////////////////////////////////////
+
+
+		//Plotly.newPlot("myDiv", data, layout);
+
+		Plotly.newPlot('myDiv', data, layout).then(function() {
+    		Plotly.addFrames('myDiv', frames);
+  		});
+
+	}
+);
+
+</script>
+
+
+
