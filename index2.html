@@ -23,7 +23,11 @@ Plotly.d3.csv(
 		var EPG = unpack(rows, "producto");
 		var textos=unpack(rows, "Texto");		
 		
-		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]/100.;
+		var maxEPG=0;
+		for(var i=0;i<EPG.length;i++){
+			if(maxEPG<EPG[i]) maxEPG=EPG[i];		
+		} 
+		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*20/maxEPG;
 		
 		var data = [
 			{
