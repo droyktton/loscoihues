@@ -20,10 +20,12 @@ Plotly.d3.csv(
 
 		var data = [
 			{
+			//nombre1,rho7,ia14,producto,nombre2,Latitud,Longitud,Texto
+
 				type: "scattermapbox",
-				text: unpack(rows, "Globvalue"),
-				lon: unpack(rows, "Lon"),
-				lat: unpack(rows, "Lat"),
+				text: unpack(rows, "Texto"),
+				lon: unpack(rows, "Longitud"),
+				lat: unpack(rows, "Latitud"),
 				marker: { color: "fuchsia", size: 4 }
 			}
 		];
