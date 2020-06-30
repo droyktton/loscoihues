@@ -18,15 +18,20 @@ Plotly.d3.csv(
 			});
 		}
 
+		var rho7 = unpack(rows, "rho7");
+		var ia14 = unpack(rows, "ia14");
+		var EPG = unpack(rows, "producto");
+		var textos=unpack(rows, "Texto");		
+		
 		var data = [
 			{
 			//nombre1,rho7,ia14,producto,nombre2,Latitud,Longitud,Texto
 
 				type: "scattermapbox",
-				text: unpack(rows, "Texto"),
+				text: textos,
 				lon: unpack(rows, "Longitud"),
 				lat: unpack(rows, "Latitud"),
-				marker: { color: "fuchsia", size: 4 }
+				marker: { color: "fuchsia", size: EPG }
 			}
 		];
 
@@ -34,7 +39,8 @@ Plotly.d3.csv(
 			dragmode: "zoom",
 			//mapbox: { style: "open-street-map", center: { lat: 38, lon: -90 }, zoom: 3 },
 			mapbox: { style: "open-street-map", center: { lat: -36.620922, lon: -64.2912369}, zoom: 3 },
-			margin: { r: 0, t: 0, b: 0, l: 0 }
+			margin: { r: 0, t: 0, b: 0, l: 0 },
+			showlegend: true,
 		};
 
 
