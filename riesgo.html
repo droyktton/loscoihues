@@ -366,8 +366,12 @@ function plotriesgo(ciudad){
 		  		tickmode: "array",
 		  		//tickvals: [0,DTL,UTIpUCI],
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
-		  		tickvals: [0,1500],
-		  		ticktext: ["Bajo Riesgo", "Alto Riesgo"]
+		  		tickvals: [0,10,100,500,1500],
+		  		ticktext: ["Bajo Riesgo",
+		  		"~"+(10.0/0.035)+" cuidados intensivas", 
+		  		"~"+(100.0/0.035)+" cuidados intensivas", 
+		  		"~"+(500.0/0.035)+" cuidados intensivas", 
+		  		"Alto Riesgo"]
 		  	}
 		};
 
