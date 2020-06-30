@@ -353,14 +353,19 @@ function plotriesgo(ciudad){
 		    		end: 1500,
 		    		size: 2
 		  	},
-		  	/*colorbar: {
+		  	colorbar: {
 		  		x: 1.0, len: 1.0,
 		  		tickmode: "array",
 		  		//tickvals: [0,DTL,UTIpUCI],
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
-		  		tickvals: [0,1500],
-		  		ticktext: ["Bajo Riesgo", "Alto Riesgo"]
-		  	}*/
+		  		tickvals: [750,1000,1250,1500],
+		  		ticktext: [
+		  		"~"+Math.trunc(750.0*0.035*100)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1000.0*0.035*100)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1250.0*0.035*100)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(1500.0*0.035*100)/100.+" CI cada 100000 hab",
+		  		]
+		  	}
 		};
 
 		/*var x1=new Array(10);
