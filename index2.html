@@ -28,7 +28,7 @@ Plotly.d3.csv(
 			if(maxEPG<EPG[i]) maxEPG=EPG[i];
 			textos[i]=textos[i]+", EPG="+EPG[i]+", rho7="+rho7[i]+", ia14="+ia14[i]		
 		} 
-		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*1000.0/maxEPG;
+		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*10.0/maxEPG;
 		
 		var data = [
 			{
@@ -38,7 +38,7 @@ Plotly.d3.csv(
 				text: textos,
 				lon: unpack(rows, "Longitud"),
 				lat: unpack(rows, "Latitud"),
-				marker: { color: EPG, size: 10, coloring:"heatmap" }
+				marker: { color: "red", size: EPG }
 			}
 		];
 
