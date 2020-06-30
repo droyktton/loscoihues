@@ -9,7 +9,8 @@
 
 <script>
 Plotly.d3.csv(
-	"https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv",
+	//"https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv",
+	"./mapariesgo.csv",
 	function(err, rows) {
 		function unpack(rows, key) {
 			return rows.map(function(row) {
