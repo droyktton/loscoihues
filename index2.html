@@ -25,9 +25,10 @@ Plotly.d3.csv(
 		
 		var maxEPG=0;
 		for(var i=0;i<EPG.length;i++){
-			if(maxEPG<EPG[i]) maxEPG=EPG[i];		
+			if(maxEPG<EPG[i]) maxEPG=EPG[i];
+			textos[i]=textos[i]+", EPG="+EPG[i]+", rho7="+rho7[i]+", ia14="+ia14[i]		
 		} 
-		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*1000/maxEPG;
+		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*1000.0/maxEPG;
 		
 		var data = [
 			{
