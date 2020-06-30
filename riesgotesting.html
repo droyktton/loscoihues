@@ -366,10 +366,11 @@ function plotriesgo(ciudad){
 		  		tickmode: "array",
 		  		//tickvals: [0,DTL,UTIpUCI],
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
-		  		tickvals: [500,1000,1500],
+		  		tickvals: [750,1000,1250,1500],
 		  		ticktext: [
-		  		"~"+Math.trunc(500.0*0.035*100)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(750.0*0.035*100)/100.+" CI cada 100000 hab", 
 		  		"~"+Math.trunc(1000.0*0.035*100)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1250.0*0.035*100)/100.+" CI cada 100000 hab"
 		  		"~"+Math.trunc(1500.0*0.035*100)/100.+" CI cada 100000 hab"
 		  		]
 		  	}
