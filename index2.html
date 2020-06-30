@@ -23,6 +23,8 @@ Plotly.d3.csv(
 		var EPG = unpack(rows, "producto");
 		var textos=unpack(rows, "Texto");		
 		
+		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]/100.;
+		
 		var data = [
 			{
 			//nombre1,rho7,ia14,producto,nombre2,Latitud,Longitud,Texto
