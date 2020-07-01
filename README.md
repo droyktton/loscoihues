@@ -11,11 +11,28 @@ El indicador, que ha sido usado en reportes oficiales en distintos países de Eu
 
 ### Crecimiento Exponencial: Tiempo de Duplicación
 
-La dinámica de la epidemia, en el régimen actual en Argentina, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy cercana al 100%. Es decir, estamos muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. Esto es, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
+La dinámica de la epidemia, en el régimen actual en Argentina, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy cercana al 100% (aunque para asegurarlo habria quizas que hacer testeos masivos random). Es decir, estamos probablemente muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. 
+
+En el contexto del simplístico pero paradigmatico modelo SIR, esto quiere decir que (en una población grande, homogénea y muy mezclada) que la fraccion I de susceptibles está descripta pro la ecuación diferencial
+
+dI/dt = beta I S - gamma I
+
+donde "beta" es la frecuencia de contagio y "gamma" la frecuencia de recuperacion. Si la fracción susceptible es S~1 entonces
+
+I(t+dt) = I(t) exp[(beta-gamma) dt] = I(t) exp[gamma (R0-1) dt] = I(t) 2^{dt/tau} 
+
+donde R0 es el numero de reproduccion basico, y tau el tiempo de duplicacion. 
+Por lo tanto 
+
+tau = log(2) / gamma(R0-1)
+
+Es decir, que si R0>1 el tiempo de duplicacion es positivo, igual a log(2)/(R0-1) veces el tiempo de recuperacion 1/gamma. 
+
+Si discretizamos en dias, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
+Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
 
 Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
 
