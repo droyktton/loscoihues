@@ -21,7 +21,7 @@ donde "beta" es la frecuencia de contagio y "gamma" la frecuencia de recuperaci�
 
 I(t+dt) = I(t) exp[(beta-gamma) dt] = I(t) exp[gamma (R0-1) dt] = I(t) 2^{dt/tau} 
 
-donde R0 es el número de reproduccion básico, y tau el tiempo de duplicación. 
+donde R0 (=beta/gamma en el contexto del modelo SIR) es el número de reproduccion básico, y tau el tiempo de duplicación. 
 Por lo tanto 
 
 tau = log(2) / gamma(R0-1)
