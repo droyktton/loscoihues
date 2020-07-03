@@ -11,13 +11,30 @@ El indicador, que ha sido usado en reportes oficiales en distintos países de Eu
 
 ### Crecimiento Exponencial: Tiempo de Duplicación
 
-La dinámica de la epidemia, en el régimen actual en Argentina, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy cercana al 100%. Es decir, estamos muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. Esto es, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
+La dinámica de la epidemia, en el régimen actual en Argentina, está básicamente controlada por la tasa de contagio, ya que la fracción de la población susceptible (es decir la que no está ni infectada ni inmunizada y puede contraer la enfermedad) es muy cercana al 100% (aunque para asegurarlo habría quizás que hacer por ejemplo testeos masivos aleatorios). Es decir, estamos probablemente muy lejos de lograr la denominada "inmunidad de rebaño". Por lo tanto, el crecimiento de la epidemia es, al menos en un intervalo reducido de tiempo, exponencial. 
+
+En el contexto del simplístico pero paradigmático modelo SIR, esto quiere decir que (estrictamente en una población grande, homogénea y muy mezclada) que la fracción I de susceptibles está descripta pro la ecuación diferencial
+
+dI/dt = beta I S - gamma I
+
+donde "beta" es la frecuencia de contagio y "gamma" la frecuencia de recuperación. Si la fracción susceptible es S~1 entonces
+
+I(t+dt) = I(t) exp[(beta-gamma) dt] = I(t) exp[gamma (R0-1) dt] = I(t) 2^{dt/tau} 
+
+donde R0 (=beta/gamma en el contexto del modelo SIR) es el número de reproduccion básico, y tau el tiempo de duplicación. 
+Por lo tanto 
+
+tau = log(2) / gamma(R0-1)
+
+Es decir, que si R0>1 el tiempo de duplicación es positivo, igual a log(2)/(R0-1) veces el tiempo de recuperación 1/gamma. 
+
+Si discretizamos en días, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
 
 N(t)~ N(t-dt) 2^{dt/tau}, 
 
-donde "tau" es el "Tiempo de duplicación". Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podria indicar un crecimiento mas lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante. Fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
+Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podría indicar un crecimiento más lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante y el modelo SIR, aunque captura lo básico, está lejos de describir la realidad. El tiempo de duplicación empírico fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
 
-Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
+Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir en orden de magnitud si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
 
 #### Regresión lineal
 El crecimiento exponencial con tiempo de duplicación tau en intervalo dt es equivalente a escribir
@@ -35,7 +52,7 @@ Y= p2 + p1 * X
 
 dá tau=1/p1 como parámetro de ajuste. La regresión lineal da tanto el error de tau, como la desviación estandard del modelo a los datos. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo. 
 
-#### Moving average
+#### Moving average (y efectos de borde)
 
 Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantidad tendrá un comportamiento mas suave, y por lo tanto podemos estimar tau directamente de la siguiente forma
 
@@ -50,7 +67,7 @@ La cantidad
 
 N(t)/N(t-1) ~ 2^{1/tau}, 
 
-se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Esta relacionada pero en general no es lo mismo que el numero de reproducción básico R0, que determina a priori, el inicio de una epidemia en una población 100% susceptible, sin ninguna intervención. 
+se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Está relacionada pero en general no es lo mismo que el número de reproducción básico R0, que determina a priori, el inicio de una epidemia en una población 100% susceptible, sin ninguna intervención, según la definición comúnmente aceptada. 
 
 Para minimizar el efecto de las fuertes fluctuaciones en la cantidad de arriba es conveniente definir una tasa reproductiva promedio. Hay muchas formas de hacerlo, pero seguiremos la referencia citada más arriba para poder así comparar nuestros resultados con muchas otras poblaciones en distintos lugares del mundo donde se usó el mismo método.
 
@@ -98,13 +115,13 @@ La interpretación sugerida es que las medidas de control se realicen, atendiend
 
 #### Dinámica controlada por brotes
 
-La trayectoria de rho_7 y AI14 suele ser cíclica cuando la dinámica esta dominada por brotes, ya que si rho7 aumenta, esto inducirá un aumento de AI14, con lo cual un desplazamiento vertical en el diagrama termina torciéndose hacia la derecha. Si se controla el brote tomando medidas de control, rho7 disminuye, con lo cual IA14 deja de crecer. Eventualmente, si la tasa de recuperación (14 días) es más alta que la reproductiva el número de positivos activos decrecerá, aproximadamente cerrando el ciclo.
+La trayectoria de rho_7 y AI14 suele ser bastante irregular y cíclica cuando la dinámica esta dominada por brotes, ya que si rho7 aumenta, esto inducirá un aumento de AI14, con lo cual un desplazamiento vertical en el diagrama termina torciéndose hacia la derecha. Si se controla el brote tomando medidas de control, rho7 disminuye, con lo cual IA14 deja de crecer. Eventualmente, si la tasa de recuperación (14 días) es más alta que la reproductiva el número de positivos activos decrecerá, aproximadamente cerrando el ciclo. 
+
+Cuando el número de brotes es muy grande, el efecto descripto se vuelve más borroso. Por ello el diagrama correspondiente a poblaciones mas grandes siempre luce mas regular y menos cíclico, al combinarse distintos tiempos de inicio de los brotes independientes.
 
 #### Aplicabilidad
 
-Las predicciones más precisas del Diagrama de Riesgo se esperan para el caso de una población grande y homogénea. Como son dos requisitos dificiles de encontrar en general, en la práctica el mejor será un compromiso entre ambas. Es decir una población de tamaño intermedio.
-
-
+Las predicciones más precisas del Diagrama de Riesgo se esperan para el caso de una población grande y homogénea. Como son dos requisitos dificiles de encontrar en general, en la práctica el mejor será un compromiso entre ambas. Es decir una población de tamaño intermedio. Y por último, este es uno de tantos indicadores, captura solo un minúsculo aspecto de la epidemia, y debería usars en combinación con otros análisis estadsticos.
 
 
 
