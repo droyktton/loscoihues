@@ -1,35 +1,83 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+.menu {
+  float:left;
+  width:20%;
+  text-align:center;
+}
+.menu a {
+  background-color:#e5e5e5;
+  padding:8px;
+  margin-top:7px;
+  display:block;
+  width:100%;
+  color:black;
+}
+.main {
+  float:left;
+  width:60%;
+  padding:0 20px;
+}
+.right {
+  background-color:#e5e5e5;
+  float:left;
+  width:20%;
+  padding:15px;
+  margin-top:7px;
+  text-align:center;
+}
 
-  gtag('config', 'UA-171435841-1');
-</script>
+@media only screen and (max-width:620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width:100%;
+  }
+}
+</style>
+</head>
+<body style="font-family:Verdana;color:#aaaaaa;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
 
 <img src="banderaargentinacoronavirus.jpg" alt="bandevirus" width="300">
 <h1> Riesgómetro COVID19 </h1>
 
-<p style="font-family:arial;">Bienvenido a la página del "Riesgómetro" COVID19, para Argentina.</p>
-<p style="font-family:arial;">Este indicador de riesgo es estadístico y debe ser 
-usado en conjunto con otros indicadores.</p> 
+</div>
 
-<ul>
-<li><a href="riesgo.html" style="font-family:arial;">Río Negro y localidades</a></li>
-<li><a href="riesgoCABA.html" style="font-family:arial;">CABA y localidades</a></li>
-<li><a href="riesgoBsAs.html" style="font-family:arial;">Provincia de Buenos Aires y localidades</a></li>
-<li><a href="riesgoChaco.html" style="font-family:arial;">Provincia de Chaco y localidades</a></li>
-<li style="font-family:arial;">Más poblaciones próximamente.</li>
+<div style="overflow:auto">
+  <div class="menu">
+<a href="riesgo.html" style="font-family:arial;">Río Negro y localidades</a>
+<a href="riesgoCABA.html" style="font-family:arial;">CABA y localidades</a>
+<a href="riesgoBsAs.html" style="font-family:arial;">Provincia de Buenos Aires y localidades</a>
+<a href="riesgoChaco.html" style="font-family:arial;">Provincia de Chaco y localidades</a>
+<a style="font-family:arial;">Más poblaciones próximamente.</a>
 </ul>
+  </div>
 
+  <div class="main">
+  <p style="font-family:arial;color:black">Bienvenido a la página del "Riesgómetro" COVID19, para Argentina.</p>
+<p style="font-family:arial;color:black">
+Se trata básicamente de un predictor de corto término para el posible número de casos positivos en los siguientes días, basándose en la información de casos hasta 14 días atrás. Cuando se compara este número con la capacidad sanitaria de la población referida, uno puede tener una idea cuantitativa de cuan cerca estamos de saturar esta capacidad, y por lo tanto de perder el control de la epidemia. Este indicador de riesgo es estadístico y debe ser 
+usado en conjunto con otros indicadores.</p>   
+</div>
 
-<p style="font-family:arial;"> Ideado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a>.</p>
-<p style="font-family:arial;">Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>. </p>
+  <div class="right">
 <p style="font-family:arial;">Más detalles sobre el cálculo en este 
 <a href="./DiagramasRiesgoRNyBRC.pdf"> tutorial </a></li></p>
 
-</p>
+  </div>
+</div>
 
+<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">
+Ideado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> - 
+<a> Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
+</div>
 
-
+</body>
+</html>
