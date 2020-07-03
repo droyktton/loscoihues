@@ -27,55 +27,49 @@ Por lo tanto
 tau = log(2) / gamma(R0-1)
 
 Es decir, que si R0>1 el tiempo de duplicación es positivo, igual a log(2)/(R0-1) veces el tiempo de recuperación 1/gamma. 
+Conociendo la evolución de I(t) uno también podría calcular tau de la siguiente manera,
 
-Si discretizamos en días, si hoy es el día "t", y el número de casos hace "dt" días fue fue N(t-dt), tenemos que el número de casos esperables hoy es 
+tau = log(2)/[dlog(I(t))/dt]
 
-N(t)~ N(t-dt) 2^{dt/tau}, 
+Como no tenemos acceso al verdadero numero de infectados I(t), vamos a suponer que es proporcional al número de casos reportados acumulados A(t).
 
-Es decir, en tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=0 podría indicar un crecimiento más lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). Sin embargo, en la práctica tau no es constante y el modelo SIR, aunque captura lo básico, está lejos de describir la realidad. El tiempo de duplicación empírico fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
+Luego, si discretizamos en días, si hoy es el día "t", y el número de casos testeados positico hace "dt" días fue N(t-dt), tenemos que el número de casos positivos esperables hoy es 
+
+A(t)~ A(t-dt) 2^{dt/tau}, 
+
+En tau días el número de casos positivos debería duplicarse si tau se mantuviera constante y positivo (un tau negativo significa que el número está decreciendo, mientras que tau=infinito podría indicar un crecimiento más lento que exponencial, por ejemplo lineal, o bien que el número de casos diarios es aproximadamente constante). 
+
+Sin embargo, en la práctica tau no es constante y el modelo SIR, aunque captura lo básico, está lejos de describir la realidad. En particular, el tiempo de duplicación empírico fluctúa, y por diversas razones. Algunas son inherentes a la estocasticidad y memoria de la dinámica epidémica, otras a las fluctuaciones en el número de testeos y de carga de datos, y otras a las medidas de control y el grado de acatamiento de la sociedad. Su evaluación está entonces dificultada por fuertes e imprevistas fluctuaciones diarias, que son tanto más fuertes cuanto más pequeña sea la muestra poblacional. Esta variabilidad de N(t) es aún más compleja cuando la población considerada es muy heterogénea, ya que se suman fluctuaciones de distinta naturaleza.
 
 Debido a las fluctuaciones, para obtener una estimación razonable de tau es más conveniente trabajar no con los fluctuantes datos diarios sino con los datos en un dado intervalo de tiempo razonable, por ejemplo de 7 días. Tenemos entonces varias alternativas para estimar tau. Todas estas deberían concidir en orden de magnitud si consideraramos cuidadosamente el error, sistemático y aleatorio, de cada método. 
 
 #### Regresión lineal
 El crecimiento exponencial con tiempo de duplicación tau en intervalo dt es equivalente a escribir
 
-log N(t) ~ log N(t-dt) + {dt/tau} log(2), 
+log A(t) ~ log A(t-dt) + {dt/tau} log(2), 
 
 de modo que, en dt=7 días por ejemplo, un ajuste lineal por cuadrados mínimos de los arreglos de datos
 
 Y={log N(t-3),log N(t-2),log N(t),log N(t+1),log N(t+2),log N(t+3)}
 X={0,1,2,3,4,5,6,7} 
 
-al modelo con parametros ajustables p1 y p2
+al modelo con parámetros ajustables p1 y p2
 
 Y= p2 + p1 * X 
 
-dá tau=1/p1 como parámetro de ajuste. La regresión lineal da tanto el error de tau, como la desviación estandard del modelo a los datos. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo. 
+dá tau=log(2)/p1 como parámetro de ajuste. La regresión lineal da tanto el error de tau, como la desviación estandard del modelo a los datos, y la bondad del fit. Ambas cantidades deberían ser tenidas en cuenta junto con el reporte del tau óptimo. 
 
-#### Moving average (y efectos de borde)
-
-Definimos Ns(t)=[N(t-3)+N(t-2)+N(t-1)+N(t)+N(t+1)+N(t+2)+N(t+3)]/7. Esta cantidad tendrá un comportamiento mas suave, y por lo tanto podemos estimar tau directamente de la siguiente forma
-
-tau = dt log(2) / log [Ns(t)/Ns(t-dt)]  
-
-para algun dt, o bien hacer nuevamente la regresión lineal como en el caso anterior, reemplazando N(t) por Ns(t).
-Como es un moving average centrado en el tiempo t hay que prestar atención a los -efectos de borde- cuando t se acerca al día actual, ya que nos quedamos sin algunos tiempos posteriores a t. El efecto de borde hace que cuando t se acerca al día actual, Ns(t) tenga una contrinución más grande de días pasados. Es decir, una estimación asimétrica. Es por ello que no se debe tomar como definitivos los valores de Ns(t) en los tiempos mas recientes.
+Esta forma de estimar tau está centrada en el tiempo t, por lo que se debe prestar atención a los efectos de borde, cerca del día de la fecha, ya que no hay casos para adelante en el tiempo. Una alternativa es trabajar con una ventana atrasada {log N(t-7),log N(t-6),....,log N(t)}, dando mas peso a los dias pasados. 
 
 #### Tasa reproductiva  
 
-La cantidad
-
-N(t)/N(t-1) ~ 2^{1/tau}, 
-
-se denomina "tasa reproductiva diaria", porque me dice cuantos nuevos casos habrá el dia t por cada caso que hubo a tiempo (t-1). Está relacionada pero en general no es lo mismo que el número de reproducción básico R0, que determina a priori, el inicio de una epidemia en una población 100% susceptible, sin ninguna intervención, según la definición comúnmente aceptada. 
-
-Para minimizar el efecto de las fuertes fluctuaciones en la cantidad de arriba es conveniente definir una tasa reproductiva promedio. Hay muchas formas de hacerlo, pero seguiremos la referencia citada más arriba para poder así comparar nuestros resultados con muchas otras poblaciones en distintos lugares del mundo donde se usó el mismo método.
-
-En nuestros códigos primero definimos 
+Si el número de casos diarios es N(t), la cantidad
 
 rho(t) = [N(t+1)+N(t)+N(t-1)]/[N(t-6)+N(t-5)+N(t-4)] 
 
-usando ventanas de tres días. Esta tasa reproductiva es sin embargo aún muy ruidosa. Por ello a su vez la promediamos en una ventana de 7 días
+es una tasa reproductiva empirica, que tiene en cuenta que los casos acumulados en pocos días (tres en este caso) son debidos a los casos acumulados en tres días anteriores, en este caso 5 días antes. Es decir, contempla el delay entre la detección de los casos primarios y la de los secundarios.
+
+Esta tasa reproductiva empirica es sin embargo aún muy ruidosa. Por ello a su vez la promediamos en una ventana de 7 días
 
 rho_7(t) = [rho(t-3)+rho(t-2)+rho(t-1)+rho(t)+rho(t+1)+rho(t+2)+rho(t+3)]/7
 
