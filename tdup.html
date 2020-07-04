@@ -1,1 +1,95 @@
-<img src="./Tdup.gif" alt="this slowpoke moves"  width=800/>
+<img src="./Tdup.gif" alt="this slowpoke moves"  width=600/>
+<p>
+<b>Tiempo de Duplicación.</b>
+El denominado tiempo de duplicación "Tau" es uno de los indicadores 
+más básicos para seguir la evolución de una epidemia. 
+También es el más problemático para interpretar, 
+porque su definición se basa en un aproximación muy 
+fuerte, sólo válida en los modelos más elementales 
+de epidemias. Estos modelos usualmente asumen 
+poblaciones grandes y homogéneras, con gente muy mezclada 
+y sobre-simplifican algunos detalles importantes sobre los 
+tiempos característicos de contagio 
+y de recuperación.
+
+<p>
+<b>Modelo SIR.</b>El crecimiento exponencial del número de casos acumulados 
+suele justificarse con modelos muy sencillos como el modelo SIR 
+en la etapa de crecimiento, cuando la fracción de susceptibles 
+es alta y puede considerarse una constante S0 en el tiempo de 
+obervación. Si I(t) es la cantidad de infectados a tiempo t, 
+en el modelo SIR tenemos</p>
+
+
+<p>dI/dt = beta S0 I - gamma I</p>
+
+
+<p>
+donde beta es la frecuencia de contagio y gamma la de recuperación.
+Si beta, gamma y S0 se mantienen constantes en un intervalo dt 
+alrededor de t tenemos que,</p>
+
+<p>I(t) = I(t-dt) exp[(beta S0 - gamma) t] = I(t-dt) exp[gamma(R0 S0 - 1) t] </p>
+
+<p>donde R0 es el número de reproducción básico.
+Escribiendo </p>
+
+<p>I(t) = I(t-dt) 2^{t/Tau} = I(t-dt) exp[log(2) {t/Tau}]  </p>
+  
+<p>vemos que </p>
+
+<p>Tau = log(2)/[gamma(R0 S0 - 1)]</p>
+ 
+<p>de modo que Tau>0 solo si R0 S0 > 1. Esta última es 
+la condición fundamental para el inicio de una epidemia en una 
+población susceptibles. </p>
+
+<p><b>Procedimiento Numérico.</b>
+El procedimiento que por ejemplo usa el ministerio de Salud de la Nación 
+es el de ajustar al número acumulado de casos A(t)
+un crecimiento exponencial del tipo A(t+dt)=A(t) 2^{dt/Tau} en 
+una ventana de siete días para atrás, es decir en el intervalo 
+[t-7,t]. En la práctica se hace un ajuste linea a log[A(t)] en la misma 
+ventana y de allí se extrae Tau. Ver animación de ejemplo para Bariloche.
+</p>
+
+<p>
+<b>El problema de la heterogeneidad.</b>
+Como se muestra en la animación, es evidente que el mismo 
+ajuste se puede hacer con polinomios de bajo orden, y muchas veces con uno lineal.
+De hecho la bondad del ajuste es a menudo mejor para modelos no exponenciales.
+Esto atenta contra la propia definición de Tau, ya que un ajuste lineal o polinómico 
+por ejemplo, es sólo consistente con Tau=infinito en la definición original 
+del modelo exponencial. Si reinterpretamos Tau como una extrapolación que dobla
+el número de casos, Tau daría un valor mucho más grande que la aproximación exponencial. 
+Por otro lado, el modelo ignora el hecho de que el número de casos 
+acumulados tiene su origen en muchos brotes cuasi-independientes. Es decir, 
+ignora las grandes fluctuaciones inducidas por la heterogeneidad espacio-temporal del 
+la epidemia, la cuales son más pronunciadadas en poblaciones medianas o chicas.
+</p>
+
+<b>Demoras.</b> Los casos primarios positivos hoy producirán casos secundarios 
+no hoy mismo, sino en un intervalo mas o menos definido de días, de modo 
+que una aproximación más aceptable para estimar la tasa de crecimiento 
+de la epidemia es un estimador del Número de Reproducción Empirico, más 
+que del tiempo de duplicación. Esta es una primera motivación para 
+introducir esta cantidad en nuestro diagrama de Riesgo. 
+La segunda motivación, es que si conocemos el número de casos activos hoy,
+el número de reproducción empírico nos permite hacer una 
+predicción de corto plazo del número de casos en los próximos días. 
+Una predicción así es útil para saber si el sistema 
+sanitaria está preparado para contenerlos.
+
+
+<b>Dos variables.</b> Si bien es una super-simplificación, 
+describir la evolución global de la epidemia con dos indicadores 
+en vez de uno nos permite apreciar mejor su complejidad, comparada 
+con describirla solo con el tiempo de duplicación. 
+ 
+
+
+
+
+
+
+  
