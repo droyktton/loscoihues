@@ -4,12 +4,12 @@
 El denominado tiempo de duplicación "Tau" es uno de los indicadores 
 más básicos para seguir la evolución de una epidemia. 
 También es el más problemático para interpretar, 
-porque su definición se basa en un aproximación muy 
+porque su definición se basa en una aproximación muy 
 fuerte, sólo válida en los modelos más elementales 
 de epidemias. Estos modelos usualmente asumen 
-poblaciones grandes y homogéneras, con gente muy mezclada 
-y sobre-simplifican algunos detalles importantes sobre los 
-tiempos característicos de contagio 
+poblaciones grandes, homogéneas, con gente muy mezclada 
+y se sobre-simplifican algunos aspectos importantes 
+sobre los tiempos característicos de contagio 
 y de recuperación.
 
 <p>
@@ -25,7 +25,8 @@ en el modelo SIR tenemos</p>
 
 
 <p>
-donde beta es la frecuencia de contagio y gamma la de recuperación.
+donde beta es la frecuencia de contagio y gamma la de recuperación, 
+o inversas de los tiempos característicos de contagio y recuperación.
 Si beta, gamma y S0 se mantienen constantes en un intervalo dt 
 alrededor de t tenemos que,</p>
 
@@ -45,12 +46,13 @@ la condición fundamental para el inicio de una epidemia en una
 población susceptibles. </p>
 
 <p><b>Procedimiento Numérico.</b>
-El procedimiento que por ejemplo usa el ministerio de Salud de la Nación 
-es el de ajustar al número acumulado de casos A(t)
+El procedimiento que por ejemplo usa el ministerio de Salud de la Nación
+para calcularlo es el de ajustar al número acumulado de casos A(t)
 un crecimiento exponencial del tipo A(t+dt)=A(t) 2^{dt/Tau} en 
 una ventana de siete días para atrás, es decir en el intervalo 
-[t-7,t]. En la práctica se hace un ajuste linea a log[A(t)] en la misma 
-ventana y de allí se extrae Tau. Ver animación de ejemplo para Bariloche.
+[t-7,t]. En la práctica se hace un ajuste lineal a log[A(t)] en la misma 
+ventana y de allí se extrae Tau ~ 1/[dlog(A)/dt]. 
+Ver animación de ejemplo para Bariloche de este procedimiento.
 </p>
 
 <p>
@@ -60,12 +62,16 @@ ajuste se puede hacer con polinomios de bajo orden, y muchas veces con uno linea
 De hecho la bondad del ajuste es a menudo mejor para modelos no exponenciales.
 Esto atenta contra la propia definición de Tau, ya que un ajuste lineal o polinómico 
 por ejemplo, es sólo consistente con Tau=infinito en la definición original 
-del modelo exponencial. Si reinterpretamos Tau como una extrapolación que dobla
-el número de casos, Tau daría un valor mucho más grande que la aproximación exponencial. 
+del modelo de crecimiento puramente exponencial. Si reinterpretamos Tau como una 
+extrapolación que dobla el número de casos para el mejor modelo de ajuste, 
+Tau daría un valor mucho más grande que la aproximación exponencial. 
 Por otro lado, el modelo ignora el hecho de que el número de casos 
 acumulados tiene su origen en muchos brotes cuasi-independientes. Es decir, 
 ignora las grandes fluctuaciones inducidas por la heterogeneidad espacio-temporal del 
-la epidemia, la cuales son más pronunciadadas en poblaciones medianas o chicas.
+la epidemia. Es importante notar que la poblaciones en general son a priori 
+muy heterogéneas en muchos sentidos (social, económico, cultural, etc), y 
+por lo tanto la dinámica de contagio puede ser muy diferente en distintas 
+zonas geográficas de una misma población.
 </p>
 
 <p><b>Demoras.</b> Los casos primarios positivos hoy producirán casos secundarios 
