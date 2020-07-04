@@ -13,61 +13,8 @@
 	</script>
 
 
-	  <style type="text/css">
-	    #mynetwork {
-	      width: auto;
-	      height: auto;
-	      border: 1px solid lightgray;
-	    }
 
-	    pre {
-	      padding: 5px;
-	      margin: 5px;
-	    }
-
-	    .string {
-	      color: green;
-	    }
-
-	    .number {
-	      color: darkorange;
-	    }
-
-	    .boolean {
-	      color: blue;
-	    }
-
-	    .null {
-	      color: magenta;
-	    }
-
-	    .key {
-	      color: red;
-	    }
-
-		.vertical-menu {
-		  width: 200px;
-		  height: 150px;
-		  overflow-y: auto;
-		}
-
-		.vertical-menu a {
-		  background-color: #eee;
-		  color: black;
-		  display: block;
-		  padding: 12px;
-		  text-decoration: none;
-		}
-
-		.vertical-menu a:hover {
-		  background-color: #ccc;
-		}
-
-		.vertical-menu a.active {
-		  background-color: #4CAF50;
-		  color: white;
-		}
-
+	<style>
 		div.scrollmenu {
 		  background-color: #999;
 		  overflow: auto;
@@ -85,7 +32,6 @@
 		div.scrollmenu a:hover {
 		  background-color: #111;
 		}
-
 	</style>
 
 	<!-- Responsive layouts -->
@@ -147,7 +93,7 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
   <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
 </div>
 
-<div id='myDiv' class="main"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <!--===================================== AQUI BREVE DESCRIPCION =====================================-->
 <div class="main">
@@ -541,7 +487,7 @@ function plotriesgo(ciudad){
 		    ],
 		};
 
-		var plotData = [data, data2, data3, ultimo, primero];// testeo,
+		var plotData = [data, data2, data3, ultimo, primero];
 
 		var config = {responsive: true};
 
