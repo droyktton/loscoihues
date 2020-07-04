@@ -12,58 +12,11 @@
 	</script>
 
 
-	<!-- Load plotly.js into the DOM -->
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-	<!-- <script src='./riesgo/varsBRC.js'></script>-->
-	<!-- <script src='./riesgo/varsRN.js'></script>-->
 
-  <style type="text/css">
-
-    #mynetwork {
-      width: 800px;
-      height: 800px;
-      border: 1px solid lightgray;
-    }
-
-    div.nodeContent {
-      position: relative;
-      border: 1px solid lightgray;
-      width: 480px;
-      height: 780px;
-      margin-top: -802px;
-      margin-left: 810px;
-      padding: 10px;
-    }
-
-    pre {
-      padding: 5px;
-      margin: 5px;
-    }
-
-    .string {
-      color: green;
-    }
-
-    .number {
-      color: darkorange;
-    }
-
-    .boolean {
-      color: blue;
-    }
-
-    .null {
-      color: magenta;
-    }
-
-    .key {
-      color: red;
-    }
-  </style>  
-  
+	<!-- Responsive layouts -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
-	* {
+	/* {
 	  box-sizing:border-box;
 	}
 
@@ -71,21 +24,21 @@
 	  background-color:#2196F3;
 	  padding:20px;
 	  float:left;
-	  width:20%; /* The width is 20%, by default */
+	  width:20%; // The width is 20%, by default 
 	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
 
 	.main {
 	  background-color:#f1f1f1;
 	  padding:20px;
 	  float:left;
 	  width:60%; /* The width is 60%, by default */
-	}
-
-	.right {
-	  background-color:#4CAF50;
-	  padding:20px;
-	  float:left;
-	  width:20%; /* The width is 20%, by default */
 	}
 
 	/* Use a media query to add a break point at 800px: */
@@ -96,50 +49,32 @@
 	}
 	</style>
 
-<style>
-.vertical-menu {
-  width: 200px;
-  height: 150px;
-  overflow-y: auto;
-}
-
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
-
-.vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-div.scrollmenu {
-  background-color: #999;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-  background-color: #111;
-}
 
 
-</style>
+	<style>
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
+	</style>
+
+
+	
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
 </head>
 
