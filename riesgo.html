@@ -1,28 +1,27 @@
 <!-- K. Laneri and A. B. Kolton 2020 -->
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-171435841-1');
-</script>
-
-
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+
 	<!-- Load plotly.js into the DOM -->
 	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-	<!-- <script src='./riesgo/varsBRC.js'></script>-->
-	<!-- <script src='./riesgo/varsRN.js'></script>-->
 
+
+	<!-- Responsive layouts -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 	* {
 	  box-sizing:border-box;
 	}
-
 	.left {
 	  background-color:#2196F3;
 	  padding:20px;
@@ -53,95 +52,90 @@
 	</style>
 
 
+	  <style type="text/css">
+	    #mynetwork {
+	      width: 800px;
+	      height: 800px;
+	      border: 1px solid lightgray;
+	    }
 
-  <style type="text/css">
-    #mynetwork {
-      width: 800px;
-      height: 800px;
-      border: 1px solid lightgray;
-    }
+	    div.nodeContent {
+	      position: relative;
+	      border: 1px solid lightgray;
+	      width: 480px;
+	      height: 780px;
+	      margin-top: -802px;
+	      margin-left: 810px;
+	      padding: 10px;
+	    }
 
-    div.nodeContent {
-      position: relative;
-      border: 1px solid lightgray;
-      width: 480px;
-      height: 780px;
-      margin-top: -802px;
-      margin-left: 810px;
-      padding: 10px;
-    }
+	    pre {
+	      padding: 5px;
+	      margin: 5px;
+	    }
 
-    pre {
-      padding: 5px;
-      margin: 5px;
-    }
+	    .string {
+	      color: green;
+	    }
 
-    .string {
-      color: green;
-    }
+	    .number {
+	      color: darkorange;
+	    }
 
-    .number {
-      color: darkorange;
-    }
+	    .boolean {
+	      color: blue;
+	    }
 
-    .boolean {
-      color: blue;
-    }
+	    .null {
+	      color: magenta;
+	    }
 
-    .null {
-      color: magenta;
-    }
+	    .key {
+	      color: red;
+	    }
 
-    .key {
-      color: red;
-    }
-  </style>  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.vertical-menu {
-  width: 200px;
-  height: 150px;
-  overflow-y: auto;
-}
+		.vertical-menu {
+		  width: 200px;
+		  height: 150px;
+		  overflow-y: auto;
+		}
 
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-}
+		.vertical-menu a {
+		  background-color: #eee;
+		  color: black;
+		  display: block;
+		  padding: 12px;
+		  text-decoration: none;
+		}
 
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
+		.vertical-menu a:hover {
+		  background-color: #ccc;
+		}
 
-.vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
-}
+		.vertical-menu a.active {
+		  background-color: #4CAF50;
+		  color: white;
+		}
 
-div.scrollmenu {
-  background-color: #999;
-  overflow: auto;
-  white-space: nowrap;
-}
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
 
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
 
-div.scrollmenu a:hover {
-  background-color: #111;
-}
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
 
-
-</style>
+	</style>
 
 </head>
 
