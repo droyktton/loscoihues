@@ -150,16 +150,6 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
 
 <h3>Elegir Población</h3>
 
-<!--
-<div class="vertical-menu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
-
-  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
-
-  <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
-</div>
--->
-
 <div class="scrollmenu">
   <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
 
@@ -168,12 +158,8 @@ Todos los gráficos mostrados aquí están hechos con datos públicos.
   <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
 </div>
 
-<!-- 
-<button onclick="myFunction('Bariloche')">Bariloche</button>
-<button onclick="myFunction('Rio Negro')">Rio Negro</button>
--->
-	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <!--===================================== AQUI BREVE DESCRIPCION =====================================-->
 <div class="main">
@@ -252,84 +238,6 @@ Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https
 </p>
 
 </div>
-
-
-<!--
-<h2><b> Tasa de Ataque por cada 100000 habitantes (eje horizontal) </b></h2>
-
-<p>La Incidencia acumulada o <b><i>Tasa de Ataque por cada 100000 habitantes</b></i> 
-<a href="https://www.codecogs.com/eqnedit.php?latex=IA_{14}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?IA_{14}" title="IA_{14}" /></a> 
-mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100000 habitantes. 
-Es una medida del número de casos positivos activos, ya que el período de recuperación es de aproximadamente 
-14 días.
-</p>
-
-<h2><b> Tasa Reproductiva promedio en 7 días (eje vertical)</b></h2>
-
-<p> La Tasa Reproductiva diaria 
-(<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_t" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_t" title="\rho_t" /></a>)
- es una medida cuantitativa de cuántas personas en promedio serán testeadas positivas mañana por cada persona testeada positiva hoy. Se estima a partir del número de casos positivos diarios reportados 
- (<a href="https://www.codecogs.com/eqnedit.php?latex=N(t)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?N(t)" title="N(t)" /></a>), usando una ventana de tres días: </p> 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_t&space;=&space;\frac{N(t-1)&plus;N(t)&plus;N(t&plus;1)}{N(t-6)&plus;N(t-5)&plus;N(t-4)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_t&space;=&space;\frac{N(t-1)&plus;N(t)&plus;N(t&plus;1)}{N(t-6)&plus;N(t-5)&plus;N(t-4)}" title="\rho_t = \frac{N(t-1)+N(t)+N(t+1)}{N(t-6)+N(t-5)+N(t-4)}" /></a>
-<p> 
-Para obtener una medida suavizada, la promediamos en una ventana de 7 días, 
-y así obtenemos la <b><i>Tasa Reproductiva promediada en 7 días</i></b>: </p>
-<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_7&space;=&space;\frac{\rho(t-3)&plus;\rho(t-2)&plus;\rho(t-1)&plus;\rho(t)&plus;\rho(t&plus;1)&plus;\rho(t&plus;2)&plus;\rho(t&plus;3)}{7}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_7&space;=&space;\frac{\rho(t-3)&plus;\rho(t-2)&plus;\rho(t-1)&plus;\rho(t)&plus;\rho(t&plus;1)&plus;\rho(t&plus;2)&plus;\rho(t&plus;3)}{7}" title="\rho_7 = \frac{\rho(t-3)+\rho(t-2)+\rho(t-1)+\rho(t)+\rho(t+1)+\rho(t+2)+\rho(t+3)}{7}" /></a>
-
-
-<h2><b> Indice de Riesgo (escala de colores) </b></h2>
-
-<p> Si supiéramos hoy la fracción de infectados que desarrollarán 
-síntomas y darán positivo en unos pocos días, podríamos predecir aproximadamente los posibles nuevos tests 
-positivos mañana, usando la <i>Tasa Reproductiva</i> anterior. Como no conocemos esta fracción, la estimamos a partir de la <i>Tasa de Ataque</i> definida anteriormente.
-Definimos así el <b><i>Indice de crecimiento exponencial (EPG)</b></i> : </p>
-<a href="https://www.codecogs.com/eqnedit.php?latex=EPG&space;=&space;\rho_7&space;\times&space;IA_{14}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?EPG&space;=&space;\rho_7&space;\times&space;IA_{14}" title="EPG = \rho_7 \times IA_{14}" /></a>
-<p> el cual predice el número de nuevos tests positivos esperables mañana a partir de los test positivos hoy, 
-por cada 100000 habitantes. 
-
-El nivel de riesgo asociado a un valor de EPG 
-está determinado por la capacidad del sistema sanitario.
-
-
-<ul>
-  <li>
-  Si llamamos DTL al número de testeos diaros por cada 
-100000 habitantes, la nueva situación será de riesgo  
-si el número predicho de nuevos test positivos es EPG > DTL.
-Hemos definido EPG = DTL como <b><i>Límite de la capacidad de Testeo</b></i>.
-  </li>
-  <li>
-Si llamamos C a la capacidad hospitalaria de cuidados intensivos 
-cada 100000 habitantes la situación será de riesgo si 
-C < EPG*f, donde f es la fracción de casos positivos que 
-desarrollan síntomas graves, y necesitan de cuidados intensivos.  
-Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>.
-  </li>
-  <li>
-	Para el gráfico de riesgo consideramos que en Bariloche, cada cien mil habitantes,
-	DTL=782 (según el registro histórico), C=32 (estimado como la suma de UTIs + UCIs libres en la 
-	última fecha),  y que la fracción de internación de testeados positivos 
-	en UTIs + UCIs es del 3.5% aproximadamente, 
-	es decir f=0.035 (estimado a partir de estadísticas de Argentina).
-  </li>
-</ul>
-
-
-<h><b> Referencias </b></h>
-</ul>
-<li><a href="https://biocomsc.upc.edu/en/shared/avaluacio_risc.pdf"> Estos cálculos fueron realizados a partir de este tutorial del grupo BIOCOMSC de la Universitat Politècnica de Catalunya.</a></li>
-</ul>
-</ul>
-<li><a href="https://biocomsc.upc.edu/en/covid-19">Reportes del grupo citado anteriormente, que utilizan estos indicadores para otros países pueden encontrarse en este link.</a></li>
-</ul>
-
-</body>
--->
-
-
-
-
-
 
 <!-- ############################################################################ -->
 <!-- ############################################################################ -->
