@@ -87,11 +87,11 @@ function makePlotly(  IA14, RHO7, EPG, Localidad, FECHA ){
   Plotly.newPlot('myDiv1', traceepg,
   {
     	yaxis:{
-    		title: 'Cuidados Intensivos cada 100mil habitantes',
+    		title: 'Número Estimado de CI Adicionales cada 100mil hab',
     		//type: 'log',
     		//autorange: true
     	},
-    	title: 'Predictor de Riesgo Sanitario'}
+    	title: 'Predictor de Riesgo Sanitario (CI=cuidados intensivos)'}
   );
 
   Plotly.newPlot('myDiv2', traceia14,
