@@ -9,36 +9,40 @@
 
 <script>
 Plotly.d3.csv(
-	//"https://raw.githubusercontent.com/plotly/datasets/master/2015_06_30_precipitation.csv",
-	"./mapariesgo.csv",
+	"https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.csv",
+	//"./ultimos.csv",
 	function(err, rows) {
 		function unpack(rows, key) {
 			return rows.map(function(row) {
 				return row[key];
 			});
 		}
+/*    row = allRows[i];
+    Localidad.push( row['Localidad'] );
+    RHO7.push( row['RHO7'] );
+    IA14.push( row['IA14'] );
+    FECHA.push( row['Fecha'] );
+    EPG[i]=IA14[i]*RHO7[i]*0.035;
+*/
 
-		var rho7 = unpack(rows, "rho7");
-		var ia14 = unpack(rows, "ia14");
-		var EPG = unpack(rows, "producto");
-		var textos=unpack(rows, "Texto");		
+		var RHO7 = unpack(rows, "RHO7");
+		var IA14 = unpack(rows, "IA14");
+		var FECHA = unpack(rows, "FECHA");
+		var Localidad = unpack(rows, "Localidad");
+		var label = unpack(rows, "label");
 		
-		var maxEPG=0;
-		for(var i=0;i<EPG.length;i++){
-			if(maxEPG<EPG[i]) maxEPG=EPG[i];
-			textos[i]=textos[i]+", EPG="+EPG[i]+", rho7="+rho7[i]+", ia14="+ia14[i]		
+		var EPG=[];
+		for(var i=0;i<RHO7.length;i++){
+			    EPG[i]=IA14[i]*RHO7[i]*0.035;
 		} 
-		for(var i=0;i<EPG.length;i++) EPG[i]=EPG[i]*5.0/maxEPG;
-		
+
 		var data = [
 			{
-			//nombre1,rho7,ia14,producto,nombre2,Latitud,Longitud,Texto
-
 				type: "scattermapbox",
 				text: textos,
-				lon: unpack(rows, "Longitud"),
-				lat: unpack(rows, "Latitud"),
-				marker: { color: "red", size: 8.0 }
+				lon: unpack(rows, "lon"),
+				lat: unpack(rows, "lat"),
+				marker: { color: "red", size: EPG }
 			}
 		];
 
