@@ -1,0 +1,115 @@
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+	<div id='myDiv1'><!-- Plotly chart will be drawn inside this DIV --></div>
+	<div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+	<div id='myDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+
+<script>
+
+function makeplot() {
+  //Localidad,Fecha,RHO7,IA14,riesgox10
+  Plotly.d3.csv("https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.csv", function(data){ processData(data) } );
+};
+
+function processData(allRows) {
+
+  console.log(allRows);
+  var Localidad=[], RHO7 = [], IA14 = [], EPG = [], FECHA = [];
+
+  for (var i=0; i<allRows.length; i++) {
+    row = allRows[i];
+    Localidad.push( row['Localidad'] );
+    RHO7.push( row['RHO7'] );
+    IA14.push( row['IA14'] );
+    FECHA.push( row['Fecha'] );
+    EPG[i]=IA14[i]*RHO7[i]*0.035;
+  }
+  console.log( 'IA14',IA14, 'RHO7',RHO7,'EPG',EPG, 'Localidad',Localidad );
+
+  for (var i=0; i<allRows.length; i++) {
+	if(Localidad[i]=='CórdobaCórdoba')Localidad[i]='<b>Provincia de Córdoba</b>';
+	if(Localidad[i]=='BuenosAires')Localidad[i]='<b>Provincia de BsAs</b>';
+	if(Localidad[i]=='Lomasde')Localidad[i]='Lomas de Zamora (BsAs)';
+	if(Localidad[i]=='AvellanedaNA')Localidad[i]='Avellaneda (BsAs)';
+	if(Localidad[i]=='ChacoNA')Localidad[i]='<b>Provincia de Chaco</b>';
+	if(Localidad[i]=='QuilmesNA')Localidad[i]='Quilmes (BsAs)';
+	if(Localidad[i]=='CABACABANA')Localidad[i]='<b>CABA</b>';
+	if(Localidad[i]=='LaPlata')Localidad[i]='La Plata (BsAs)';
+	if(Localidad[i]=='LanúsNA')Localidad[i]='Lanús (BsAs)';
+	if(Localidad[i]=='LaMatanza')Localidad[i]='La Matanza (BsAs)';
+	if(Localidad[i]=='SanFernando')Localidad[i]='San Fernando (Chaco)';
+	if(Localidad[i]=='CórdobaJavier')Localidad[i]='San Javier (Córdoba)';
+	if(Localidad[i]=='CórdobaCapital')Localidad[i]='Ciudad de Córdoba';
+	if(Localidad[i]=='CórdobaColón')Localidad[i]='Colón (Córdoba)';
+	if(Localidad[i]=='RioNegro')Localidad[i]='<b>Prov. de Río Negro</b>';
+	if(Localidad[i]=='GeneralRoca')Localidad[i]='General Roca (RN)';
+	if(Localidad[i]=='Bariloche')Localidad[i]='Bariloche (RN)';
+  }
+  makePlotly( IA14, RHO7, EPG, Localidad, FECHA );
+}
+
+function makePlotly(  IA14, RHO7, EPG, Localidad, FECHA ){
+  var plotDiv = document.getElementById("plot");
+
+  var traceia14 = 
+  [
+  {x: Localidad,y: IA14, type: 'bar', name: 'Incidencia', text: FECHA, marker:{color:IA14}},
+  ];
+  
+  var colorho=[];
+  for(var i=0;i<RHO7.length;i++){
+  	if(RHO7[i]>1) colorho[i]="red";
+  	else colorho[i]="green";
+  }
+
+  var tracerho7 = 
+  [
+  {x: Localidad,y: RHO7, type: 'bar', name: 'Número Reproductivo Empírico',  text: FECHA, marker:{color:colorho}},   
+  ];
+
+  var traceepg = 
+  [
+  {x: Localidad,y: EPG, type: 'bar', name: 'Indice de Riesgo',  text: FECHA, marker:{color:EPG}},  
+  ];
+
+
+  var layout = {yaxis: {title: 'EPG'}};
+  
+  Plotly.newPlot('myDiv1', traceepg,
+  {
+    	yaxis:{
+    		title: 'Cuidados Intensivos cada 100mil habitantes',
+    		//type: 'log',
+    		//autorange: true
+    	},
+    	title: 'Predictor de Riesgo Sanitario'}
+  );
+
+  Plotly.newPlot('myDiv2', traceia14,
+    {yaxis:{title: 'Casos Acumulados cada 100mil hab.'}, title: 'Incidencia ~ Número de Casos Activos cada 100mil habitantes'});
+
+  Plotly.newPlot('myDiv3', tracerho7,
+    {yaxis:{title: 'Número Reproductivo Empírico (promedio en 7 días)'}, title: 'Multiplicación de Casos'});
+
+};
+
+
+makeplot();
+
+/*var data = [
+  {
+    x: ['giraffes', 'orangutans', 'monkeys'],
+    y: [20, 14, 23],
+    type: 'bar'
+  }
+];
+
+Plotly.newPlot('myDiv', data);
+*/
+</script>
+
