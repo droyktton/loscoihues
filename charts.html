@@ -91,14 +91,14 @@ function makePlotly(  IA14, RHO7, EPG, Localidad, FECHA ){
     		//type: 'log',
     		//autorange: true
     	},
-    	title: 'Riesgo Sanitario: Estimación del Número de Cuidados Intensivos (CI) Adicionales en los próximos días'}
+    	title: '<b>Riesgo Sanitario</b>: Estimación del Número adicional de Cuidados Intensivos (CI) necesarios en los próximos días'}
   );
 
   Plotly.newPlot('myDiv2', traceia14,
     {yaxis:{title: 'Casos Acumulados últimos 14 días cada 100mil hab.'}, title: 'Incidencia ~ Número de Casos Activos cada 100mil  habitantes'});
 
   Plotly.newPlot('myDiv3', tracerho7,
-    {yaxis:{title: 'Número Reproductivo Empírico (promedio en 7 días)'}, title: 'Multiplicación de Casos'});
+    {yaxis:{title: 'Número Reproductivo Empírico (promedio en 7 días)'}, title: '<b>Multiplicación de Casos</b>'});
 
 };
 
