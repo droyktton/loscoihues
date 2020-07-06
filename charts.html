@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<a href="./index.html">[Volver]</a>
+	<a href="./index.html">[Volver]</a>
 	<div id='myDiv1'><!-- Plotly chart will be drawn inside this DIV --></div>
 	<div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
 	<div id='myDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
@@ -95,7 +95,7 @@ function makePlotly(  IA14, RHO7, EPG, Localidad, FECHA ){
   );
 
   Plotly.newPlot('myDiv2', traceia14,
-    {yaxis:{title: 'Casos Acumulados cada 100mil hab.'}, title: 'Incidencia ~ Número de Casos Activos cada 100mil habitantes'});
+    {yaxis:{title: 'Casos Acumulados últimos 14 días por 100mil hab.'}, title: 'Incidencia ~ Número de Casos Activos cada 100mil  habitantes'});
 
   Plotly.newPlot('myDiv3', tracerho7,
     {yaxis:{title: 'Número Reproductivo Empírico (promedio en 7 días)'}, title: 'Multiplicación de Casos'});
