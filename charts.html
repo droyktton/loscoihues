@@ -13,7 +13,10 @@
 
 function makeplot() {
   //Localidad,Fecha,RHO7,IA14,riesgox10
-  Plotly.d3.csv("https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.csv", function(data){ processData(data) } );
+  Plotly.d3.csv(
+  //"https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.csv", 
+  "./ultimos.csv",
+  function(data){ processData(data) } );
 };
 
 function processData(allRows) {
