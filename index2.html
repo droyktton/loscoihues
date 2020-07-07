@@ -32,8 +32,10 @@ Plotly.d3.csv(
 		var label = unpack(rows, "label");
 		
 		var EPG=[];
+		var textos=[];
 		for(var i=0;i<RHO7.length;i++){
-			    EPG[i]=IA14[i]*RHO7[i]*0.035;
+			    EPG[i]=Math.round(IA14[i]*RHO7[i]*0.035);
+			    textos[i]=label[i]+", Riesgo="+EPG[i]+"(CI adicionales necesarios)";
 		} 
 
 		var data = [
@@ -42,19 +44,30 @@ Plotly.d3.csv(
 				text: textos,
 				lon: unpack(rows, "lon"),
 				lat: unpack(rows, "lat"),
-				marker: { color: "red", size: EPG }
+				mode: 'markers',
+				marker: { 
+					color:  EPG, 
+					size: 20,
+					line: {
+      						color: 'black',
+      						width: 6,
+    					}
+    				},
 			}
 		];
 
 		var layout = {
 			dragmode: "zoom",
 			//mapbox: { style: "open-street-map", center: { lat: 38, lon: -90 }, zoom: 3 },
-			mapbox: { style: "open-street-map", center: { lat: -36.620922, lon: -64.2912369}, zoom: 3 },
+			mapbox: { style: "dark", center: { lat: -36.620922, lon: -64.2912369}, zoom: 3 },
 			margin: { r: 0, t: 0, b: 0, l: 0 },
 			showlegend: false,
 		};
 
-
+		Plotly.setPlotConfig({
+    		mapboxAccessToken: "pk.eyJ1Ijoia29sdG9uYSIsImEiOiJja2M5eGF3Z3owcHYyMnlwZjRibjU3cmFoIn0.jE11Xk6y4IrzZovXYGTWdA"
+  		});
+  		
 		Plotly.newPlot("myDiv", data, layout);
 	}
 );
