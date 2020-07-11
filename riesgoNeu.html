@@ -89,12 +89,9 @@ Todos los gráficos mostrados aquí están hechos con
 <h3>Elegir Población</h3>
 
 <div class="scrollmenu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoCórdobaCórdoba')">Provincia de Córdoba</a>
-  <a href="#" onclick="plotriesgo('./RiesgoCórdobaCapital')">Córdoba capital</a>
-  <a href="#" onclick="plotriesgo('./RiesgoCórdobaColón')">Colón</a>
-  <a href="#" onclick="plotriesgo('./RiesgoCórdobaJavier')">San Javier</a>
-  <a href="#" onclick="plotriesgo('./RiesgoCórdobaPunilla')">Punilla</a>
-  <a href="#" onclick="plotriesgo('./RiesgoCórdobaMaría')">Santa María</a>
+  <a href="#" class="active" onclick="plotriesgo('./RiesgoNeuquénNeuquén')">Provincia de Neuquén</a>
+  <a href="#" onclick="plotriesgo('./RiesgoNeuquénConfluencia')">Confluencia</a>
+  <a href="#" onclick="plotriesgo('./RiesgoNeuquénLoncopué')">Loncopué</a>
 </div>
 
 <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
@@ -181,17 +178,18 @@ Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https
 <!-- ############################################################################ -->
 <script>
 
-plotriesgo('./RiesgoCórdobaCórdoba');
+plotriesgo('./RiesgoNeuquénNeuquén');
 
 function plotriesgo(ciudad){
 
+/*  <a href="#" class="active" onclick="plotriesgo('./RiesgoNeuquénNeuquén')">Provincia de Neuquén</a>
+  <a href="#" onclick="plotriesgo('./RiesgoNeuquénConfluencia')">Confluencia</a>
+  <a href="#" onclick="plotriesgo('./RiesgoNeuquénLoncopué')">Loncopué</a>
+*/
 	
-	if(ciudad=='./RiesgoCórdobaCórdoba') titulo="<b>Diagrama de Riesgo: Provincia de Córdoba</b>"
-	if(ciudad=='./RiesgoCórdobaCapital') titulo="<b>Diagrama de Riesgo: Córdoba capital</b>"
-	if(ciudad=='./RiesgoCórdobaColón') titulo="<b>Diagrama de Riesgo: Cólon</b>"
-	if(ciudad=='./RiesgoCórdobaJavier') titulo="<b>Diagrama de Riesgo: San Javier</b>"
-	if(ciudad=='./RiesgoCórdobaMaría') titulo="<b>Diagrama de Riesgo: Santa María</b>"
-	if(ciudad=='./RiesgoCórdobaPunilla') titulo="<b>Diagrama de Riesgo: Punilla</b>"
+	if(ciudad=='./RiesgoNeuquénNeuquén') titulo="<b>Diagrama de Riesgo: Provincia de Neuquén</b>"
+	if(ciudad=='./RiesgoNeuquénConfluencia') titulo="<b>Diagrama de Riesgo: Confluencia</b>"
+	if(ciudad=='./RiesgoNeuquénLoncopué') titulo="<b>Diagrama de Riesgo: Loncopué</b>"
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
