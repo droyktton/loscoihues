@@ -9,7 +9,7 @@
     "cabecera": "SALTA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -1693,7 +1693,7 @@
     "cabecera": "CACHI",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon", "type":"Polygon",
     "coordinates": [
      [
       [
@@ -3465,7 +3465,7 @@
     "cabecera": "CERRILLOS",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -4253,7 +4253,7 @@
     "cabecera": "CHICOANA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -5453,7 +5453,7 @@
     "cabecera": "LA VI\u00d1A",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -7429,7 +7429,7 @@
     "cabecera": "SANTA VICTORIA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -11573,7 +11573,7 @@
     "cabecera": "GENERAL JOSE DE SAN MARTIN",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -14825,7 +14825,7 @@
     "cabecera": "RIVADAVIA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -16301,7 +16301,7 @@
     "cabecera": "METAN",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -18785,7 +18785,7 @@
     "cabecera": "LA CANDELARIA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -22561,7 +22561,7 @@
     "cabecera": "GUACHIPAS",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -26449,7 +26449,7 @@
     "cabecera": "CAFAYATE",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -28501,7 +28501,7 @@
     "cabecera": "MOLINOS",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -31601,7 +31601,7 @@
     "cabecera": "GENERAL MARTIN M. GUEMES",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -34273,7 +34273,7 @@
     "cabecera": "SAN CARLOS",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -38117,7 +38117,7 @@
     "cabecera": "ROSARIO DE LEMA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -41401,7 +41401,7 @@
     "cabecera": "LOS ANDES",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -67709,7 +67709,7 @@
     "cabecera": "LA POMA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -70857,7 +70857,7 @@
     "cabecera": "LA CALDERA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -72861,7 +72861,7 @@
     "cabecera": "IRUYA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -75305,7 +75305,7 @@
     "cabecera": "SAN RAMON DE LA NUEVA ORAN",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -82181,7 +82181,7 @@
     "cabecera": "JOAQUIN VICTOR GONZALEZ",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
@@ -85389,7 +85389,7 @@
     "cabecera": "ROSARIO DE LA FRONTERA",
     "provincia": "SALTA"
    },
-   "geometry": {
+   "geometry": { "type":"Polygon",
     "coordinates": [
      [
       [
