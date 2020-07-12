@@ -2,7 +2,7 @@
  "type": "FeatureCollection",
  "features": [
   {
-   "type": "Feature", "id"="4",
+   "type": "Feature", "id":"0",
    "properties": {
     "id": 204,
     "departamento": "CAPITAL",
@@ -1686,7 +1686,7 @@
    }
   },
   {
-   "type": "Feature", "id"="1688",
+   "type": "Feature", "id":"1",
    "properties": {
     "id": 205,
     "departamento": "CACHI",
@@ -3458,7 +3458,7 @@
    }
   },
   {
-   "type": "Feature", "id"="3460",
+   "type": "Feature", "id":"2",
    "properties": {
     "id": 206,
     "departamento": "CERRILLOS",
@@ -4246,7 +4246,7 @@
    }
   },
   {
-   "type": "Feature", "id"="4248",
+   "type": "Feature", "id":"3",
    "properties": {
     "id": 207,
     "departamento": "CHICOANA",
@@ -5446,7 +5446,7 @@
    }
   },
   {
-   "type": "Feature", "id"="5448",
+   "type": "Feature", "id":"4",
    "properties": {
     "id": 208,
     "departamento": "LA VI\u00d1A",
@@ -7422,7 +7422,7 @@
    }
   },
   {
-   "type": "Feature", "id"="7424",
+   "type": "Feature", "id":"5",
    "properties": {
     "id": 209,
     "departamento": "SANTA VICTORIA",
@@ -11566,7 +11566,7 @@
    }
   },
   {
-   "type": "Feature", "id"="11568",
+   "type": "Feature", "id":"6",
    "properties": {
     "id": 210,
     "departamento": "GENERAL JOSE DE SAN MARTIN",
@@ -14818,7 +14818,7 @@
    }
   },
   {
-   "type": "Feature", "id"="14820",
+   "type": "Feature", "id":"7",
    "properties": {
     "id": 211,
     "departamento": "RIVADAVIA",
@@ -16294,7 +16294,7 @@
    }
   },
   {
-   "type": "Feature", "id"="16296",
+   "type": "Feature", "id":"8",
    "properties": {
     "id": 212,
     "departamento": "METAN",
@@ -18778,7 +18778,7 @@
    }
   },
   {
-   "type": "Feature", "id"="18780",
+   "type": "Feature", "id":"9",
    "properties": {
     "id": 213,
     "departamento": "LA CANDELARIA",
@@ -22554,7 +22554,7 @@
    }
   },
   {
-   "type": "Feature", "id"="22556",
+   "type": "Feature", "id":"10",
    "properties": {
     "id": 214,
     "departamento": "GUACHIPAS",
@@ -26442,7 +26442,7 @@
    }
   },
   {
-   "type": "Feature", "id"="26444",
+   "type": "Feature", "id":"11",
    "properties": {
     "id": 215,
     "departamento": "CAFAYATE",
@@ -28494,7 +28494,7 @@
    }
   },
   {
-   "type": "Feature", "id"="28496",
+   "type": "Feature", "id":"12",
    "properties": {
     "id": 216,
     "departamento": "MOLINOS",
@@ -31594,7 +31594,7 @@
    }
   },
   {
-   "type": "Feature", "id"="31596",
+   "type": "Feature", "id":"13",
    "properties": {
     "id": 217,
     "departamento": "GENERAL G\u00dcEMES",
@@ -34266,7 +34266,7 @@
    }
   },
   {
-   "type": "Feature", "id"="34268",
+   "type": "Feature", "id":"14",
    "properties": {
     "id": 218,
     "departamento": "SAN CARLOS",
@@ -38110,7 +38110,7 @@
    }
   },
   {
-   "type": "Feature", "id"="38112",
+   "type": "Feature", "id":"15",
    "properties": {
     "id": 219,
     "departamento": "ROSARIO DE LERMA",
@@ -41394,7 +41394,7 @@
    }
   },
   {
-   "type": "Feature", "id"="41396",
+   "type": "Feature", "id":"16",
    "properties": {
     "id": 420,
     "departamento": "LOS ANDES",
@@ -67702,7 +67702,7 @@
    }
   },
   {
-   "type": "Feature", "id"="67704",
+   "type": "Feature", "id":"17",
    "properties": {
     "id": 422,
     "departamento": "LA POMA",
@@ -70850,7 +70850,7 @@
    }
   },
   {
-   "type": "Feature", "id"="70852",
+   "type": "Feature", "id":"18",
    "properties": {
     "id": 423,
     "departamento": "LA CALDERA",
@@ -72854,7 +72854,7 @@
    }
   },
   {
-   "type": "Feature", "id"="72856",
+   "type": "Feature", "id":"19",
    "properties": {
     "id": 424,
     "departamento": "IRUYA",
@@ -75298,7 +75298,7 @@
    }
   },
   {
-   "type": "Feature", "id"="75300",
+   "type": "Feature", "id":"20",
    "properties": {
     "id": 425,
     "departamento": "ORAN",
@@ -82174,7 +82174,7 @@
    }
   },
   {
-   "type": "Feature", "id"="82176",
+   "type": "Feature", "id":"21",
    "properties": {
     "id": 427,
     "departamento": "ANTA",
@@ -85382,7 +85382,7 @@
    }
   },
   {
-   "type": "Feature", "id"="85384",
+   "type": "Feature", "id":"22",
    "properties": {
     "id": 431,
     "departamento": "ROSARIO DE LA FRONTERA",
