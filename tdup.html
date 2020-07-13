@@ -116,7 +116,11 @@ ajuste se puede hacer con polinomios de bajo orden, y muchas veces con uno linea
 De hecho la bondad del ajuste es a menudo mejor para modelos no exponenciales.
 Esto atenta contra la propia definición de Tau, ya que un ajuste lineal o polinómico 
 por ejemplo, es sólo consistente con Tau=infinito en la definición original 
-del modelo de crecimiento puramente exponencial. Si reinterpretamos Tau como una 
+del modelo de crecimiento puramente exponencial. 
+Notar que al ser el número de casos acumulados monótonamente creciente, 
+Tau está restringido a ser positivo, siendo infinito 
+cuando la epidemia cesa.
+Si reinterpretamos Tau como una 
 extrapolación que dobla el número de casos para el mejor modelo de ajuste, 
 Tau daría un valor mucho más grande que la aproximación exponencial. 
 Por otro lado, el modelo ignora el hecho de que el número de casos 
@@ -145,8 +149,11 @@ sanitario está preparado para contenerlos.</p>
 describir la evolución global de la epidemia con dos indicadores 
 relacionados (el Número de Reproducción Empírico y la Tasa de Ataque 
 o Incidencia) nos permite apreciar mucho mejor su complejidad comparada con describirla 
-solo un indicador, en particular con la definición más 
-naive del tiempo de duplicación descripta arriba. 
+solo un indicador, en particular con la definición más naive del tiempo de 
+duplicación descripta arriba. Este último esta restringido a ser positivo, 
+y por lo tanto no puede capturar la remisión, aunque sea transitoria, 
+de la epidemia. De hecho, en poblaciones chicas o medianas, 
+controladas por brotes, es muy normal esta última situación. 
 </p> 
 
 </div>
