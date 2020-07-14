@@ -188,8 +188,10 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
 	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
+	// para que ande local
 	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
 
+	if(ciudad=='./RiesgoGeneralRoca') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoGeneralRoca';
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
@@ -254,10 +256,11 @@ function plotriesgo(ciudad){
 			ytesteo[i]=DTL/x[i];
 		}
 
+		var amp=5.0;
 		for(var i = 0; i < size; i++) {
 		  	for(j = 0; j < size; j++) {
-		    		z[i][j] = x[i]*x[j]*0.5; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
-				//EPG = z*2*0.035
+		    		z[i][j] = x[i]*y[j]*amp; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+				//EPG = z*0.035/amp
 		 	}
 		}
 
@@ -286,13 +289,13 @@ function plotriesgo(ciudad){
 		  		tickmode: "array",
 		  		//tickvals: [0,DTL,UTIpUCI],
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
-				//Recordar: EPG = z*2*0.035
+				//EPG = z*0.035/5.0
 		  		tickvals: [750,1000,1250,1500],
 		  		ticktext: [
-		  		"~"+Math.trunc(750.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1000.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1250.0*0.035*100)/100.+" CI cada 100000 hab",
-		  		"~"+Math.trunc(1500.0*0.035*100)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(750.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1000.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1250.0*0.035*100/amp)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(1500.0*0.035*100/amp)/100.+" CI cada 100000 hab",
 		  		]
 		  	}
 		};
