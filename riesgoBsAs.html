@@ -368,12 +368,14 @@ function plotriesgo(ciudad){
 			ytesteo[i]=DTL/x[i];
 		}
 
+
+		var amp=5.0;
 		for(var i = 0; i < size; i++) {
 		  	for(j = 0; j < size; j++) {
-		    		z[i][j] = i*j; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+		    		z[i][j] = x[i]*y[j]*amp; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+				//EPG = z*0.035/amp
 		 	}
 		}
-
 
 		// EPG heatmap
 		var data = 
@@ -401,10 +403,10 @@ function plotriesgo(ciudad){
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
 		  		tickvals: [750,1000,1250,1500],
 		  		ticktext: [
-		  		"~"+Math.trunc(750.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1000.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1250.0*0.035*100)/100.+" CI cada 100000 hab",
-		  		"~"+Math.trunc(1500.0*0.035*100)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(750.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1000.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1250.0*0.035*100/amp)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(1500.0*0.035*100/amp)/100.+" CI cada 100000 hab",
 		  		]
 		  	}
 		};
