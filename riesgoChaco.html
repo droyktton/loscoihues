@@ -407,7 +407,8 @@ function plotriesgo(ciudad){
 			taudup=Math.trunc(100*3.47/Math.log(rho7[i]))/100.0;
 			//if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
 			//else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
-			textomarkers[i]=fecha[i];
+			var ci=Number((IA14[i]*rho7[i]*0.035).toFixed(1))
+			textomarkers[i]=fecha[i]+", CI~"+ ci;
 		}
 
 		// curva de riesgo
