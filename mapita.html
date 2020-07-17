@@ -17,12 +17,13 @@
 
 <body>
 	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+	<div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
 </body>
 
 <script>
 Plotly.d3.csv(
-	//"https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.csv",
-	"./ultimos.csv",
+	"https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.sorted.csv",
+	//"./ultimos.sorted.csv",
 	function(err, rows) {
 		function unpack(rows, key) {
 			return rows.map(function(row) {
@@ -46,7 +47,8 @@ Plotly.d3.csv(
 		var EPG=[];
 		var textos=[];
 		for(var i=0;i<RHO7.length;i++){
-			    EPG[i]=Math.round(IA14[i]*RHO7[i]*0.035);
+			    //EPG[i]=Math.round(IA14[i]*RHO7[i]*0.035);
+			    EPG[i]=Number((IA14[i]*RHO7[i]*0.035).toFixed(1));
 			    textos[i]=label[i]+", Riesgo="+EPG[i]+"(CI adicionales necesarios/100mil habitantes)";
 		} 
 
@@ -81,6 +83,27 @@ Plotly.d3.csv(
   		});
   		
 		Plotly.newPlot("myDiv", data, layout);
+		
+		var traceepg = 
+  		[
+  		{x: Localidad,y: EPG, type: 'bar', name: 'Indice de Riesgo',  text: FECHA, marker:{color:EPG}},  
+  		];
+
+	        var layout = {yaxis: {title: 'EPG'}};
+  
+         	Plotly.newPlot('myDiv2', traceepg,
+  		{
+    			yaxis:{
+    			title: 'Número Estimado de CI Adicionales cada 100mil hab',
+    			//type: 'log',
+    			//autorange: true
+    		},
+    		title: '<b>RIESGO SANITARIO</b>: Estimación del Número adicional de Cuidados Intensivos (CI) necesarios en los próximos días/100mil hab'}
+  		);
+
+
+
+		
 	}
 );
 </script>
