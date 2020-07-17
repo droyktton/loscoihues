@@ -106,12 +106,12 @@ un crecimiento exponencial del tipo A(t)=A(t-dt) 2^{dt/Tau} en
 una ventana de siete días para atrás, es decir en el intervalo 
 [t-7,t]. En la práctica se hace un ajuste lineal a log[A(t)] en la misma 
 ventana y de allí se extrae Tau ~ log(2)/[dlog(A)/dt]. 
-Ver animación de ejemplo para Bariloche de este procedimiento.
+Ver animación de ejemplo para Bariloche de este procedimiento, en el primer panel.
 </p>
 
 <p>
 <b>El problema de la heterogeneidad.</b>
-Como se muestra en la animación, es evidente que el mismo 
+Como se muestra en la animación del primer panel, es evidente que el mismo 
 ajuste se puede hacer con polinomios de bajo orden, y muchas veces con uno lineal.
 De hecho la bondad del ajuste es a menudo mejor para modelos no exponenciales.
 Esto atenta contra la propia definición de Tau, ya que un ajuste lineal o polinómico 
@@ -119,17 +119,13 @@ por ejemplo, es sólo consistente con Tau=infinito en la definición original
 del modelo de crecimiento puramente exponencial. 
 Notar que al ser el número de casos acumulados monótonamente creciente, 
 Tau está restringido a ser positivo, siendo infinito 
-cuando la epidemia cesa.
+cuando la epidemia cesa. 
 Si reinterpretamos Tau como una 
 extrapolación que dobla el número de casos para el mejor modelo de ajuste, 
 Tau daría un valor mucho más grande que la aproximación exponencial. 
-Por otro lado, el modelo ignora el hecho de que el número de casos 
-acumulados tiene su origen en muchos brotes cuasi-independientes. Es decir, 
-ignora las grandes fluctuaciones inducidas por la heterogeneidad espacio-temporal del 
-la epidemia. Es importante notar que la poblaciones en general son a priori 
-muy heterogéneas en muchos sentidos (social, económico, cultural, etc), y 
-por lo tanto la dinámica de contagio puede ser muy diferente en distintas 
-zonas geográficas de una misma población.
+En el panel inferior de la animación se ven los distintos "tiempos de duplicación" 
+qeu podrian definirse, y como deciamos anteriormente, ninguno es mejor 
+modelo de ajuste que otro. 
 </p>
 
 <p><b>Demoras.</b> Los casos primarios positivos hoy producirán casos secundarios 
@@ -148,12 +144,15 @@ sanitario está preparado para contenerlos.</p>
 <p><b>Dos variables.</b> Si bien sigue siendo una super-simplificación, 
 describir la evolución global de la epidemia con dos indicadores 
 relacionados (el Número de Reproducción Empírico y la Tasa de Ataque 
-o Incidencia) nos permite apreciar mucho mejor su complejidad comparada con describirla 
-solo un indicador, en particular con la definición más naive del tiempo de 
-duplicación descripta arriba. Este último esta restringido a ser positivo, 
+o Incidencia), ambos basados en el número de casos diarios,
+nos permite apreciar mucho mejor la complejidad de la epidemia 
+que solo usar tiempo de duplicación, basado en el número de casos acumulados. 
+Notar que este último está restringido a ser positivo, 
 y por lo tanto no puede capturar la remisión, aunque sea transitoria, 
 de la epidemia. De hecho, en poblaciones chicas o medianas, 
 controladas por brotes, es muy normal esta última situación. 
+El diagrama de riesgo es por tanto una forma mas fina de capturar 
+la dinámica de la epidemia. 
 </p> 
 
 </div>
