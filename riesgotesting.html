@@ -1,99 +1,80 @@
 <!-- K. Laneri and A. B. Kolton 2020 -->
+
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+
+
+	<!-- Responsive layouts -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	/* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+
+	.main {
+	  background-color:#f1f1f1;
+	  padding:20px;
+	  float:left;
+	  width:60%; /* The width is 60%, by default */
+	}
+
+	/* Use a media query to add a break point at 800px: */
+	@media screen and (max-width:800px) {
+	  .left, .main, .right {
+	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	  }
+	}
+	</style>
+
+
+
+	<style>
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
+	</style>
+
+
+	
 	<!-- Load plotly.js into the DOM -->
 	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-	<!-- <script src='./riesgo/varsBRC.js'></script>-->
-	<!-- <script src='./riesgo/varsRN.js'></script>-->
-
-  <style type="text/css">
-
-    #mynetwork {
-      width: 800px;
-      height: 800px;
-      border: 1px solid lightgray;
-    }
-
-    div.nodeContent {
-      position: relative;
-      border: 1px solid lightgray;
-      width: 480px;
-      height: 780px;
-      margin-top: -802px;
-      margin-left: 810px;
-      padding: 10px;
-    }
-
-    pre {
-      padding: 5px;
-      margin: 5px;
-    }
-
-    .string {
-      color: green;
-    }
-
-    .number {
-      color: darkorange;
-    }
-
-    .boolean {
-      color: blue;
-    }
-
-    .null {
-      color: magenta;
-    }
-
-    .key {
-      color: red;
-    }
-  </style>  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.vertical-menu {
-  width: 200px;
-  height: 150px;
-  overflow-y: auto;
-}
-
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
-
-.vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-div.scrollmenu {
-  background-color: #999;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-  background-color: #111;
-}
-
-
-</style>
 
 </head>
 
@@ -101,54 +82,52 @@ div.scrollmenu a:hover {
 <body>
 
 <p>
-Todos los gráficos mostrados aquí están hechos con datos públicos.
+<a href="./index.html">[Volver]</a>
+Todos los gráficos mostrados aquí están hechos con
+<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
+La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 </p>
-
 
 <h3>Elegir Población</h3>
 
-<!--
-<div class="vertical-menu">
-  <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
-
-  <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
-
-  <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
-</div>
--->
-
 <div class="scrollmenu">
   <a href="#" class="active" onclick="plotriesgo('./RiesgoRioNegro')">Río Negro</a>
-
   <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
-
   <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
 </div>
 
-<!-- 
-<button onclick="myFunction('Bariloche')">Bariloche</button>
-<button onclick="myFunction('Rio Negro')">Rio Negro</button>
--->
-	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
+<!--===================================== AQUI BREVE DESCRIPCION =====================================-->
+<div class="main">
+<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva".
 
-<!--AQUI BREVE DESCRIPCION -->
-<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva". 
-La Tasa Reproductiva, rho7, es un estimador de la velocidad de propagación de la enfermedad en la población. 
+<ul>
+<li style="font-family:arial;">
+<b>La Tasa Reproductiva Empírica</b>, rho7, es muy similar al "Número de Reproducción Efectivo Rt"</i> 
+que determina la velocidad con que se propaga una epidemia.
 Mide el número de personas que en promedio serán testeadas positivo en los próximos días por cada persona 
 testeada positivamente recientemente. Asumiendo que el número de tests positivos es menor pero proporcional 
-al número real de infectados, rho7 es muy similar al "Número de Reproducción Básico R0"</i> 
-que determina el inicio de una epidemia, pero ajustado en función del tiempo. Es decir, es un 
-<i>Número de Reproducción Efectivo</i>. 
-Así, valores mayores que 1 de esta variable indican que la evolución de la epidemia tendrá un crecimiento exponencial, o multiplicativo. La Tasa de Ataque, IA14, es una medida del número de <i>casos positivos activos</i>. 
-Mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100000 habitantes.
-</p>
+al número real de infectados, rho7 es un estimador de la velocidad de propagación de la enfermedad en la población. 
+Así, valores mayores que 1 de rho7 indican que la evolución de la epidemia tendrá un crecimiento exponencial, o multiplicativo.</li> <p></p>
+
+<li style="font-family:arial;">
+<b>La Tasa de Ataque</b>, IA14, es una medida del número de <i>casos positivos activos</i>. 
+Mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100mil habitantes.
+</li>
+</ul>
+
 
 <p style="font-family:arial;">
 Cada punto del gráfico es una foto de situación de un día dado. Los días más recientes aparecen como puntos más brillantes. La curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población seleccionada. Seleccionando un dado punto, se accede a la información del valor de rho7, IA14, y del tiempo de duplicación en el caso de encontrarse en el régimen exponencial (rho7>1).</p>
 
 <p style="font-family:arial;">
 La interpretación del gráfico es la siguiente: si para un dado día, el número de casos reportados tiene un dado valor y además sabemos que por cada nuevo contagio se producirán al día siguiente una cantidad de contagios, calculada en base a la tasa reproductiva, podemos estimar cuantos contagiados totales habrá en los próximos días. Esta estimación puede no ser precisa y es por eso que debe ajustarse día a día. Aun así tiene un buen valor predictivo.</p>
+
+<p style="font-family:arial;">
+<b>Ejemplo:</b> Para un dado día el valor de rho7 es 1.5, la cantidad de casos está creciendo exponencialmente. Y si además la tasa de ataque o incidencia acumulada en los últimos 14 días IA14 es 50 por cada 100mil habitantes el 
+número de personas a dar un test positivo en los próximos días será rho7*ia14=75 por cada 100mil habitantes.
+
 
 <p style="font-family:arial;">
 En base a esto tenemos diversos escenarios:</p>
@@ -163,7 +142,26 @@ En base a esto tenemos diversos escenarios:</p>
 </li>
 </ol>
 
-<p style="font-family:arial;">Cada punto en este gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo) calculado a partir de estimaciones diarias de la capacidad media de testeo y hospitalaria en la ciudad de Bariloche, así como tambien de la probabilidad de que un testeado desarrolle síntomas graves requiriendo cuidados intensivos. Para no sobrepasar la capacidad de testeo, control y capacidad de atención del sistema hospitalario, es deseable que la curva se mantenga alejada de las zonas riesgosas (rojas) indicadas en el diagrama.</p>
+<p style="font-family:arial;">
+<b><i>Predicción a corto término</b> </p></i>
+<p style="font-family:arial;">
+Como se explicó en el ejemplo anterior, el producto de los valores del eje vertical por el horizontal del gráfico, nos da la cantidad de casos positivos por cada 100mil habitantes esperables al día siguiente (EPG(t)=rho_7(t) x IA14(t)).
+Suponiendo que una fracción "f" de esos casos necesitará de cuidados intensivos, es deseable que el número de UTIs y UCIs disponibles sea suficiente para cubrir una cantidad del orden de EPG(t)*f por cada 100mil habitantes. En el gráfico usamos que f=0.035 es aproximadamente la fracción de test positivos que necesitarán cuidados intensivos según la estadística disponible de Argentina.
+
+
+<p style="font-family:arial;">Cada punto del gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo).
+En la escala de colores se indica el número de Unidades de Cuidados Intensivos (CI) necesaria por cada 100mil habitantes.
+Por lo tanto si EPG, es decir el número de casos predichos, es mayor que esa cantidad entraremos en la zona de riesgo (roja) del gráfico.
+
+<p style="font-family:arial;"> <b>Ejemplo:</b> En el gráfico, la zona roja comienza para una cantidad de 26.25 unidades de cuidados intensivos por cada 100mil habitantes, de manera que si un punto del gráfico comenzara a entrar en la zona roja, se nececitarían del orden de 26.5*Poblacion/100000 unidades de cuidados intensivos disponibles. 
+Por ejemplo si se tratara de Bariloche (considerando una población estimada para Bariloche de 163743 habitantes) necesitaríamos 43 unidades de CI aproximadamente.</p>
+
+<p style="font-family:arial;">
+De esta forma, mirando la ubicación del punto correspondiente al día de hoy en el gráfico, es posible calcular la cantidad de Unidades de Cuidados Intensivos que se necesitarán a medida que nos adentramos en la zona de peligro (roja).  
+Dado que los recursos pueden aumentar (en caso en que se agreguen UCIs y UTIs) o disminuír en función del tiempo, el gráfico nos permite estimar la cantidad de unidades de cuidados intensivos necesarias para cubrir los casos graves y de esta forma planificar la eventual necesidad de ampliación de la capacidad hospitalaria.
+</p>
+<!--===================================== AQUI DISCLAIMER CREDITS =====================================-->
+
 
 <p style="font-family:arial;"><b>Este indicador es estadístico y debe ser usado en conjunto con otros indicadores.</b> </p> 
 
@@ -175,84 +173,7 @@ En base a esto tenemos diversos escenarios:</p>
 <p> 
 Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
 </p>
-
-
-<!--
-<h2><b> Tasa de Ataque por cada 100000 habitantes (eje horizontal) </b></h2>
-
-<p>La Incidencia acumulada o <b><i>Tasa de Ataque por cada 100000 habitantes</b></i> 
-<a href="https://www.codecogs.com/eqnedit.php?latex=IA_{14}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?IA_{14}" title="IA_{14}" /></a> 
-mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100000 habitantes. 
-Es una medida del número de casos positivos activos, ya que el período de recuperación es de aproximadamente 
-14 días.
-</p>
-
-<h2><b> Tasa Reproductiva promedio en 7 días (eje vertical)</b></h2>
-
-<p> La Tasa Reproductiva diaria 
-(<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_t" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_t" title="\rho_t" /></a>)
- es una medida cuantitativa de cuántas personas en promedio serán testeadas positivas mañana por cada persona testeada positiva hoy. Se estima a partir del número de casos positivos diarios reportados 
- (<a href="https://www.codecogs.com/eqnedit.php?latex=N(t)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?N(t)" title="N(t)" /></a>), usando una ventana de tres días: </p> 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_t&space;=&space;\frac{N(t-1)&plus;N(t)&plus;N(t&plus;1)}{N(t-6)&plus;N(t-5)&plus;N(t-4)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_t&space;=&space;\frac{N(t-1)&plus;N(t)&plus;N(t&plus;1)}{N(t-6)&plus;N(t-5)&plus;N(t-4)}" title="\rho_t = \frac{N(t-1)+N(t)+N(t+1)}{N(t-6)+N(t-5)+N(t-4)}" /></a>
-<p> 
-Para obtener una medida suavizada, la promediamos en una ventana de 7 días, 
-y así obtenemos la <b><i>Tasa Reproductiva promediada en 7 días</i></b>: </p>
-<a href="https://www.codecogs.com/eqnedit.php?latex=\rho_7&space;=&space;\frac{\rho(t-3)&plus;\rho(t-2)&plus;\rho(t-1)&plus;\rho(t)&plus;\rho(t&plus;1)&plus;\rho(t&plus;2)&plus;\rho(t&plus;3)}{7}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\rho_7&space;=&space;\frac{\rho(t-3)&plus;\rho(t-2)&plus;\rho(t-1)&plus;\rho(t)&plus;\rho(t&plus;1)&plus;\rho(t&plus;2)&plus;\rho(t&plus;3)}{7}" title="\rho_7 = \frac{\rho(t-3)+\rho(t-2)+\rho(t-1)+\rho(t)+\rho(t+1)+\rho(t+2)+\rho(t+3)}{7}" /></a>
-
-
-<h2><b> Indice de Riesgo (escala de colores) </b></h2>
-
-<p> Si supiéramos hoy la fracción de infectados que desarrollarán 
-síntomas y darán positivo en unos pocos días, podríamos predecir aproximadamente los posibles nuevos tests 
-positivos mañana, usando la <i>Tasa Reproductiva</i> anterior. Como no conocemos esta fracción, la estimamos a partir de la <i>Tasa de Ataque</i> definida anteriormente.
-Definimos así el <b><i>Indice de crecimiento exponencial (EPG)</b></i> : </p>
-<a href="https://www.codecogs.com/eqnedit.php?latex=EPG&space;=&space;\rho_7&space;\times&space;IA_{14}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?EPG&space;=&space;\rho_7&space;\times&space;IA_{14}" title="EPG = \rho_7 \times IA_{14}" /></a>
-<p> el cual predice el número de nuevos tests positivos esperables mañana a partir de los test positivos hoy, 
-por cada 100000 habitantes. 
-
-El nivel de riesgo asociado a un valor de EPG 
-está determinado por la capacidad del sistema sanitario.
-
-
-<ul>
-  <li>
-  Si llamamos DTL al número de testeos diaros por cada 
-100000 habitantes, la nueva situación será de riesgo  
-si el número predicho de nuevos test positivos es EPG > DTL.
-Hemos definido EPG = DTL como <b><i>Límite de la capacidad de Testeo</b></i>.
-  </li>
-  <li>
-Si llamamos C a la capacidad hospitalaria de cuidados intensivos 
-cada 100000 habitantes la situación será de riesgo si 
-C < EPG*f, donde f es la fracción de casos positivos que 
-desarrollan síntomas graves, y necesitan de cuidados intensivos.  
-Hemos definido EPG = C/f como <b><i>Límite de la Capacidad Hospitalaria</b></i>.
-  </li>
-  <li>
-	Para el gráfico de riesgo consideramos que en Bariloche, cada cien mil habitantes,
-	DTL=782 (según el registro histórico), C=32 (estimado como la suma de UTIs + UCIs libres en la 
-	última fecha),  y que la fracción de internación de testeados positivos 
-	en UTIs + UCIs es del 3.5% aproximadamente, 
-	es decir f=0.035 (estimado a partir de estadísticas de Argentina).
-  </li>
-</ul>
-
-
-<h><b> Referencias </b></h>
-</ul>
-<li><a href="https://biocomsc.upc.edu/en/shared/avaluacio_risc.pdf"> Estos cálculos fueron realizados a partir de este tutorial del grupo BIOCOMSC de la Universitat Politècnica de Catalunya.</a></li>
-</ul>
-</ul>
-<li><a href="https://biocomsc.upc.edu/en/covid-19">Reportes del grupo citado anteriormente, que utilizan estos indicadores para otros países pueden encontrarse en este link.</a></li>
-</ul>
-
-</body>
--->
-
-
-
-
-
+</div>
 
 <!-- ############################################################################ -->
 <!-- ############################################################################ -->
@@ -268,16 +189,18 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
 	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
+	// para que ande local
+/*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
+
+	if(ciudad=='./RiesgoGeneralRoca') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoGeneralRoca';
+*/	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
 	// lee csv actualizado
 	function makeplot() {
 		Plotly.d3.csv(
-		//"https://bitbucket.org/abk_balde/datos/raw/05377741176b9484f572a2fa6c6926d18aaa25a4/RiesgoBariloche.csv",
-		//"./riesgo/RiesgoBariloche.csv",
-		//"../tablero-privado/RiesgoBariloche",
-		//"./RiesgoBariloche",
-		ciudad,
+		"https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche",
+		//ciudad,
 		function(datos)
 		{ 
 			processData(datos) 
@@ -290,7 +213,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length-1; i++) {
+		for (var i=0; i<allRows.length; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );
@@ -335,9 +258,11 @@ function plotriesgo(ciudad){
 			ytesteo[i]=DTL/x[i];
 		}
 
+		var amp=5.0;
 		for(var i = 0; i < size; i++) {
 		  	for(j = 0; j < size; j++) {
-		    		z[i][j] = i*j; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+		    		z[i][j] = x[i]*y[j]*amp; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+				//EPG = z*0.035/amp
 		 	}
 		}
 
@@ -366,12 +291,13 @@ function plotriesgo(ciudad){
 		  		tickmode: "array",
 		  		//tickvals: [0,DTL,UTIpUCI],
 		  		//ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
+				//EPG = z*0.035/5.0
 		  		tickvals: [750,1000,1250,1500],
 		  		ticktext: [
-		  		"~"+Math.trunc(750.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1000.0*0.035*100)/100.+" CI cada 100000 hab", 
-		  		"~"+Math.trunc(1250.0*0.035*100)/100.+" CI cada 100000 hab",
-		  		"~"+Math.trunc(1500.0*0.035*100)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(750.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1000.0*0.035*100/amp)/100.+" CI cada 100000 hab", 
+		  		"~"+Math.trunc(1250.0*0.035*100/amp)/100.+" CI cada 100000 hab",
+		  		"~"+Math.trunc(1500.0*0.035*100/amp)/100.+" CI cada 100000 hab",
 		  		]
 		  	}
 		};
@@ -389,8 +315,10 @@ function plotriesgo(ciudad){
 		for(var i=0;i<size2;i++) {
 			opa[i]=2*(i*1.0/size2)*(i*1.0/size2);
 			taudup=Math.trunc(100*3.47/Math.log(rho7[i]))/100.0;
-			if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
-			else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
+			//if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
+			//else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
+			var ci=Number((IA14[i]*rho7[i]*0.035).toFixed(1))
+			textomarkers[i]=fecha[i]+", CI~"+ ci;
 		}
 
 		// curva de riesgo
@@ -490,10 +418,11 @@ function plotriesgo(ciudad){
 		    	text: titulo,
 		    	x: 0,
 		    },
-		    height: 600,
-		    width: 900,
-		    yaxis: {title: 'Tasa Reproductiva promediada en 7 días', range: [0, maxrho7*1.2]},
-		    xaxis: {title: 'Tasa de Ataque por cada 100000 habitantes', range: [0, maxIA14*1.2]},
+		    autosize: true,
+		    //height: 600,
+		    //width: 900,
+		    yaxis: {title: 'Número Reproductivo Empírico (promedio en 7 días)', range: [0, maxrho7*1.2]},
+		    xaxis: {title: 'Número de activos (Tasa de Ataque) por cada 100000 habitantes', range: [0, maxIA14*1.2]},
 		    //yaxis2: {title: 'Line and Scatter Plot Axis', range: [0, 10]}
 		    zaxis: {title: 'Indice de Riesgo', range: [0, 1]},
 		    showlegend: false,
@@ -523,23 +452,23 @@ function plotriesgo(ciudad){
 		      showarrow: false,
 		    },
 		    {
-		      x: 0.02,
-		      y: 0.02,
-		      xref: 'paper',
-		      yref: 'paper',
-		      text: "inicio:"+fecha[0],
-		      font: { color: "white",size: 10},
-		      showarrow: false,
+		      x: IA14[0],
+		      y: rho7[0],
+		      xref: 'x',
+		      yref: 'y',
+		      text: "inicio",
+		      font: { color: "black",size: 13},
+		      showarrow: true,
 		    },
-	/*	    {
-		      x: IA14[size2-1]-5,
+		    {
+		      x: IA14[size2-1],
 		      y: rho7[size2-1],
 		      xref: 'x',
 		      yref: 'y',
-		      text: fecha[0],
-		      font: { color: "white",size: 10},
-		      showarrow: false,
-		    },*/
+		      text: "último",
+		      font: { color: "black",size: 13},
+		      showarrow: true,
+		    },
 	 	    {
 	 	      x: 0.02,
 	 	      y: 0.12,
@@ -573,9 +502,11 @@ function plotriesgo(ciudad){
 		    ],
 		};
 
-		var plotData = [data, data2, data3, ultimo, primero];// testeo,
+		var plotData = [data, data2, data3, ultimo, primero];
 
-		Plotly.newPlot('myDiv', plotData,layout);
+		var config = {responsive: true};
+
+		Plotly.newPlot('myDiv',plotData,layout,config);
 	}
 
 	//makePlotly(IA14,rho7,fecha);		
