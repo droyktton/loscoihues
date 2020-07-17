@@ -43,6 +43,31 @@ Plotly.d3.csv(
 		var FECHA = unpack(rows, "FECHA");
 		var Localidad = unpack(rows, "Localidad");
 		var label = unpack(rows, "label");
+
+		  for (var i=0; i<Localidad.length; i++) {
+			if(Localidad[i]=='CórdobaCórdoba')Localidad[i]='<b>Provincia de Córdoba</b>';
+			if(Localidad[i]=='BuenosAires')Localidad[i]='<b>Provincia de BsAs</b>';
+			if(Localidad[i]=='Lomasde')Localidad[i]='Lomas de Zamora (BsAs)';
+			if(Localidad[i]=='AvellanedaNA')Localidad[i]='Avellaneda (BsAs)';
+			if(Localidad[i]=='ChacoNA')Localidad[i]='<b>Provincia de Chaco</b>';
+			if(Localidad[i]=='QuilmesNA')Localidad[i]='Quilmes (BsAs)';
+			if(Localidad[i]=='CABACABANA')Localidad[i]='<b>CABA</b>';
+			if(Localidad[i]=='LaPlata')Localidad[i]='La Plata (BsAs)';
+			if(Localidad[i]=='LanúsNA')Localidad[i]='Lanús (BsAs)';
+			if(Localidad[i]=='LaMatanza')Localidad[i]='La Matanza (BsAs)';
+			if(Localidad[i]=='SanFernando')Localidad[i]='San Fernando (Chaco)';
+			if(Localidad[i]=='CórdobaJavier')Localidad[i]='San Javier (Córdoba)';
+			if(Localidad[i]=='CórdobaCapital')Localidad[i]='Ciudad de Córdoba';
+			if(Localidad[i]=='CórdobaPunilla')Localidad[i]='Punilla (Córdoba)';
+			if(Localidad[i]=='CórdobaMaría')Localidad[i]='Santa María (Córdoba)';
+			if(Localidad[i]=='CórdobaColón')Localidad[i]='Colón (Córdoba)';
+			if(Localidad[i]=='RioNegro')Localidad[i]='<b>Prov. de Río Negro</b>';
+			if(Localidad[i]=='GeneralRoca')Localidad[i]='General Roca (RN)';
+			if(Localidad[i]=='Bariloche')Localidad[i]='Bariloche (RN)';
+			if(Localidad[i]=='NeuquénLoncopué')Localidad[i]='Loncopué (Neuquén)';
+			if(Localidad[i]=='NeuquénNeuquén')Localidad[i]='<b>Provincia de Neuquén:</b>';
+			if(Localidad[i]=='NeuquénConfluencia')Localidad[i]='Confluencia (Neuquén)';
+		  }
 		
 		var EPG=[];
 		var textos=[];
