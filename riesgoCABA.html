@@ -292,7 +292,7 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoCABACOMUNA8') titulo="<b>Diagrama de Riesgo: CABA Comuna 8</b>"
 	if(ciudad=='./RiesgoCABASINESPECIFICAR') titulo="<b>Diagrama de Riesgo: CABA Sin Especificar</b>"
 	
-	titulo=titulo+" <p>(Debido al atraso en la carga de datos del M.S.N. no podemos ofrecer los indicadores en las fechas más recientes)</p>"
+	titulo=titulo+"<small>(Debido al atraso en la carga de datos del M.S.N. no podemos ofrecer las fechas más recientes)</small>"
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
@@ -316,7 +316,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length; i++) {
+		for (var i=0; i<allRows.length-10; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );
@@ -331,7 +331,7 @@ function plotriesgo(ciudad){
 	function makePlotly(IA14,rho7,fecha){
 		var size = 50, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
 
-		var size2=IA14.length-10; //largo de datos
+		var size2=IA14.length; //largo de datos
 
 		// esto tiene que poder hacerse con una sola llamada a max(...).
 		var maxIA14 = 0.0;
