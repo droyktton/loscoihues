@@ -301,6 +301,8 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoQuilmesNA') titulo="<b>Diagrama de Riesgo: Quilmes</b>"
 	if(ciudad=='./RiesgoLaPlata') titulo="<b>Diagrama de Riesgo: La Plata</b>"
 	
+	titulo=titulo+"(Debido al atraso en la carga de datos del M.S.N. no podemos ofrecer las fechas más recientes)"
+	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
 	// lee csv actualizado
@@ -323,7 +325,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length; i++) {
+		for (var i=0; i<allRows.length-10; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );
