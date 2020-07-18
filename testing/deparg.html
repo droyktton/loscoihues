@@ -1,0 +1,59 @@
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+
+
+<script>
+function makeplot() { Plotly.d3.csv("https://raw.githubusercontent.com/droyktton/loscoihues/master/mapeo.csv", function(data){ processData(data) } );
+};
+
+function processData(allRows) {
+  //console.log(allRows);
+  var ID = [], DEP = [], CAB=[], PRO=[];
+  for (var i=0; i<allRows.length; i++) {
+    row = allRows[i];
+    ID.push( row['ID'] );
+    DEP.push( row['DEPARTAMENTO'] );
+    CAB.push( row['CABECERA'] );
+    PRO.push( row['PROVINCIA'] );
+  }
+  //console.log( 'ID',ID[0],'DEP',DEP[0],'CAB',CAB[0],'PRO',PRO[0]);
+  makePlotly( ID, DEP, CAB, PRO );
+}
+
+function makePlotly( ID, DEP, CAB, PRO ){
+
+var provincias=["BUENOSAIRES","CORDOBA","LARIOJA","SALTA","CATAMARCA","TUCUMAN","JUJUY","MISIONES","CORRIENTES","ENTRERIOS","SANTAFE","RIONEGRO","SANTACRUZ","TIERRADELFUEGO","NEUQUEN","FORMOSA","CHACO","MENDOZA","SANLUIS","SANJUAN","SANTIAGODELESTERO","LAPAMPA","CIUDADAUTONOMADEBUENOSAIRES"];
+  
+var lugares=[];
+var colores=[];
+for(i=0;i<ID.length;i++){
+  if(PRO[i]=="BUENOSAIRES") {
+    //console.log(i,PRO[i]);
+    lugares.push(ID[i]);
+    colores.push(1);
+  }  
+}
+
+var data = [{
+type: "choroplethmapbox", 
+  geojson: "https://raw.githubusercontent.com/droyktton/loscoihues/master/departamentos-argentina-modified.json",
+  locations: lugares, z: colores
+}];
+
+var layout = {mapbox: {center: {lon: -65, lat: -30}, zoom: 3.0},
+              width: 900, height:800};
+
+var config = {mapboxAccessToken: "pk.eyJ1Ijoia29sdG9uYSIsImEiOiJja2M5eGF3Z3owcHYyMnlwZjRibjU3cmFoIn0.jE11Xk6y4IrzZovXYGTWdA"};
+
+Plotly.newPlot('myDiv', data, layout, config);
+}  
+
+makeplot();
+</script>
+
