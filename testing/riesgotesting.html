@@ -88,6 +88,7 @@ Todos los gráficos mostrados aquí están hechos con
 La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 </p>
 
+<!--
 <h3>Elegir Población</h3>
 
 <div class="scrollmenu">
@@ -95,6 +96,7 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
   <a href="#" onclick="plotriesgo('./RiesgoBariloche')">Bariloche</a>
   <a href="#" onclick="plotriesgo('./RiesgoGeneralRoca')">General Roca</a>
 </div>
+-->
 
 <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
@@ -196,11 +198,11 @@ plotriesgo('https://raw.githubusercontent.com/droyktton/loscoihues/master/testin
 function plotriesgo(ciudad){
 
 	
-	if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
-	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
-	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
+	//if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
+	//if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
+	//if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
-	titulo="<b>Diagrama de Riesgo: Testing </b>"
+	titulo=ciudad
 	
 	// para que ande local
 /*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
