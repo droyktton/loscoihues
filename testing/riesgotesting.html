@@ -214,8 +214,8 @@ function plotriesgo(ciudad){
 	// lee csv actualizado
 	function makeplot() {
 		Plotly.d3.csv(
-		"https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche",
-		//ciudad,
+		//"https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche",
+		ciudad,
 		function(datos)
 		{ 
 			processData(datos) 
