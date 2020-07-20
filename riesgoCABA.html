@@ -111,7 +111,12 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
   <a href="#" onclick="plotriesgo('./RiesgoCABACOMUNA8')">CABA : Lugano/Soldati</a>
 <!--  <a href="#" onclick="plotriesgo('./RiesgoCABASINESPECIFICAR')">CABA Sin Especificar</a> -->
 </div>
-
+<p style="color:red"><b>ATENCION</b></p>
+Debido a la lentitud en la carga de datos diarios del M.S.N. para estas localidades 
+no podemos ofrecer los indicadores para las fechas más recientes. Puede apreciar 
+el efecto artificial que esto produce en la serie de casos diarios 
+en este <a href="cargaincompleta.html"> ejemplo</a>.
+</p>
 <!-- 
 <button onclick="myFunction('Bariloche')">Bariloche</button>
 <button onclick="myFunction('Rio Negro')">Rio Negro</button>
@@ -293,7 +298,7 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoCABACOMUNA8') titulo="<b>Diagrama de Riesgo: CABA Comuna 8</b>"
 	if(ciudad=='./RiesgoCABASINESPECIFICAR') titulo="<b>Diagrama de Riesgo: CABA Sin Especificar</b>"
 	
-	titulo=titulo+" (Debido al atraso en la carga de datos del M.S.N. no podemos ofrecer las fechas más recientes)"
+	//titulo=titulo;
 	
 	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
 
