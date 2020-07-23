@@ -45,11 +45,11 @@ function processData(allRows) {
   console.log( 'IA14',IA14, 'RHO7',RHO7,'EPG',EPG, 'Localidad',Localidad );
 
   for (var i=0; i<allRows.length; i++) {
-			if(Localidad[i]=='CórdobaCórdoba')Localidad[i]='<b>Provincia de Córdoba</b>';
-			if(Localidad[i]=='BuenosAires')Localidad[i]='<b>Provincia de BsAs</b>';
+			if(Localidad[i]=='CórdobaCórdoba')Localidad[i]='<b>Prov. de Córdoba</b>';
+			if(Localidad[i]=='BuenosAires')Localidad[i]='<b>Prov. de BsAs</b>';
 			if(Localidad[i]=='Lomasde')Localidad[i]='Lomas de Zamora (BsAs)';
 			if(Localidad[i]=='AvellanedaNA')Localidad[i]='Avellaneda (BsAs)';
-			if(Localidad[i]=='ChacoNA')Localidad[i]='<b>Provincia de Chaco</b>';
+			if(Localidad[i]=='ChacoNA')Localidad[i]='<b>Prov. de Chaco</b>';
 			if(Localidad[i]=='QuilmesNA')Localidad[i]='Quilmes (BsAs)';
 			if(Localidad[i]=='CABACABANA')Localidad[i]='<b>CABA</b>';
 			if(Localidad[i]=='LaPlata')Localidad[i]='La Plata (BsAs)';
@@ -65,12 +65,17 @@ function processData(allRows) {
 			if(Localidad[i]=='GeneralRoca')Localidad[i]='General Roca (RN)';
 			if(Localidad[i]=='Bariloche')Localidad[i]='Bariloche (RN)';
 			if(Localidad[i]=='NeuquénLoncopué')Localidad[i]='Loncopué (Neuquén)';
-			if(Localidad[i]=='NeuquénNeuquén')Localidad[i]='<b>Provincia de Neuquén:</b>';
+			if(Localidad[i]=='NeuquénNeuquén')Localidad[i]='<b>Prov. de Neuquén:</b>';
 			if(Localidad[i]=='NeuquénConfluencia')Localidad[i]='Confluencia (Neuquén)';
-			if(Localidad[i]=='JujuyJujuy')Localidad[i]='<b>Provincia de Jujuy</b>';
+			if(Localidad[i]=='JujuyJujuy')Localidad[i]='<b>Prov. de Jujuy</b>';
 			if(Localidad[i]=='JujuyManuel')Localidad[i]='M.Belgrano (Jujuy)';
 			if(Localidad[i]=='JujuyLedesma')Localidad[i]='Ledesma (Jujuy)';
 			if(Localidad[i]=='JujuyCarmen')Localidad[i]='El Carmen (Jujuy)';
+			if(Localidad[i]=='SaltaSalta')Localidad[i]='<b>Prov. de Salta</b>';
+			if(Localidad[i]=='SaltaCapital')Localidad[i]='Capital (Salta)';
+			if(Localidad[i]=='SaltaOran')Localidad[i]='Oran (Salta)';
+			if(Localidad[i]=='SaltaJose')Localidad[i]='San Martín (Salta)';
+			if(Localidad[i]=='SaltaGuemes')Localidad[i]='Guemes (Salta)';
   }
   makePlotly( IA14, RHO7, EPG, Localidad, FECHA );
 }
