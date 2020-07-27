@@ -58,16 +58,19 @@
 El denominado tiempo de duplicación "Tau" es uno de los indicadores 
 más básicos para seguir la evolución de una epidemia. 
 También es el más problemático para interpretar, 
-porque su definición se basa en una aproximación muy 
-fuerte, sólo válida en los modelos más elementales 
-de epidemias. Estos modelos usualmente asumen 
-poblaciones grandes, homogéneas, con gente muy mezclada 
-y se sobre-simplifican algunos aspectos importantes 
-sobre los tiempos característicos de contagio 
-y de recuperación.
+porque su definición se basa en la hip\'otesis 
+de un permanente crecimiento exponencial del n\'umero 
+de casos acumulados.  
+Tal hip\'otesis es sólo válida en poblaciones grandes, homogéneas, 
+con gente muy mezclada. En la pr\'actica existe una superposici\'on 
+de brotes provocando aumentos y disminuciones del n\'umero de casos diarios, 
+y aunque el n\'umero de casos positivos acumulados crezca 
+mon\'otonamente, el modelo exponencial aplicado en una ventana de tiempo 
+no es necesariamente el m\'as adecuado para describirlos.
 
 <p>
-<b>Modelo SIR.</b>El crecimiento exponencial del número de casos acumulados 
+<b>Modelo SIR.</b>
+El crecimiento exponencial del número de casos acumulados 
 suele justificarse con modelos muy sencillos como el modelo SIR 
 en la etapa de crecimiento, cuando la fracción de susceptibles 
 es alta y puede considerarse una constante S0 en el tiempo de 
@@ -119,19 +122,20 @@ por ejemplo, es sólo consistente con Tau=infinito en la definición original
 del modelo de crecimiento puramente exponencial. 
 Notar que al ser el número de casos acumulados monótonamente creciente, 
 Tau está restringido a ser positivo, siendo infinito 
-cuando la epidemia cesa. 
+cuando la epidemia cesa.
 Si reinterpretamos Tau como una 
 extrapolación que dobla el número de casos para el mejor modelo de ajuste, 
 Tau daría un valor mucho más grande que la aproximación exponencial. 
 En el panel inferior de la animación se ven los distintos "tiempos de duplicación" 
 qeu podrian definirse, y como deciamos anteriormente, ninguno es mejor 
-modelo de ajuste que otro. 
+modelo de ajuste que otro. En este sentido el error del tiempo de duplicación 
+es por tanto grande.
 </p>
 
 <p><b>Demoras.</b> Los casos primarios positivos hoy producirán casos secundarios 
 no hoy mismo, sino en un intervalo mas o menos definido de días, de modo 
 que una aproximación más aceptable para estimar la tasa de crecimiento 
-de la epidemia es un estimador del Número de Reproducción Empirico, más 
+de la epidemia es un estimador del Número de Reproducción Empírico, más 
 que del tiempo de duplicación. Esta es una primera motivación para 
 introducir esta cantidad en nuestro diagrama de Riesgo. 
 La segunda motivación, es que si conocemos el número de casos activos hoy,
@@ -146,12 +150,8 @@ describir la evolución global de la epidemia con dos indicadores
 relacionados (el Número de Reproducción Empírico y la Tasa de Ataque 
 o Incidencia), ambos basados en el número de casos diarios,
 nos permite apreciar mucho mejor la complejidad de la epidemia 
-que solo usar tiempo de duplicación, basado en el número de casos acumulados. 
-Notar que este último está restringido a ser positivo, 
-y por lo tanto no puede capturar la remisión, aunque sea transitoria, 
-de la epidemia. De hecho, en poblaciones chicas o medianas, 
-controladas por brotes, es muy normal esta última situación. 
-El diagrama de riesgo es por tanto una forma mas fina de capturar 
+que solo usar el tiempo de duplicación. El diagrama de riesgo es por 
+tanto una forma mas fina de capturar 
 la dinámica de la epidemia. 
 </p> 
 
