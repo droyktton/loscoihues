@@ -11,6 +11,7 @@
 \usepackage[hyphens,spaces,obeyspaces]{url}
 \usepackage[colorlinks,allcolors=blue]{hyperref}
 \usepackage{verbatim}
+\usepackage{mathtools}
 
 \begin{document}
 
@@ -48,15 +49,15 @@ la predicción de un índice de riesgo sanitario.
 
 \section*{Número Reproductivo Empírico}
 En epidemiología matemática clásica se utiliza el Número Reproductivo Efectivo 
-{\cal R} para medir la velocidad con la que se propaga una epidemia a un tiempo dado. 
-Es una medida del número medio de personas infectadas por una persona 
+${\cal R}_t$ para medir la velocidad con la que se propaga una epidemia a un tiempo dado. 
+Más específicamente, es una medida del número medio de personas infectadas por una persona 
 infecciosa durante su período activo. Es decir, el número de casos secundarios por cada caso primario. 
-A menudo se habla del número reproductivo básico $R_0$, que es el valor 
-de $R_t$ a tiempo cero ($t=0$), es decir, antes de que se inicie 
+A menudo se habla del número reproductivo básico ${\cal R}_0$, que es el valor 
+de ${\cal R}_t$ a tiempo cero ($t=0$), es decir, antes de que se inicie 
 la propagación de la epidemia, sin intervención alguna, en una 
-población susceptible en equilibrio. El número de reproducción empírico 
-en cambio monitorea la velocidad de contagio en función del tiempo durante la epidemia, 
-es susceptible a las intervenciones y a los distintos eventos que producen 
+población susceptible en equilibrio. El número de reproducción empírico que definiremos, 
+si bien está emparentado con el efectivo, representa en cambio el número medios de 
+contagios diarios y monitorea la velocidad de contagio en función del tiempo durante la epidemia, es susceptible a las intervenciones y a los distintos eventos que producen 
 brotes epidémicos.
 
 
@@ -64,7 +65,7 @@ Para evaluar el Número Reproductivo Empírico, primero definimos $R_t$, que
 se estima a partir del número de casos positivos diarios reportados $N_t$, 
 donde $t$ es el número de día que corresponde al inicio de síntomas del caso 
 positivo. Para eliminar fluctuaciones en $N_t$, usamos una 
-ventana de casos de tres días y la dividimos por la misma ventana corrida $5$ 
+ventana de casos de $3$ días y la dividimos por la misma ventana corrida $5$ 
 días atrás:
 \begin{equation}
 R_t = \frac{N_{t-1}+N_{t}+N_{t+1}}{N_{t-6}+N_{t-5}+N_{t-4}}
@@ -74,6 +75,9 @@ de forma empírica, el hecho de que una persona recién
 infectada (tenga o no síntomas) no infecta inmediatamente a otras personas, 
 sino luego de un cierto número de días característico de la enfermedad.
 Es decir, la dinámica de contagio contiene tiempos de espera o demoras. 
+Adem\'as estamos suponiendo que los casos secundarios 
+$N_{t-1}+N_{t}+N_{t+1}$ tienen como casos primarios 
+a ${N_{t-6}+N_{t-5}+N_{t-4}}$.
 El número $R_t$ mide entonces 
 la tasa de multiplicación de casos. Como sólo nos basamos 
 en el número de casos positivos reportados, $R_t$ es una medida 
