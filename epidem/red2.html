@@ -1,0 +1,269 @@
+<!-- A. B. Kolton 2020 -->
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://kenedict.com/networks/worldcup14/vis/ , thanks Andre!-->
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF8">
+  <title>Redes de Posible Contagio</title>
+  <script type="text/javascript" src="exampleUtil.js"></script>
+
+  <script type="text/javascript" src="vis.js"></script>
+  <link type="text/css" rel="stylesheet" href="vis-network.min.css">
+
+  <style type="text/css">
+    #mynetwork {
+      width: 800px;
+      height: 800px;
+      border: 1px solid lightgray;
+    }
+
+    div.nodeContent {
+      position: relative;
+      border: 1px solid lightgray;
+      width: 480px;
+      height: 780px;
+      margin-top: -802px;
+      margin-left: 810px;
+      padding: 10px;
+    }
+
+    pre {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .string {
+      color: green;
+    }
+
+    .number {
+      color: darkorange;
+    }
+
+    .boolean {
+      color: blue;
+    }
+
+    .null {
+      color: magenta;
+    }
+
+    .key {
+      color: red;
+    }
+  </style>  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.vertical-menu {
+  width: 200px;
+  height: 150px;
+  overflow-y: auto;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+  
+</head>
+
+<body>
+
+<h2>Redes de Posible Contagio (actualizadas al 13 de Junio de 2020)</h2>
+<p> <a href="https://covidbariloche.gitlab.io/webpage-restricted/redes/riesgo.html"> Diagrama de Riesgo Bariloche </a></p>
+
+
+<h3>Elegir una red </h3>
+
+<div class="vertical-menu">
+  <a href="#" class="active" onclick="plotred('https://bitbucket.org/abk_balde/datos/raw/e6c9eca2d70638a398b28b727194ace9cdc92d62/redposest.json','redposest')">Resaltando Tests.</a>
+
+  <a href="#" onclick="plotred('https://bitbucket.org/abk_balde/datos/raw/e6c9eca2d70638a398b28b727194ace9cdc92d62/redposcomun.json','redposcomun')">Resaltando Comunidades</a>
+
+<!--
+  <a href="#" onclick="plotred('https://bitbucket.org/abk_balde/datos/raw/a4711462d490ab4dfa3c2fb7a3a34838b4a099f6/red14-5b.json','redvieja')">vieja red</a>
+-->
+
+</div>
+
+<div style="width:700px; font-size:14px; text-align: justify;">
+<p id="description"> 
+El gráfico muestra nodos y vínculos entre ellos. 
+Cada nodo es un individuo identificado en entrevistas, 
+el cual puede haber sido testeado positivo, testeado negativo o no haber sido testeado.
+Los colores de los nodos definen comunidades. Para accede a la información completa de un nodo, 
+hacer zoom, y clickear en el nodo, lo cual también resaltará sus conexiones.
+</p>
+</div>
+
+
+<p>
+  <label><input type="checkbox" id="fixed" checked="checked"/> Fijar después de importar </label><br>
+  <label><input type="checkbox" id="parseColor"/> Pasar el color en vez de copiar 
+  (agregar bordes, resaltadores, etc.)</label>
+</p>
+
+<div id="mynetwork"></div>
+<div class="nodeContent"><h4>Información del Nodo Seleccionado:</h4>
+  <pre id="nodeContent"></pre>
+</div>
+
+<!--
+<p> 
+Desarrollado por K. F. Laneri, A. B. Kolton y M. Kuperman para <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
+</p>
+-->
+
+
+<script type="text/javascript">
+plotred('https://bitbucket.org/abk_balde/datos/raw/e6c9eca2d70638a398b28b727194ace9cdc92d62/redposest.json',"redposest");
+
+function plotred(jsonfile,nombre){
+
+  if(nombre=="redposest"){
+  	document.getElementById("description").innerHTML = "RESULTADO DE TEST: El gráfico muestra nodos y vínculos entre ellos. Cada nodo es un individuo identificado en entrevistas, el cual puede haber sido testeado positivo (rojo), testeado negativo (verde) o no haber sido testeado (amarillo). Para acceder a la información completa de un nodo, hacer zoom, y clickear en el nodo, lo cual también resaltará sus conexiones.";
+  }
+  
+  if(nombre=="redposcomun"){  
+  	document.getElementById("description").innerHTML = "COMUNIDADES: El gráfico muestra nodos y vínculos entre ellos. Cada nodo es un individuo identificado en entrevistas, el cual puede haber sido testeado positivo, testeado negativo o no haber sido testeado. Los colores de los nodos definen comunidades. Para acceder a la información completa de un nodo, hacer zoom, y clickear en el nodo, lo cual también resaltará sus conexiones.";
+  }
+
+  if(nombre=="redvieja"){
+  	document.getElementById("description").innerHTML = "COMUNIDADES VIEJA: El gráfico muestra nodos y vínculos entre ellos. Cada nodo es un individuo identificado en entrevistas, el cual puede haber sido testeado positivo, testeado negativo o no haber sido testeado. Los colores de los nodos definen comunidades. Para acceder a la información completa de un nodo, hacer zoom, y clickear en el nodo, lo cual también resaltará sus conexiones. Esta red es vieja.";
+  }
+
+
+  var network;
+
+  var nodes = new vis.DataSet();
+  var edges = new vis.DataSet();
+  var gephiImported;
+  var fixedCheckbox = document.getElementById('fixed');
+  fixedCheckbox.onchange = redrawAll;
+
+  var parseColorCheckbox = document.getElementById('parseColor');
+  parseColorCheckbox.onchange = redrawAll;
+
+  var nodeContent = document.getElementById('nodeContent');
+
+//  loadJSON('WorldCup2014.json', redrawAll, function(err) {console.log('error')});
+//  loadJSON('geotest2.json', redrawAll, function(err) {console.log('error')});
+//    loadJSON('./networks/red14-5.json', redrawAll, function(err) {console.log('error')});
+//    loadJSON('./networks/red14-5b.json', redrawAll, function(err) {console.log('error')});
+
+    /*loadJSON(
+    'https://bitbucket.org/abk_balde/datos/raw/a4711462d490ab4dfa3c2fb7a3a34838b4a099f6/red14-5b.json',
+    redrawAll, function(err) {console.log('error')});*/
+
+    loadJSON(jsonfile,redrawAll, function(err) {console.log('error')});
+
+  var container = document.getElementById('mynetwork');
+ 
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+
+
+  var options = {
+   nodes: {
+      //shape: 'dot',	
+      font: {
+        face: 'Tahoma'
+      }
+    },
+    edges: {
+      width: 0.15,
+      smooth: {
+        type: 'continuous'
+      }
+    },
+    interaction: {
+      tooltipDelay: 200,
+      hideEdgesOnDrag: true
+    },
+    physics: {
+      stabilization: false,
+      barnesHut: {
+        gravitationalConstant: -10000,
+        springConstant: 0.002,
+        springLength: 150
+      }
+    },   	   
+	groups: {
+          "POSITIVO": {
+            shape: 'dot',
+            //color: '#FF9900' // orange
+          },
+          "CONTACTO": {
+            shape: 'square',
+            //color: "#2B7CE9" // blue
+          },
+          "NEGATIVO": {
+            shape: 'triangle',
+            //color: "#5A1E5C" // purple
+          },
+        },
+           
+  };
+
+
+
+  network = new vis.Network(container, data, options);
+  network.on('click', function (params) {
+    if (params.nodes.length > 0) {
+      var data = nodes.get(params.nodes[0]); // get the data from selected node
+      nodeContent.innerHTML = JSON.stringify(data, undefined, 3); // show the data in the div
+    }
+  })
+
+  /**
+   * This function fills the DataSets. These DataSets will update the network.
+   */
+  function redrawAll(gephiJSON) {
+    if (gephiJSON.nodes === undefined) {
+      gephiJSON = gephiImported;
+    }
+    else {
+      gephiImported = gephiJSON;
+    }
+
+    nodes.clear();
+    edges.clear();
+
+    var fixed = fixedCheckbox.checked;
+    var parseColor = parseColorCheckbox.checked;
+
+    var parsed = vis.network.gephiParser.parseGephi(gephiJSON, {
+      fixed: fixed,
+      parseColor: parseColor
+    });
+
+    // add the parsed data to the DataSets.
+    nodes.add(parsed.nodes);
+    edges.add(parsed.edges);
+
+    var data = nodes.get(2); // get the data from node 2 as example
+    nodeContent.innerHTML = JSON.stringify(data,undefined,3); // show the data in the div
+    network.fit(); // zoom to fit
+  }
+}
+</script>
+
+
+</body>
+</html>
