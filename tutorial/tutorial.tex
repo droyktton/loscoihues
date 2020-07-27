@@ -26,7 +26,7 @@
 En este documento se describe un índice de riesgo epidemiológico basado 
 en la serie temporal de casos positivos diarios de COVID19 en una población dada. 
 El índice de riesgo estima la cantidad de casos positivos esperables 
-en los próximos días y puede usarse para estimar el número de ciudados intensivos adicionales que se necesitarán 
+en los próximos días y puede usarse para estimar el número de cuidados intensivos adicionales que se necesitarán 
 en los hospitales o el número de personas que requerirán de 
 un seguimiento.
 }
@@ -91,8 +91,8 @@ no muy grandes o en poblaciones con una dinámica de contagio muy heterogénea.
 Las fluctuaciones pueden tener su origen en un gran número de factores, 
 desde retraso en la carga de los datos o la falta de carga de la 
 fecha de inicio de síntomas, hasta la ocurrencia de eventos sociales de distinta índole. 
-Dichas fluctuaciones complican la evualuación de tendencias, y afectan la calidad de la 
-precición. Para minimizarlas realizamos a su vez 
+Dichas fluctuaciones complican la evaluación de tendencias, y afectan la calidad de la 
+predicción. Para minimizarlas realizamos a su vez 
 un promedio del valor de $R_t$ en una ventana de 7 días, 
 definiendo el Número $R^7_t$ :
 
@@ -104,13 +104,14 @@ R^7_t = \sum_{i=-3}^{3} \frac{R_{t+i}}{7} =
 \subsection*{Efectos de Borde}
 La definición de $R^7_t$ tiene claramente 
 un problema cuando $t$ se acerca al presente, porque 
-puede que $R_{t+3}$, $R_{t+2}$, o $R_{t+1}$ no puedan 
+puede ocurrir que $R_{t+3}$, $R_{t+2}$, o $R_{t+1}$ no puedan 
 ser calculados, ya que necesitaríamos el reporte de casos 
 futuros. Para minimizar este problema recurrimos a la estrategia 
 de completar $N_t$, solo cuando sea necesario, 
 usando extrapolación hacia adelante. Para ello 
 calculamos el promedio de $N_t$ en una ventana de 7 días 
-y usamos ese valor para completar $N_t$. 
+y usamos ese valor para completar la serie $N_t$ los 
+días necesarios. 
 Esta extrapolación solamente es necesaria hacerla 
 cuando el tiempo considerado es tal que $t>hoy-4$ días. Dicha corrección minimiza los efectos de borde 
 pero no evita completamente que los valores 
@@ -132,7 +133,8 @@ porque $14$ días es aproximadamente el tiempo de recuperación de un infectado.
 
 La incidencia acumulada en los últimos 14 días $A^{14}_t$ mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100~mil habitantes (la elección de 100~mil es arbitraria pero fija una escala de valores muy conveniente para la visualización y la comparación de poblaciones). Es una medida del número de casos positivos activos a tiempo 
 $t$, ya que el período de recuperación es de aproximadamente 14 días. 
-Este número se utiliza como una cota inferior de la población infecciosa, ya que no todos los casos positivos están reportados. 
+Este número se utiliza como una cota inferior de la población infecciosa, 
+ya que no todos contagiados fueron testeados. 
 La definición de $A^{14}_t$ es entonces  
 \begin{equation}
 A^{14}_t = \frac{100000}{N_{pob}}\sum_{i=t-13}^t N_i = \frac{100000}{N_{pob}}[N_{t-13}+N_{t-12}+...+N_{t-1}+N_{t}]
@@ -152,7 +154,8 @@ Definimos así el Indice de Crecimiento Potencial $P$:
 P = A^{14}_t \times R^7_t
 \end{equation}
 Esta cantidad predice el número de nuevos tests positivos 
-esperables mañana a partir de los test positivos hoy, por cada 100 mil habitantes. 
+esperables en los próximos días a partir de los 
+test positivos hoy, por cada 100 mil habitantes. 
 Con esta predicción podemos hacer una predicción de 
 riesgo epidemológico para los próximos días. 
 
@@ -330,13 +333,16 @@ dinámica más reciente.
 
 
 
-Una de las dificultades más importantes para poder hacer predicciones epidemológicas es la carga lenta de los datos diarios. La figura \ref{fig:lento} muestra un ejemplo, extraído de fuentes oficiales del Ministerio de Salud de la Nación (\hyperref[https://sisa.msal.gov.ar/datos/descargas/covid-19/]{casos diarios}). En las poblaciones referidas se puede observar una caída sistemática del número de casos diarios los últimos días. Esta caída es artificial y la misma estructura se repite día a día. Se debe a que las bases de datos no se actualizan rápidamente. En las poblaciones de la figura, se aprecia una demora de hasta 10 días.
+Una de las dificultades más importantes para poder hacer predicciones epidemológicas es la carga lenta de los datos diarios. La figura \ref{fig:lento} muestra un ejemplo, extraído de fuentes oficiales del Ministerio de Salud de la Nación (\hyperref[https://sisa.msal.gov.ar/datos/descargas/covid-19/]{casos diarios}). En las poblaciones referidas se puede observar una caída sistemática del número de casos diarios los últimos días. Esta caída es \textit{artificial} y la misma estructura se repite día a día (es decir, solo se desplaza). Se debe a que las bases de datos no se actualizan rápidamente. En las poblaciones de la figura, se aprecia una demora de hasta 10 días.
 
-Las fechas utilizadas corresponden a la fecha de inicio de síntomas. Sin embargo otra de las dificultades encontradas con los datos es que la fecha de inicio de síntomas no está siempre reportada. En esos casos se ha utilizado la fecha de apertura, que ocurre varios días más tarde, a veces hasta 10 días mas tarde. Para estos casos, implementaremos una estimación estadística de la fecha de inicio de síntomas a partir de la de apertura.
+Las fechas utilizadas corresponden a la \textit{fecha de inicio de síntomas}. Sin embargo otra de las dificultades encontradas con los datos es que la fecha de inicio de síntomas no está siempre reportada. En esos casos se ha utilizado la fecha de apertura, que ocurre varios días más tarde, a veces hasta 10 días mas tarde. Este problema no est\'a resuelto a\'un pero estaremos implementando pr\'oximamente una estimación estadística de la fecha de inicio de síntomas a partir de la de apertura.
 
-Los datos poblacionales utilizados corresponden a la proyección del INDEC para 2020 y pueden encontrarse en (\hyperref[https://sitioanterior.indec.gob.ar/nivel4_default.asp?id_tema_1=2&id_tema_2=24&id_tema_3=119]{población}).
+Los datos poblacionales utilizados corresponden a la proyección del INDEC para 2020 y pueden encontrarse en \\
 
-\section*{Advertencias}
+\verb|https://sitioanterior.indec.gob.ar/nivel4_default.asp?|\\
+\verb|id_tema_1=2&id_tema_2=24&id_tema_3=119|
+
+\section*{Advertencia}
 La dinámica epídemica es muy compleja, y sería na\"{i}ve pensar que un solo indicador 
 (como el tiempo de duplicación) o dos indicadores como los aquí discutidos nos permitan capturar todos los aspectos relevantes. En particular, la epidemia es compleja debido al alto grado heterogeneidad espacial y temporal dentro de cada población, y entran en juego 
 innumerables variables sociales, económicas, geográficas, sanitarias, etc.
@@ -347,10 +353,11 @@ Es importante por lo tanto resaltar que es necesario trabajar con una variedad d
 Para consultas relacionadas con los diagramas de riesgo, comunicarse con:\\
 
 \noindent\fbox{%
-    \parbox{\textwidth}{%
+    \parbox{8cm}{%
 Dra. Karina Laneri \\
 Grupo de Física Estadística e Interdisciplinaria \\
-del Centro Atómico Bariloche\\ karinalaneri@gmail.com
+del Centro Atómico Bariloche\\ 
+\texttt{karinalaneri@gmail.com}
     }%
 }
 
