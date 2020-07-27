@@ -1,3 +1,4 @@
+%\documentclass[pre,floatfix,onecolumn, 12pt]{revtex4-1} 
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -6,16 +7,21 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{lmodern}
-\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+\usepackage{verbatim}
+
 \begin{document}
+
+\author{K. F. Laneri$^1$ y A. B. Kolton$^{1,2}$}
+\affil{$^1$ CNEA, CONICET, Centro At\'omico Bariloche, (8400) Bariloche, Argentina}
+\affil{$^2$ Instituto Balseiro (UNCu)}
+
 \title{Diagramas de Riesgo: {\it Significado, Implementación y Uso}}
+
 \maketitle
-\author[1]{Karina Laneri}
-\author[2]{Alejandro Kolton}
 
-
-\affiliation[1]{CONICET, Centro Atómico Bariloche, CNEA}
-\affiliation[1,2]{Instituto Balseiro}
 \abstract{
 En este documento se describe un índice de riesgo epidemiológico basado 
 en la serie temporal de casos positivos diarios de COVID19 en una población dada. 
@@ -27,10 +33,11 @@ un seguimiento.
 %\tableofcontents
 
 
+
 \begin{figure}
-\begin{center}
+%\begin{center}
 \includegraphics[width=14cm,clip=true]{explicacion.png}
-\end{center}
+%\end{center}
 \caption{
 Explicación gráfica del uso del número de reproducción 
 empírico y el número de casos activos para 
@@ -342,18 +349,22 @@ Para consultas relacionadas con los diagramas de riesgo, comunicarse con:\\
 \noindent\fbox{%
     \parbox{\textwidth}{%
 Dra. Karina Laneri \\
-Grupo de Física Estadística e Interdisciplinaria del Centro Atómico Bariloche\\ karinalaneri@gmail.com
+Grupo de Física Estadística e Interdisciplinaria \\
+del Centro Atómico Bariloche\\ karinalaneri@gmail.com
     }%
 }
 
 \section*{Referencias}
-Estos cálculos fueron realizados a partir de 
-este \hyperref[https://biocomsc.upc.edu/en/shared/avaluacio_risc.pdf]{tutorial}.
+Estos cálculos fueron realizados a partir del siguiente 
+tutorial\\
+
+\verb|https://biocomsc.upc.edu/en/shared/avaluacio_risc.pdf|\\
+
 del grupo BIOCOMSC de la Universitat Politècnica de Catalunya. 
 En particular, los diagramas de riesgo aquí descriptos fueron presentados
 en reportes diarios para otros países (principalmente poblaciones europeas) 
-por el grupo citado anteriormente, y pueden consularse
-\hyperref[https://biocomsc.upc.edu/en/covid-19]{aquí}.
+por el grupo citado anteriormente, y pueden consultarse en el siguiente link:\\
 
+\verb|https://biocomsc.upc.edu/en/covid-19|
 
 \end{document}
