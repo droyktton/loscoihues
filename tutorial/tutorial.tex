@@ -103,6 +103,7 @@ definiendo el Número $R^7_t$ :
 \begin{equation}
 R^7_t = \sum_{i=-3}^{3} \frac{R_{t+i}}{7} = 
 \frac{R_{t-3}+R_{t-2}+R_{t-1}+R_t+R_{t+1}+R_{t+2}+R_{t+3}}{7}
+\label{eq:R7t}
 \end{equation}
 
 \subsection*{Efectos de Borde}
@@ -345,6 +346,62 @@ Los datos poblacionales utilizados corresponden a la proyección del INDEC para 
 
 \verb|https://sitioanterior.indec.gob.ar/nivel4_default.asp?|\\
 \verb|id_tema_1=2&id_tema_2=24&id_tema_3=119|
+
+
+\section*{Calidad de las Predicciones}
+\begin{figure}
+\begin{center}
+\includegraphics[width=14cm,clip=true]{calidadprediccion.png}
+\end{center}
+\caption{
+Comparación entre la predicción hecha una semana antes 
+usando el predictor $P=A^{14}_{t-7} R^7_{t-7}$ (en rojo) 
+y el número de activos observado $A^{14}_t$ (en verde). 
+}
+\label{fig:prediccionvsrealidad}
+\end{figure}
+El número de activos $A^{14}_t$ se puede estimar, 
+razonablemente, acumulando los casos diarios los últimos 
+14 días, ya que el tiempo de recuperación medio es de $14$ 
+días. El número reproductivo, que dice a cuantas personas contagia 
+un infectado en su período infeccioso es sin embargo mucho 
+más complicado. Depende del número medio de personas en 
+contacto con un recién infectado (en el hogar, 
+en el trabajo, en los comercios, etc.), 
+del tipo y efectividad de ese contacto 
+(tipo de actividad, precauciones tomadas, 
+lugar del contacto, medidas de contención presentes,
+etc.), y del tiempo medio que el 
+infectado efectivamente contagia. Este tiempo es en general menor que $14$ días
+ya que sería de $14$ días solo si el infectado 
+siguiera su rutina normal luego de contraer la enfermedad. 
+Sin embargo, la conducta de un
+infectado sintomático en general se altera, implicando,
+según la severidad de los síntomas, algún grado de aislación que cambia 
+el tiempo medio de contagio. Debido a esta complejidad, para calcular 
+el número reproductivo $R^7_t$ hemos adoptado un enfoque empírico 
+bajo la hipótesis de que $R^7_t$ es una función de la historia del 
+número de casos diarios. Investigaciones previas, 
+realizadas con datos de diversas ciudades europeas, 
+llegaron a la fórmula de la ecuación \ref{eq:R7t} como 
+una buena aproximación a la función que optimiza la predicción 
+para el caso específico de COVID19. En base a esta experiencia
+previa, adoptamos la misma función. 
+
+
+Para testear la calidad de la predicción, 
+en la figura \ref{fig:prediccionvsrealidad} 
+comparamos el número de casos activos $A^{14}_t$ día tras día durante 
+un período de varios días, con la predicción realizada 
+una semana antes $P=A^{14}_{t-7} R^7_{t-t}$. 
+La comparación la realizamos 
+para cuatro localidades de Argentina.
+Como se puede apreciar, en todos los casos 
+la predicción es relativamente buena en promedio, 
+aunque a veces es susceptible a grandes 
+fluctuaciones implicando un gran error en la 
+predicción.
+
 
 \section*{Advertencia}
 La dinámica epídemica es muy compleja, y sería na\"{i}ve pensar que un solo indicador 
