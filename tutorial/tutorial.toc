@@ -1,1 +1,13 @@
 \select@language {spanish}
+\contentsline {section}{\numberline {1}N\IeC {\'u}mero Reproductivo Emp\IeC {\'\i }rico}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Efectos de Borde}{4}{subsection.1.1}
+\contentsline {section}{\numberline {2}N\IeC {\'u}mero De Casos Activos}{4}{section.2}
+\contentsline {section}{\numberline {3}Indice de Crecimiento Potencial}{5}{section.3}
+\contentsline {section}{\numberline {4}Indices de Riesgo}{5}{section.4}
+\contentsline {section}{\numberline {5}Diagrama de Riesgo}{6}{section.5}
+\contentsline {subsection}{\numberline {5.1}Escenarios Posibles}{6}{subsection.5.1}
+\contentsline {section}{\numberline {6}Datos}{8}{section.6}
+\contentsline {section}{\numberline {7}Calidad de las Predicciones}{10}{section.7}
+\contentsline {section}{\numberline {8}Advertencia}{11}{section.8}
+\contentsline {section}{\numberline {9}Consultas}{11}{section.9}
+\contentsline {section}{\numberline {10}Referencias}{12}{section.10}

@@ -31,6 +31,7 @@ en los próximos días y puede usarse para estimar el número de cuidados intens
 en los hospitales o el número de personas que requerirán de 
 un seguimiento.
 }
+\tableofcontents
 %\tableofcontents
 
 
@@ -47,7 +48,7 @@ la predicción de un índice de riesgo sanitario.
 \label{fig:riesgo}
 \end{figure}
 
-\section*{Número Reproductivo Empírico}
+\section{Número Reproductivo Empírico}
 En epidemiología matemática clásica se utiliza el Número Reproductivo Efectivo 
 ${\cal R}_t$ para medir la velocidad con la que se propaga una epidemia a un tiempo dado. 
 Más específicamente, es una medida del número medio de personas infectadas por una persona 
@@ -106,7 +107,7 @@ R^7_t = \sum_{i=-3}^{3} \frac{R_{t+i}}{7} =
 \label{eq:R7t}
 \end{equation}
 
-\subsection*{Efectos de Borde}
+\subsection{Efectos de Borde}
 La definición de $R^7_t$ tiene claramente 
 un problema cuando $t$ se acerca al presente, porque 
 puede ocurrir que $R_{t+3}$, $R_{t+2}$, o $R_{t+1}$ no puedan 
@@ -125,7 +126,7 @@ sufran un ligero reajuste en los próximos días
 hasta estabilizarse en un valor definido 
 cuando $t<hoy-4$ días.  
 
-\section*{Número De Casos Activos}
+\section{Número De Casos Activos}
 
 Si conocemos $R^7_i$ tenemos un índice que nos mide el número de personas 
 que se infectan por cada persona infecciosa. Este número,
@@ -147,7 +148,7 @@ A^{14}_t = \frac{100000}{N_{pob}}\sum_{i=t-13}^t N_i = \frac{100000}{N_{pob}}[N_
 donde $N_{pob}$ es el número de habitantes de la población 
 a la que pertenece la serie temporal de casos $N_t$.
 
-\section*{Indice de Crecimiento Potencial}
+\section{Indice de Crecimiento Potencial}
 
 Si supiéramos hoy el número de infectados que desarrollarán síntomas 
 y darán positivo en unos pocos días, podríamos predecir aproximadamente 
@@ -165,7 +166,7 @@ Con esta predicción podemos hacer una predicción de
 riesgo epidemológico para los próximos días. 
 
 
-\section*{Indices de Riesgo}
+\section{Indices de Riesgo}
 
 El nivel de riesgo asociado a un valor de $P$ está determinado por la capacidad 
 del sistema sanitario. Si llamamos $DTL$ al número de testeos diarios por 
@@ -183,7 +184,7 @@ $C < P * f$. El valor estimado a partir de estadísticas para Argentina
 cada mil casos positivos, requieren un cuidado intensivo. 
 En la figura~\ref{fig:riesgo} se resume en forma gráfica y sencilla esta idea.
 
-\section*{Diagrama de Riesgo}
+\section{Diagrama de Riesgo}
 
 Podemos graficar $P$,  $R^7_t$ y $A^{14}_t$ en un solo diagrama, en función del tiempo, 
 con el objeto de visualizar la evolución temporal de los indicadores. 
@@ -192,7 +193,7 @@ representamos $A^{14}_t$, de modo que la epidemia al tiempo $t$ está caracteriz
 por un punto en el diagrama. Para representar el valor de 
 $P$ usamos una escala de colores de fondo. 
 
-\subsection*{Escenarios Posibles}
+\subsection{Escenarios Posibles}
 
 \begin{itemize}
 \item {\bf Grave} Es claro que si $R^7_t>1$ y $A^{14}_t$ son grandes 
@@ -315,7 +316,7 @@ capacidad sanitaria de cada población.
 %Las medidas de contención deberían apuntar a bajar la tasa reproductiva idealmente por
 %debajo de 1 y a disminuír el número de casos, de manera de alejarse de la zona roja y
 %moverse hacia abajo a la izquierda en la zona azul.
-\section*{Datos}
+\section{Datos}
 Todos los datos utilizados para todos los diagramas de riesgo 
 son públicos y provistos por el Ministerio de Salud de la Nación.
 La calidad de los indicadores depende fuertemente de la calidad de los datos.
@@ -348,7 +349,7 @@ Los datos poblacionales utilizados corresponden a la proyección del INDEC para 
 \verb|id_tema_1=2&id_tema_2=24&id_tema_3=119|
 
 
-\section*{Calidad de las Predicciones}
+\section{Calidad de las Predicciones}
 \begin{figure}
 \begin{center}
 \includegraphics[width=14cm,clip=true]{calidadprediccion.png}
@@ -403,14 +404,14 @@ fluctuaciones implicando un gran error en la
 predicción.
 
 
-\section*{Advertencia}
+\section{Advertencia}
 La dinámica epídemica es muy compleja, y sería na\"{i}ve pensar que un solo indicador 
 (como el tiempo de duplicación) o dos indicadores como los aquí discutidos nos permitan capturar todos los aspectos relevantes. En particular, la epidemia es compleja debido al alto grado heterogeneidad espacial y temporal dentro de cada población, y entran en juego 
 innumerables variables sociales, económicas, geográficas, sanitarias, etc.
 Es importante por lo tanto resaltar que es necesario trabajar con una variedad de indicadores seleccionados de manera que brinden, entre todos, una imagen completa del estado de situación. 
 
 
-\section*{Consultas}
+\section{Consultas}
 Para consultas relacionadas con los diagramas de riesgo, comunicarse con:\\
 
 \noindent\fbox{%
@@ -422,7 +423,7 @@ del Centro Atómico Bariloche\\
     }%
 }
 
-\section*{Referencias}
+\section{Referencias}
 Estos cálculos fueron realizados a partir del siguiente 
 tutorial\\
 
