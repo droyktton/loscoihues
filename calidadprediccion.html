@@ -1,0 +1,87 @@
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+	<!-- Responsive layouts -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	/* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+
+	.main {
+	  background-color:#f1f1f1;
+	  padding:20px;
+	  float:left;
+	  width:60%; /* The width is 60%, by default */
+	}
+
+	/* Use a media query to add a break point at 800px: */
+	@media screen and (max-width:800px) {
+	  .left, .main, .right {
+	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	  }
+	}
+	</style>
+</head>
+
+
+<p>
+<a href="./index.html">[Volver]</a>
+Todos los gráficos mostrados aquí están hechos con 
+<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
+La calidad de los indicadores depende fuertemente de la calidad de estos datos.
+</p>
+
+
+<img src="./calidadprediccion.png" alt="gnuplot movie"  width=800/>
+
+<div class="main">
+
+<p>
+<b>Calidad de la Predicción</b>
+Como se puede apreciar en el gráfico, la predicción realizada una semana 
+antes se mantiene, día tras día, relativamente cercana a la que luego es reportada, 
+salvo en algunos casos donde el error puede llegar a ser muy grande 
+(ver por ejemplo día 120 o 140 en Bariloche).
+El origen del error es una combinación de varios factores. En cuanto al modelo de predicción, 
+la mayor fuente de error es la estimación del número reproductivo empírico 
+R, que se calcula usando una función empírica que lo relaciona 
+con los casos diarios obervados. 
+Creemos sin embargo que la principal contribución al error 
+proviene de los datos. No tanto de la precisión del 
+número de casos como la de la fecha de inicio de síntomas de estos casos, que 
+es la que utilizamos en todos nuestros cálculos. 
+Muchas veces esta fecha no está registrada y la tenemos que inferir 
+de la fecha de apertura del expediente, que muchas veces ocurre varios 
+días más tarde, del orden de una semana. También puede afectar seriamente la 
+predicción la <a href="./cargaincompleta.html"> carga lenta de los datos diarios del MSN </a> 
+para algunas localidades. 
+</div>
+
+
+
+
+
+  
