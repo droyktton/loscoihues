@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.31)  2 AUG 2020 13:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.31)  2 AUG 2020 13:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1354,7 +1354,7 @@ pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
 c/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on tutorial.pdf (12 pages, 1115501 bytes).
+Output written on tutorial.pdf (12 pages, 1115016 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  181 compressed objects within 2 object streams
