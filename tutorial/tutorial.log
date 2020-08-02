@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.31)  2 AUG 2020 13:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.31)  2 AUG 2020 13:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1174,12 +1174,12 @@ Package babel Info: Redefining spanish shorthand "!
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 352.
 
-<calidadprediccion.png, id=139, 685.05937pt x 450.9347pt>
+<calidadprediccion.png, id=139, 618.05907pt x 434.37282pt>
 File: calidadprediccion.png Graphic file (type png)
 
 <use calidadprediccion.png>
 Package pdftex.def Info: calidadprediccion.png used on input line 355.
-(pdftex.def)             Requested size: 398.33858pt x 262.20973pt.
+(pdftex.def)             Requested size: 398.33858pt x 279.95953pt.
 
 Overfull \hbox (8.33858pt too wide) in paragraph at lines 355--356
  [] 
@@ -1253,36 +1253,37 @@ Package babel Info: Redefining spanish shorthand "!
 (babel)             in language  on input line 426.
 Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 426.
+[11]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 426.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 426.
 
 Underfull \hbox (badness 10000) in paragraph at lines 427--429
 
  []
 
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 430.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 430.
-[11]
+
 Underfull \hbox (badness 10000) in paragraph at lines 430--431
 
  []
@@ -1354,7 +1355,7 @@ pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
 c/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on tutorial.pdf (12 pages, 1115016 bytes).
+Output written on tutorial.pdf (12 pages, 1110225 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  181 compressed objects within 2 object streams
