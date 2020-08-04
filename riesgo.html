@@ -98,76 +98,113 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 
 <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
+
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
 <!--===================================== AQUI BREVE DESCRIPCION =====================================-->
 <div class="main">
-<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: la "Tasa de Ataque" y la "Tasa Reproductiva".
+<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: el "Número de Activos" y el "Número Reproductivo Empírico".
 
 <ul>
 <li style="font-family:arial;">
-<b>La Tasa Reproductiva Empírica</b>, rho7, es muy similar al "Número de Reproducción Efectivo Rt"</i> 
-que determina la velocidad con que se propaga una epidemia.
-Mide el número de personas que en promedio serán testeadas positivo en los próximos días por cada persona 
-testeada positivamente recientemente. Asumiendo que el número de tests positivos es menor pero proporcional 
-al número real de infectados, rho7 es un estimador de la velocidad de propagación de la enfermedad en la población. 
-Así, valores mayores que 1 de rho7 indican que la evolución de la epidemia tendrá un crecimiento exponencial, o multiplicativo.</li> <p></p>
+<b>El Número Reproductivo Empírico</b>, R7, es similar al "Número de Reproducción Efectivo Rt"</i> 
+que determina a cuantas personas contagia en promedio un infectado hasta que se recupera.
+Empíricamente, R7 mide el número de personas que en promedio serán testeadas positivo en los próximos 
+días por cada persona testeada positivamente recientemente, de modo que los últimos (casos secundarios) 
+son con gran probabilidad causantes de los primeros (casos primarios).
+Valores de R7 mayores que 1 indican un crecimiento exponencial, o multiplicativo, de la epidemia.
+</li> <p></p>
 
 <li style="font-family:arial;">
-<b>La Tasa de Ataque</b>, IA14, es una medida del número de <i>casos positivos activos</i>. 
-Mide el número de personas cuyo testeo dió positivo en los últimos 14 días por cada 100mil habitantes.
+<b>El Número de Activos</b>, A14, es una medida del número de <i>casos positivos activos</i>. 
+Mide el número de personas cuyo testeo dió positivo con fecha de inicio de 
+síntomas en los últimos 14 días, por cada 100mil habitantes. Es decir, 
+las personas que podrían en principio contagiar, 
+pero sin contemplar a los activos asintomáticos.
 </li>
 </ul>
 
 
 <p style="font-family:arial;">
-Cada punto del gráfico es una foto de situación de un día dado. Los días más recientes aparecen como puntos más brillantes. La curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población seleccionada. Seleccionando un dado punto, se accede a la información del valor de rho7, IA14, y del tiempo de duplicación en el caso de encontrarse en el régimen exponencial (rho7>1).</p>
+Cada punto del gráfico es una foto de situación de un día dado. Los días más recientes aparecen como puntos más brillantes. La curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos hasta ese día, en la población seleccionada. Seleccionando un dado punto, se accede a la información del valor de R7, A14.</p>
 
 <p style="font-family:arial;">
-La interpretación del gráfico es la siguiente: si para un dado día, el número de casos reportados tiene un dado valor y además sabemos que por cada nuevo contagio se producirán al día siguiente una cantidad de contagios, calculada en base a la tasa reproductiva, podemos estimar cuantos contagiados totales habrá en los próximos días. Esta estimación puede no ser precisa y es por eso que debe ajustarse día a día. Aun así tiene un buen valor predictivo.</p>
+La interpretación del gráfico es la siguiente: si para un dado día, 
+el número de activos es A14 y el número reproductivo empírico R7, el producto P = A14 x R7 predice 
+aproximadamente el número de activos que habrán dentro de una semana aproximadamente, por cada 100000 habitantes.
+Esta estimación puede no ser precisa debido a las fluctuaciones que provienen de los datos, tal como efectos de 
+la carga atrasada de casos positivos o la incertidumbre en la fecha de inicio de síntomas de los casos. 
+Aun así tiene un buen valor predictivo, de tipo estadístico.</p>
 
 <p style="font-family:arial;">
-<b>Ejemplo:</b> Para un dado día el valor de rho7 es 1.5, la cantidad de casos está creciendo exponencialmente. Y si además la tasa de ataque o incidencia acumulada en los últimos 14 días IA14 es 50 por cada 100mil habitantes el 
-número de personas a dar un test positivo en los próximos días será rho7*ia14=75 por cada 100mil habitantes.
+<b>Ejemplo:</b> Para un dado día el valor de R7 es 1.5, la cantidad de casos está creciendo exponencialmente. 
+Y si además el número de activos A14 es 50 por cada 100mil habitantes el número activos predichos en una semana 
+es P=R7*A14=75, por cada 100mil habitantes. Para conocer el número en una población dada se debe multiplicar 
+P por en número de habitantes y dividir por 100mil.
 
 
 <p style="font-family:arial;">
 En base a esto tenemos diversos escenarios:</p>
 
 <ol>
-<li style="font-family:arial;"> El mejor escenario es una tasa reproductiva baja (idealmente por debajo de 1) y número de nuevos contagios bajo (abajo y a la izquierda del gráfico).</li>
-
-<li style="font-family:arial;">  Escenario moderadamente grave, cuando la tasa de contagios es baja pero el número de infectados alto o viceversa.
+<li style="font-family:arial;"> El mejor escenario es un número reproductivo empírico bajo 
+(idealmente por debajo de 1) y número de activos bajo (abajo y a la izquierda del gráfico).
+En este caso, se predicen muy pocos nuevos casos para los próximos días.
 </li>
 
-<li style="font-family:arial;"> Escenario grave, cuando ambos indicadores son altos (arriba y a la derecha del gráfico).</p>
+
+<li style="font-family:arial;">  Escenario moderadamente grave cuando el número reproductivo empírico R7
+es bajo pero el número de activos A14 alto. Un incremento repentino de R7 podría producir 
+una importate alza en el número de activos en los próximos días. 
+</li>
+
+<li style="font-family:arial;">  Escenario moderadamente grave cuando el número reproductivo empírico R7
+es alto pero el número de activos A14 bajo. Si R7 es alto y mayor que 1 el número de 
+contagios crecerá exponencialmente provocando un crecimiento muy rápido del número de activos en los próximos 
+días. 
+</li>
+
+<li style="font-family:arial;"> Escenario grave, cuando ambos indicadores 
+son altos (arriba y a la derecha del gráfico). Implica un riesgo de colapso sanitario 
+ya que la velocidad de recuperación de infectados sería mucho mas lenta que la 
+de contagio.
+ .</p>
 </li>
 </ol>
 
 <p style="font-family:arial;">
 <b><i>Predicción a corto término</b> </p></i>
 <p style="font-family:arial;">
-Como se explicó en el ejemplo anterior, el producto de los valores del eje vertical por el horizontal del gráfico, nos da la cantidad de casos positivos por cada 100mil habitantes esperables al día siguiente (EPG(t)=rho_7(t) x IA14(t)).
-Suponiendo que una fracción "f" de esos casos necesitará de cuidados intensivos, es deseable que el número de UTIs y UCIs disponibles sea suficiente para cubrir una cantidad del orden de EPG(t)*f por cada 100mil habitantes. En el gráfico usamos que f=0.035 es aproximadamente la fracción de test positivos que necesitarán cuidados intensivos según la estadística disponible de Argentina.
+Como se explicó en el ejemplo anterior, el producto de los valores del eje vertical por el horizontal del gráfico, 
+ P=R7 x A14, nos da la cantidad de activos por cada 100mil habitantes esperables en 
+aproximadamente una semana (ver <a href="./calidadprediccion.html" style="font-family:arial;"> 
+	aquí</a>). 
+Suponiendo que una fracción "f" de esos casos necesitará de cuidados intensivos, es deseable que el número de UTIs y UCIs disponibles sea suficiente para cubrir una cantidad del orden de P*f por cada 100mil habitantes. En el gráfico usamos que f=0.035 es aproximadamente la fracción de test positivos que necesitarán cuidados intensivos según la estadística disponible de Argentina (ver <a href="explicacion.png" style="font-family:arial;"> explicación gráfica</a>).
 
 
-<p style="font-family:arial;">Cada punto del gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo).
-En la escala de colores se indica el número de Unidades de Cuidados Intensivos (CI) necesaria por cada 100mil habitantes.
-Por lo tanto si EPG, es decir el número de casos predichos, es mayor que esa cantidad entraremos en la zona de riesgo (roja) del gráfico.
+<p style="font-family:arial;">Cada punto del gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo). En la escala de colores se indica el número de Unidades de Cuidados Intensivos (CI) necesaria por cada 100mil habitantes en la semana próxima a la fecha consultada. 
 
-<p style="font-family:arial;"> <b>Ejemplo:</b> En el gráfico, la zona roja comienza para una cantidad de 26.25 unidades de cuidados intensivos por cada 100mil habitantes, de manera que si un punto del gráfico comenzara a entrar en la zona roja, se nececitarían del orden de 26.5*Poblacion/100000 unidades de cuidados intensivos disponibles. 
-Por ejemplo si se tratara de Bariloche (considerando una población estimada para Bariloche de 163743 habitantes) necesitaríamos 43 unidades de CI aproximadamente.</p>
+
+<p style="font-family:arial;"> <b>Ejemplo:</b> En el gráfico, la zona roja comienza para una cantidad de 5 unidades de cuidados intensivos por cada 100mil habitantes, de manera que si un punto del gráfico comenzara a entrar en la zona roja, se nececitarían del orden de 5*Poblacion/100000 unidades de cuidados intensivos disponibles. 
+Por ejemplo si se tratara de Bariloche (considerando una población estimada para Bariloche de 163743 habitantes) necesitaríamos 8 unidades de CI aproximadamente.</p>
 
 <p style="font-family:arial;">
-De esta forma, mirando la ubicación del punto correspondiente al día de hoy en el gráfico, es posible calcular la cantidad de Unidades de Cuidados Intensivos que se necesitarán a medida que nos adentramos en la zona de peligro (roja).  
+El indicador de riesgo P puede ayudar a la planificación.
 Dado que los recursos pueden aumentar (en caso en que se agreguen UCIs y UTIs) o disminuír en función del tiempo, el gráfico nos permite estimar la cantidad de unidades de cuidados intensivos necesarias para cubrir los casos graves y de esta forma planificar la eventual necesidad de ampliación de la capacidad hospitalaria.
+Por otro lado, la predicción P=A14*R7 permite preveer el número de casos positivos 
+que necesitaríamos aislar.
 </p>
-<!--===================================== AQUI DISCLAIMER CREDITS =====================================-->
 
 
-<p style="font-family:arial;"><b>Este indicador es estadístico y debe ser usado en conjunto con otros indicadores.</b> </p> 
+<!--==========================================================================-->
+
+
+<p style="font-family:arial;"><b>Este indicador es estadístico y en gran medida empírico, 
+y debe ser usado en conjunto con otros indicadores.</b> </p> 
 
 <p> Para mas detalles sobre el cálculo y usos de este indicador 
 </ul>
-<li><a href="./explicacion.png"> Explicación gráfica sencilla </a></li>
 <li><a href="./DiagramasRiesgoRNyBRC.pdf"> Tutorial del Cálculo </a></li>
 <li><a href="https://biocomsc.upc.edu/en/covid-19"> Computational Biology and Complex Systems. BIOCOMSC </a></li>
 </ul>
@@ -175,10 +212,12 @@ Dado que los recursos pueden aumentar (en caso en que se agreguen UCIs y UTIs) o
 Implementado por K. F. Laneri y A. B. K. para <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
 </p>
 </div>
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
+<!-- ############################################################################ -->
 
-<!-- ############################################################################ -->
-<!-- ############################################################################ -->
-<!-- ############################################################################ -->
+
+
 <script>
 
 plotriesgo('./RiesgoBariloche');
