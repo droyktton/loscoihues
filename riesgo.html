@@ -741,7 +741,7 @@ function plotriesgo(ciudad){
 		|| ciudad=='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche')
 		{
 			console.log(ciudad);
-			document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: predicciones vs mediciones </h2></p>';
+			document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: <i>predicciones vs mediciones</i> </h2></p>';
 			document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
 		
 			Plotly.newPlot('myDiv3',[dataR,rho7eq1,rho7eq2],layoutR,config);
