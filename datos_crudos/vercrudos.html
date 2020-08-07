@@ -1,0 +1,581 @@
+<!-- K. Laneri and A. B. Kolton 2020 -->
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+
+
+	<!-- Responsive layouts -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	/* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+
+	.main {
+	  background-color:#f1f1f1;
+	  padding:20px;
+	  float:left;
+	  width:60%; /* The width is 60%, by default */
+	}
+
+	/* Use a media query to add a break point at 800px: */
+	@media screen and (max-width:800px) {
+	  .left, .main, .right {
+	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	  }
+	}
+	</style>
+
+
+
+	<style>
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
+	</style>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+</head>
+
+
+<body>
+
+<p>
+<a href="../index.html">[Volver]</a>
+Todos los gráficos mostrados aquí están hechos con
+<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
+La calidad de los indicadores depende fuertemente de la calidad de estos datos.
+</p>
+
+
+<div id='RioNegroDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> La caída final de los casos diarios los últimos días es artificial, y debida 
+a la carga demorada de casos </b>
+	
+<div id='BuenosAiresDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> La caída final de los casos diarios los últimos días es artificial, y debida 
+a la carga demorada de casos </b>
+
+<div id='CABADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> La caída final de los casos diarios los últimos días es artificial, y debida 
+a la carga demorada de casos </b>
+
+<div id='CHACODiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> La caída final de los casos diarios los últimos días es artificial, y debida 
+a la carga demorada de casos </b>
+
+<div id='CORDOBADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> La caída final de los casos diarios los últimos días es artificial, y debida 
+a la carga demorada de casos </b>
+
+<script>
+
+hacerRioNegro();
+hacerBuenosAires();
+hacerCABA();
+hacerCHACO();
+hacerCORDOBA();
+
+
+//////////////////////////////////////////
+function hacerRioNegro(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaRioNegro.csv";
+/*
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaRioNegro.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaRioNegro.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaBuenosAires.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaBuenosAires.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaCABA.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCABA.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaChaco.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaChaco.csv";
+	
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaCórdoba.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCórdoba.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaJujuy.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaJujuy.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaNeuquén.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaNeuquén.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaSalta.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaSalta.csv";
+*/
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], RioNegro = [], Bariloche = [], Roca = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    RioNegro.push( row['Río Negro'] );
+	    Bariloche.push( row['Bariloche'] );
+	    Roca.push( row['General Roca'] );	    
+	  }
+	  makePlotly( fecha, RioNegro, Bariloche,Roca);
+	}
+
+	function makePlotly( fecha, RioNegro, Bariloche,Roca){
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: RioNegro,
+	    name: "Prov.de Río Negro",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: Bariloche,
+	    name: "Dto. Bariloche",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: Roca,
+	    name: "Dto. Gral. Roca",
+	    mode: 'markers+lines',
+	  },  
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Río Negro + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('RioNegroDiv', traces,layout);
+	};
+	  makeplot();
+}//RIO NEGRO
+
+
+//////////////////////////////////////////
+function hacerBuenosAires(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaBuenosAires.csv";
+/*
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaRioNegro.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaRioNegro.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaBuenosAires.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaBuenosAires.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaCABA.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCABA.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaChaco.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaChaco.csv";
+	
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaCórdoba.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCórdoba.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaJujuy.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaJujuy.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaNeuquén.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaNeuquén.csv";
+
+	if(Poblaciones=="NuevosCasosConfirmadosPorDiaSalta.csv")
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaSalta.csv";
+*/
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], BuenosAires = [], LaMatanza = [], 
+	  Avellaneda = [], Lanus = [],LomasdeZamora = [], Quilmes = [], LaPlata = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    BuenosAires.push( row['Buenos Aires'] );
+	    LaMatanza.push( row['La Matanza'] );
+	    Avellaneda.push( row['Avellaneda'] );	    
+	    Lanus.push( row['Lanús'] );	    
+	    LomasdeZamora.push( row['Lomas de Zamora'] );	    
+	    Quilmes.push( row['Quilmes'] );	    
+	    LaPlata.push( row['La Plata'] );	    
+	  }
+	  makePlotly( fecha, BuenosAires, LaMatanza, 
+	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata);
+	}
+
+	function makePlotly( fecha, BuenosAires, LaMatanza, 
+	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: BuenosAires,
+	    name: "Prov.de Buenos Aires",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LaMatanza,
+	    name: "Dto. La Matanza",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: Avellaneda,
+	    name: "Dto. Avellaneda",
+	    mode: 'markers+lines',
+	  },  
+	  {
+	    x: fecha,
+	    y: Lanus,
+	    name: "Dto. Lanús",
+	    mode: 'markers+lines',
+	  },  
+	  {
+	    x: fecha,
+	    y: LomasdeZamora,
+	    name: "Dto. Lomas de Zamora",
+	    mode: 'markers+lines',
+	  },  
+	  {
+	    x: fecha,
+	    y: Quilmes,
+	    name: "Dto. Quilmes",
+	    mode: 'markers+lines',
+	  },  
+	  {
+	    x: fecha,
+	    y: LaPlata,
+	    name: "Dto. La Plata",
+	    mode: 'markers+lines',
+	  },  
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Buenos Aires + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('BuenosAiresDiv', traces,layout);
+	};
+	  makeplot();
+}//Buenos Aires
+
+
+
+//////////////////////////////////////////
+function hacerCABA(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCABA.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], CABA = [], COMUNA1 = [], 
+	  COMUNA3 = [], COMUNA4 = [],COMUNA7 = [], COMUNA8 = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    CABA.push( row['CABA'] );
+	    COMUNA1.push( row['COMUNA 01'] );
+	    COMUNA3.push( row['COMUNA 03'] );	    
+	    COMUNA4.push( row['COMUNA 04'] );	    
+	    COMUNA7.push( row['COMUNA 07'] );	    
+	    COMUNA8.push( row['COMUNA 08'] );	    
+	  }
+	  makePlotly( fecha, CABA, COMUNA1, 
+	  COMUNA3, COMUNA4, COMUNA7,COMUNA8);
+	}
+
+	function makePlotly( fecha, CABA, COMUNA1, COMUNA3, COMUNA4, COMUNA7,COMUNA8)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: CABA,
+	    name: "Ciudad Autónoma de Bs. As.",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COMUNA1,
+	    name: "Comuna 1",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COMUNA3,
+	    name: "Comuna 3",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COMUNA4,
+	    name: "Comuna 4",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COMUNA7,
+	    name: "Comuna 7",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COMUNA8,
+	    name: "Comuna 8",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "CABA + algunos comunas",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('CABADiv', traces,layout);
+	};
+	  makeplot();
+}//CABA
+
+
+//////////////////////////////////////////
+function hacerCHACO(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaChaco.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], CHACO = [], SANFERNANDO = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    CHACO.push( row['Chaco'] );
+	    SANFERNANDO.push( row['San Fernando'] );
+	  }
+	  makePlotly( fecha, CHACO, SANFERNANDO);
+	}
+
+	function makePlotly( fecha, CHACO, SANFERNANDO)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: CHACO,
+	    name: "Provincia de Chaco",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SANFERNANDO,
+	    name: "San Fernando",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Chaco + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('CHACODiv', traces,layout);
+	};
+	  makeplot();
+}//Chaco
+
+
+//////////////////////////////////////////
+function hacerCORDOBA(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaCórdoba.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], CORDOBA = [], CAPITAL = [], 
+	  COLON = [], SANJAVIER = [], PUNILLA = [], SANTAMARIA = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    CORDOBA.push( row['Córdoba'] );
+	    CAPITAL.push( row['Capital'] );
+	    COLON.push( row['Colón'] );
+	    SANJAVIER.push( row['San Javier'] );
+	    PUNILLA.push( row['Punilla'] );
+	    SANTAMARIA.push( row['Santa María'] );
+
+	  }
+	  makePlotly( fecha, CORDOBA, CAPITAL,COLON,SANJAVIER,PUNILLA,SANTAMARIA);
+	}
+
+	function makePlotly( fecha, CORDOBA, CAPITAL,COLON,SANJAVIER,PUNILLA,SANTAMARIA)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: CORDOBA,
+	    name: "Provincia de Córdoba",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Córdoba Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: COLON,
+	    name: "Colón",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SANJAVIER,
+	    name: "San Javier",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: PUNILLA,
+	    name: "Punilla",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SANTAMARIA,
+	    name: "Santa María",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Córdoba + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('CORDOBADiv', traces,layout);
+	};
+	  makeplot();
+}//Córdoba
+
+</script>
+
+</body>
+
