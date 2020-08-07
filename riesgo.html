@@ -237,12 +237,16 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
 	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
-/*
+
+
+
 	// para que ande local
-	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
+/*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
 	if(ciudad=='./RiesgoGeneralRoca') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoGeneralRoca';
 	if(ciudad=='./RiesgoRioNegro') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoRioNegro';
 */
+
+
 	// lee csv actualizado
 	function makeplot() {
 		Plotly.d3.csv(
@@ -661,7 +665,7 @@ function plotriesgo(ciudad){
 
 		var layoutActivos = {
 		    title: {
-		    	text: "",
+		    	text: "Número de activos sintomáticos: <i>predicciones vs mediciones</i>",
 		    	x: 0,
 		    },
 		    autosize: true,
@@ -727,7 +731,7 @@ function plotriesgo(ciudad){
 
 		var layoutR = {
 		    title: {
-		    	text: "",
+		    	text: "Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos",
 		    	x: 0,
 		    },
 		    autosize: true,
@@ -741,8 +745,8 @@ function plotriesgo(ciudad){
 		|| ciudad=='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche')
 		{
 			console.log(ciudad);
-			document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: <i>predicciones vs mediciones</i> </h2></p>';
-			document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
+			//document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: <i>predicciones vs mediciones</i> </h2></p>';
+			//document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
 		
 			Plotly.newPlot('myDiv3',[dataR,rho7eq1,rho7eq2],layoutR,config);
 			Plotly.newPlot('myDiv2',[dataActivos,dataActivosPredichos,ultimafecha,ultimafechamas7],layoutActivos,config);
