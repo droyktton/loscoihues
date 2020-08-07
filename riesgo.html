@@ -98,13 +98,19 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 
 <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
+<p id="myDiv2tit"></p>
+<div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<p id="myDiv3tit"></p>
+<div id='myDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
+
 
 <!-- ############################################################################ -->
 <!-- ############################################################################ -->
 <!-- ############################################################################ -->
 <!--===================================== AQUI BREVE DESCRIPCION =====================================-->
 <div class="main">
-<p style="font-family:arial;"> En este gráfico los ejes corresponden a dos indicadores: el "Número de Activos" y el "Número Reproductivo Empírico".
+<p style="font-family:arial;"> En el primer gráfico los ejes corresponden a dos indicadores: el "Número de Activos" y el "Número Reproductivo Empírico". 
 
 <ul>
 <li style="font-family:arial;">
@@ -219,6 +225,9 @@ Implementado por K. F. Laneri y A. B. K. para <a href="https://covidbariloche.gi
 
 <script>
 
+//location.reload();
+
+ciudad='';	
 plotriesgo('./RiesgoBariloche');
 
 function plotriesgo(ciudad){
@@ -228,13 +237,12 @@ function plotriesgo(ciudad){
 	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
 	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
+/*
 	// para que ande local
-/*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
-
+	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
 	if(ciudad=='./RiesgoGeneralRoca') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoGeneralRoca';
-*/	
-	//if(ciudad=='./RiesgoGeneralRoca') ciudad='./RiesgoRioNegro';//descomentar cuando este Roca	
-
+	if(ciudad=='./RiesgoRioNegro') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoRioNegro';
+*/
 	// lee csv actualizado
 	function makeplot() {
 		Plotly.d3.csv(
@@ -271,14 +279,27 @@ function plotriesgo(ciudad){
 		// esto tiene que poder hacerse con una sola llamada a max(...).
 		var maxIA14 = 0.0;
 		var maxrho7 = 0.0;
+
+		var IA14predicho=new Array(size2+10);		
+		var fechaextended=new Array(size2+10);
+		
 		for(var i=0;i<size2;i++)
 		{
 			ia14i=parseFloat(IA14[i])
 			rho7i=parseFloat(rho7[i])
 			if(maxIA14<ia14i) maxIA14=ia14i;
 			if(maxrho7<rho7i) maxrho7=rho7i;
-			//console.log("maxIA14=",maxIA14);
+			//console.log("maxIA14=",maxIA14);		
+			IA14predicho[i+7]=IA14[i]*rho7[i];
+			fechaextended[i]=fecha[i];
+			//console.log(fecha[i]);
 		}
+		var d=new Date(fecha[size2-1]);
+		for(var i=0;i<7;i++){
+			d.setDate(d.getDate()+1);	
+			fechaextended[size2+i]=d.toISOString();		
+			//console.log(fechaextended[size2+i]);
+		};
 
 		console.log('ndatos=',size2,'maxia14=',maxIA14,'maxrho7=',maxrho7);
 
@@ -287,7 +308,7 @@ function plotriesgo(ciudad){
 		var DTL=782; 	// cada cien mil
 		var UTIpUCI=(43*100000.0/135704.0)/(0.035); // CuidadosIntensivosLibresCadaCienMil/fracccioninternadosintensivos
 
-		console.log("Limite Testeo=",DTL,"Limite Hospitalario=",UTIpUCI);
+		//console.log("Limite Testeo=",DTL,"Limite Hospitalario=",UTIpUCI);
 
 		for(var i = 0; i <= size; i++) {
 			x[i] = i*1.4*maxIA14/size; //i*50.0/size; //i*1.5*maxIA14/size;  
@@ -545,9 +566,196 @@ function plotriesgo(ciudad){
 		var config = {responsive: true};
 
 		Plotly.newPlot('myDiv',plotData,layout,config);
+
+		//////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////
+	//if(ciudad=='./RiesgoBariloche')
+	//{
+		var copiaIA14=[];
+		var copiaIA14predicho=[];
+		for(var i=0;i<IA14.length;i++){
+			copiaIA14[i]=IA14[i]*1.6;
+		}
+		for(var i=0;i<IA14predicho.length;i++){
+			copiaIA14predicho[i]=IA14predicho[i]*1.6;
+		}
+
+		// Activos
+		var dataActivos = {
+			y: copiaIA14,
+			x: fecha,
+			mode: 'markers',
+		  	type: 'scatter',
+		  	marker: 
+		  	{ 
+		  		size: 12, 
+		  		color: 'yellow', 
+		  		opacity: opa,
+		  		line: {
+		      			color: 'rgb(231, 99, 250)',
+		      			width: 2,
+		      			arrowhead: 10,
+		    		}
+			},
+			line: { 
+		  		size: 1, color: 'black' , dash: 'dot',
+		  		shape: 'spline',
+		  	},
+			name: 'activos medidos'
+		};
+		
+						
+		// Predicción
+		var opa2= [];
+		for(var i=0;i<size2+7;i++)
+		{
+			if(i<size2) opa2[i]=0.2;
+			else opa2[i]=1.0;
+		}
+		var dataActivosPredichos = {
+			y: copiaIA14predicho,
+			x: fechaextended,
+			mode: 'markers+lines',
+		  	type: 'scatter',
+		  	marker: 
+		  	{ 
+		  		size: 12, 
+		  		color: 'red', 
+		  		opacity: opa2,
+		  		line: {
+		      			color: 'rgb(231, 99, 250)',
+		      			width: 2,
+		      			arrowhead: 10,
+		    		}
+			},
+			line: { 
+		  		size: 1, color: 'black' , dash: 'dot',
+		  		shape: 'spline',
+		  	},
+			name: 'activos predichos una semana antes'
+		};
+
+		var maxIA14predicho=IA14predicho[size2+6];
+		var ultimafecha={
+			x: [fechaextended[size2],fechaextended[size2]],
+			y: [0,maxIA14predicho*1.6*1.2],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: '',
+			showlegend: false,
+		};
+
+		var ultimafechamas7={
+			x: [fechaextended[size2+6],fechaextended[size2+6]],
+			y: [0,maxIA14predicho*1.6*1.2],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: 'predicción a futuro',
+			fill: 'tonextx',
+			fillcolor: 'rgba(255, 0, 0, 0.1)',			
+		};
+
+		var layoutActivos = {
+		    title: {
+		    	text: "",
+		    	x: 0,
+		    },
+		    autosize: true,
+		    xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		    yaxis: {title: 'Número de activos sintomáticos en Bariloche', range: [0, maxIA14predicho*1.6*1.2]},
+		    //showlegend: false,
+		    hovermode: "closest",
+		}
+
+
+		//////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////
+
+		// Reproductivo
+		var dataR = {
+			y: rho7,
+			x: fecha,
+			mode: 'markers+lines',
+		  	type: 'scatter',
+		  	marker: 
+		  	{ 
+		  		size: 12, 
+		  		color: 'yellow', 
+		  		opacity: opa,
+		  		line: {
+		      			color: 'rgb(231, 99, 250)',
+		      			width: 2,
+		      			arrowhead: 10,
+		    		}
+			},
+			line: { 
+		  		size: 1, color: 'black' , dash: 'dot',
+		  		shape: 'spline',
+		  	},
+			text: textomarkers,
+			name: ''
+		};
+
+		// linea de rho7==1
+		var rho7eq1 = {
+			x: [fechaextended[0],fechaextended[size2]],
+			y: [1,1],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: '',
+			fill: 'tozeroy',
+			fillcolor: 'rgba(0, 0, 255, 0.1)',
+		};
+
+		var rho7eq2 = {
+			x: [fechaextended[0],fechaextended[size2]],
+			y: [maxrho7*1.2,maxrho7*1.2],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: '',
+			fill: 'tonexty',
+			fillcolor: 'rgba(255, 0, 0, 0.1)',
+		};
+
+		var layoutR = {
+		    title: {
+		    	text: "",
+		    	x: 0,
+		    },
+		    autosize: true,
+		    xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		    yaxis: {title: 'Número Reproductivo Empírico', range: [0, maxrho7*1.2]},
+		    showlegend: false,
+		    hovermode: "closest",
+		}
+
+		if(ciudad=='./RiesgoBariloche' 
+		|| ciudad=='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche')
+		{
+			console.log(ciudad);
+			document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: predicciones vs mediciones </h2></p>';
+			document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
+		
+			Plotly.newPlot('myDiv3',[dataR,rho7eq1,rho7eq2],layoutR,config);
+			Plotly.newPlot('myDiv2',[dataActivos,dataActivosPredichos,ultimafecha,ultimafechamas7],layoutActivos,config);
+		}
+		else{
+			document.getElementById("myDiv2tit").innerHTML = "";		
+			document.getElementById("myDiv3tit").innerHTML = "";		
+			document.getElementById("myDiv3").innerHTML = "";		
+			document.getElementById("myDiv2").innerHTML = "";		
+		}
+
 	}
 
-	//makePlotly(IA14,rho7,fecha);		
-	makeplot();	
+	makeplot();
 }
 </script>
