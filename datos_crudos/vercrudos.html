@@ -94,7 +94,7 @@ Los datos a continuación son las series temporales crudas de los datos diarios 
 <b>Descripción técnica del Diagrama de Riesgo</b> </a> para calcular los índices de riesgo. 
 En las mismas se pueden apreciar las fluctuaciones diarias debidas a varios factores, particularmente a la incerteza (a veces directamente no informada) de la fecha de inicio de síntomas. Esta última es importante ya que alguien que inicia los síntomas hoy, estuvo los 2 días anteriores contagiando en promedio.   
 También se aprecian las 
-<a href="./cargaincompleta.html"> demoras </a> en la carga de datos en los últimos días. Estas son evidentemente mas grandes (de hasta diez días en CABA y BsAs), en los conglomerados más grande. Es de esperar que estas demoras sean mayores a medida que el número de casos aumenta sino se aumenta la capacidad y eficiencia en la comunicación y digitalización. El efecto que producen estas cargas incompletas es una disminución aparente de los casos diarios los últimos días la cual, lamentablemente, es artificial en general ya que la vemos repetirse día a día. 
+<a href="./cargaincompleta.html"> demoras </a> en la carga de datos en los últimos días. Estas son evidentemente mas largas (de hasta diez días en CABA y BsAs), en los conglomerados más grandes. Es de esperar que estas demoras sean mayores a medida que el número de casos aumenta sino se aumenta la capacidad y eficiencia en la comunicación y digitalización. El efecto que producen estas cargas incompletas es una disminución aparente de los casos diarios los últimos días la cual, lamentablemente, es artificial en general ya que la vemos repetirse día a día. 
 Notar que la escala vertical es logarítmica de modo que algo que pareciera crecer linealmente en el gráfico, significa un crecimiento muchísimo mas rápido: <i> exponencial </i>. Use el puntero (mouse o dedo) para interactuar con los gráficos.
 </p>
 
@@ -279,7 +279,8 @@ function hacerBuenosAires(){
 
 	  //console.log(allRows);
 	  var fecha = [], BuenosAires = [], LaMatanza = [], 
-	  Avellaneda = [], Lanus = [],LomasdeZamora = [], Quilmes = [], LaPlata = [];
+	  Avellaneda = [], Lanus = [],LomasdeZamora = [], Quilmes = [], 
+	  LaPlata = [], Pueyrredon=[], Bahia=[];
 
 	  for (var i=0; i<allRows.length; i++) {
 	    row = allRows[i];
@@ -292,13 +293,15 @@ function hacerBuenosAires(){
 	    LomasdeZamora.push( row['Lomas de Zamora'] );	    
 	    Quilmes.push( row['Quilmes'] );	    
 	    LaPlata.push( row['La Plata'] );	    
+	    Pueyrredon.push( row['General Pueyrredón'] );	    
+	    Bahia.push( row['Bahía Blanca'] );	    
 	  }
 	  makePlotly( fecha, BuenosAires, LaMatanza, 
-	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata);
+	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata, Pueyrredon, Bahia);
 	}
 
 	function makePlotly( fecha, BuenosAires, LaMatanza, 
-	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata)
+	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata, Pueyrredon, Bahia)
 	{
 	  var plotDiv = document.getElementById("plot");
 	  var traces = [
@@ -344,8 +347,20 @@ function hacerBuenosAires(){
 	    name: "Dto. La Plata",
 	    mode: 'markers+lines',
 	  },  
+	  {
+	    x: fecha,
+	    y: Pueyrredon,
+	    name: "Dto. General Pueyrredón (Mar del Plata, etc)",
+	    mode: 'markers+lines',
+	  },  
+	  {
+	    x: fecha,
+	    y: Bahia,
+	    name: "Dto. Bahía Blanca",
+	    mode: 'markers+lines',
+	  },  
 	  ];
-	  
+
 	  
 	   var layout = {
 		title: {
