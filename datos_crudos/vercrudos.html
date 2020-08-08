@@ -85,29 +85,59 @@
 <a href="../index.html">[Volver]</a>
 Todos los gráficos mostrados aquí están hechos con
 <a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
-La calidad de los indicadores depende fuertemente de la calidad de estos datos.
+La calidad de los indicadores que ponemos a disposición dependen fuertemente de la calidad de estos datos.
 </p>
+
+<p>
+<h2> Series temporales crudas </h2>
+Los datos a continuación son las series temporales crudas de los datos diarios que descargamos del sitio del MSN, que luego procesamos como se indica en la <a href="./tutorial/tutorial.pdf"> 
+<b>Descripción técnica del Diagrama de Riesgo</b> </a> para calcular los índices de riesgo. 
+En las mismas se pueden apreciar las fluctuaciones diarias debidas a varios factores, particularmente a la incerteza (a veces directamente no informada) de la fecha de inicio de síntomas. Esta última es importante ya que alguien que inicia los síntomas hoy, estuvo los 2 días anteriores contagiando en promedio.   
+También se aprecian las 
+<a href="./cargaincompleta.html"> demoras </a> en la carga de datos en los últimos días. Estas son evidentemente mas grandes (de hasta diez días en CABA y BsAs), en los conglomerados más grande. Es de esperar que estas demoras sean mayores a medida que el número de casos aumenta sino se aumenta la capacidad y eficiencia en la comunicación y digitalización. El efecto que producen estas cargas incompletas es una disminución aparente de los casos diarios los últimos días la cual, lamentablemente, es artificial en general ya que la vemos repetirse día a día. 
+Notar que la escala vertical es logarítmica de modo que algo que pareciera crecer linealmente en el gráfico, significa un crecimiento muchísimo mas rápido: <i> exponencial </i>. Use el puntero (mouse o dedo) para interactuar con los gráficos.
+</p>
+
+<div id='BuenosAiresDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='CABADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='CHACODiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='CORDOBADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='JUJUYDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='NEUQUENDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
 
 
 <div id='RioNegroDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p> La caída final de los casos diarios los últimos días es artificial, y debida 
-a la carga demorada de casos </b>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
 	
-<div id='BuenosAiresDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p> La caída final de los casos diarios los últimos días es artificial, y debida 
-a la carga demorada de casos </b>
-
-<div id='CABADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p> La caída final de los casos diarios los últimos días es artificial, y debida 
-a la carga demorada de casos </b>
-
-<div id='CHACODiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p> La caída final de los casos diarios los últimos días es artificial, y debida 
-a la carga demorada de casos </b>
-
-<div id='CORDOBADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p> La caída final de los casos diarios los últimos días es artificial, y debida 
-a la carga demorada de casos </b>
+<div id='SALTADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
 
 <script>
 
@@ -116,6 +146,9 @@ hacerBuenosAires();
 hacerCABA();
 hacerCHACO();
 hacerCORDOBA();
+hacerJUJUY();
+hacerNEUQUEN();
+hacerSALTA();
 
 
 //////////////////////////////////////////
@@ -574,6 +607,242 @@ function hacerCORDOBA(){
 	};
 	  makeplot();
 }//Córdoba
+
+
+//////////////////////////////////////////
+function hacerJUJUY(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaJujuy.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], JUJUY = [], ELCARMEN = [], 
+	  BELGRANO = [], LEDESMA = [], SUSQUES = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    JUJUY.push( row['Jujuy'] );
+	    ELCARMEN.push( row['El Carmen'] );
+	    BELGRANO.push( row['Dr. Manuel Belgrano'] );
+	    LEDESMA.push( row['Ledesma'] );
+	    SUSQUES.push( row['Susques'] );
+	  }
+	  makePlotly(fecha, JUJUY, ELCARMEN,BELGRANO,LEDESMA,SUSQUES);
+	}
+
+	function makePlotly(fecha, JUJUY, ELCARMEN,BELGRANO,LEDESMA,SUSQUES)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: JUJUY,
+	    name: "Provincia de Jujuy",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: ELCARMEN,
+	    name: "Dto. El Carmen",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: BELGRANO,
+	    name: "Dto. Manuel Belgrano",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LEDESMA,
+	    name: "Dto. Ledesma",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SUSQUES,
+	    name: "Dto. Susques",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Jujuy + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('JUJUYDiv', traces,layout);
+	};
+	  makeplot();
+}//Jujuy
+
+
+
+//////////////////////////////////////////
+function hacerNEUQUEN(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaNeuquén.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], NEUQUEN = [], CONFLUENCIA = [], 
+	  LONCOPUE = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    NEUQUEN.push( row['Neuquén'] );
+	    CONFLUENCIA.push( row['Confluencia'] );
+	    LONCOPUE.push( row['Loncopué'] );
+	  }
+	  makePlotly(fecha, NEUQUEN, CONFLUENCIA, LONCOPUE);
+	}
+
+	function makePlotly(fecha, NEUQUEN, CONFLUENCIA, LONCOPUE)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: NEUQUEN,
+	    name: "Provincia de Neuquén",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CONFLUENCIA,
+	    name: "Dto. Confluencia",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LONCOPUE,
+	    name: "Dto. Loncopué",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Neuquén + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('NEUQUENDiv', traces,layout);
+	};
+	  makeplot();
+}//Neuquén
+
+
+//////////////////////////////////////////
+function hacerSALTA(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaSalta.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], SALTA = [], CAPITAL = [], 
+	  GUEMES = [], ORAN = [], SANMARTIN = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    SALTA.push( row['Salta'] );
+	    CAPITAL.push( row['Capital'] );
+	    GUEMES.push( row['General Güemes'] );
+	    ORAN.push( row['Orán'] );
+	    SANMARTIN.push( row['Gral. José de San Martín]'] );
+	  }
+	  makePlotly(fecha, SALTA, CAPITAL, GUEMES, ORAN, SANMARTIN);
+	}
+
+	function makePlotly(fecha, SALTA, CAPITAL, GUEMES, ORAN, SANMARTIN)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: SALTA,
+	    name: "Provincia de Salta",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Dto. Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: GUEMES,
+	    name: "Dto. Guemes",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: ORAN,
+	    name: "Dto. General Güemes",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SANMARTIN,
+	    name: "Dto. San Martín",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Salta + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('SALTADiv', traces,layout);
+	};
+	  makeplot();
+}//Salta
 
 </script>
 
