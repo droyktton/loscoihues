@@ -221,6 +221,24 @@ function hacerRioNegro(){
 	    name: "Dto. Gral. Roca",
 	    mode: 'markers+lines',
 	  },  
+	  	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
 	  ];
 	  
 	  
@@ -304,6 +322,9 @@ function hacerBuenosAires(){
 	  Avellaneda, Lanus, LomasdeZamora, Quilmes, LaPlata, Pueyrredon, Bahia)
 	{
 	  var plotDiv = document.getElementById("plot");
+	  
+	  var long=fecha.length;
+	  
 	  var traces = [
 	  {
 	    x: fecha,
@@ -359,6 +380,24 @@ function hacerBuenosAires(){
 	    name: "Dto. Bahía Blanca",
 	    mode: 'markers+lines',
 	  },  
+	  {
+	    x: [fecha[long-1-10],fecha[long-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[long-1],fecha[long-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
 	  ];
 
 	  
@@ -373,6 +412,31 @@ function hacerBuenosAires(){
 		//showlegend: false,
 		hovermode: "closest",
 	    }
+	    
+	    /*
+	    var ultimafecha={
+			x: [fechaextended[size2],fechaextended[size2]],
+			y: [0,maxIA14predicho*1.6*1.2],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: '',
+			showlegend: false,
+	    };
+
+	    var ultimafechamas7={
+			x: [fechaextended[size2+6],fechaextended[size2+6]],
+			y: [0,maxIA14predicho*1.6*1.2],
+			mode: 'lines',
+			opacity: 0.5,
+		  	line: { width: 1, color: 'black'},
+			//name: 'yaxis2 data',
+			name: 'predicción a futuro',
+			fill: 'tonextx',
+			fillcolor: 'rgba(255, 0, 0, 0.3)',			
+            };
+	    */
 
 	    Plotly.newPlot('BuenosAiresDiv', traces,layout);
 	};
@@ -414,6 +478,7 @@ function hacerCABA(){
 	function makePlotly( fecha, CABA, COMUNA1, COMUNA3, COMUNA4, COMUNA7,COMUNA8)
 	{
 	  var plotDiv = document.getElementById("plot");
+	  
 	  var traces = [
 	  {
 	    x: fecha,
@@ -450,6 +515,24 @@ function hacerCABA(){
 	    y: COMUNA8,
 	    name: "Comuna 8",
 	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
 	  },
 	  ];
 	  
@@ -511,6 +594,24 @@ function hacerCHACO(){
 	    y: SANFERNANDO,
 	    name: "San Fernando",
 	    mode: 'markers+lines',
+	  },
+	  	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
 	  },
 	  ];
 	  
@@ -603,6 +704,24 @@ function hacerCORDOBA(){
 	    name: "Santa María",
 	    mode: 'markers+lines',
 	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
 	  ];
 	  
 	  
@@ -685,7 +804,26 @@ function hacerJUJUY(){
 	    y: SUSQUES,
 	    name: "Dto. Susques",
 	    mode: 'markers+lines',
+	  },	  
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
 	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+
 	  ];
 	  
 	  
@@ -755,6 +893,24 @@ function hacerNEUQUEN(){
 	    y: LONCOPUE,
 	    name: "Dto. Loncopué",
 	    mode: 'markers+lines',
+	  },
+	  	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
 	  },
 	  ];
 	  
@@ -838,6 +994,24 @@ function hacerSALTA(){
 	    y: SANMARTIN,
 	    name: "Dto. San Martín",
 	    mode: 'markers+lines',
+	  },
+	  	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
 	  },
 	  ];
 	  
