@@ -641,10 +641,12 @@ function plotriesgo(ciudad){
 			name: 'activos predichos una semana antes'
 		};
 
+		var maxY=maxIA14predicho*1.6*2.0;
+
 		var maxIA14predicho=IA14predicho[size2+6];
 		var ultimafecha={
 			x: [fechaextended[size2],fechaextended[size2]],
-			y: [0,maxIA14predicho*1.6*1.2],
+			y: [0,maxY],
 			mode: 'lines',
 			opacity: 0.5,
 		  	line: { width: 1, color: 'black'},
@@ -655,7 +657,7 @@ function plotriesgo(ciudad){
 
 		var ultimafechamas7={
 			x: [fechaextended[size2+6],fechaextended[size2+6]],
-			y: [0,maxIA14predicho*1.6*1.2],
+			y: [0,maxY],
 			mode: 'lines',
 			opacity: 0.5,
 		  	line: { width: 1, color: 'black'},
@@ -672,7 +674,7 @@ function plotriesgo(ciudad){
 		    },
 		    autosize: true,
 		    xaxis: {title: 'Fecha de Inicio de Síntomas'},
-		    yaxis: {title: 'Número de activos sintomáticos en Bariloche', range: [0, maxIA14predicho*1.6*2.0]},
+		    yaxis: {title: 'Número de activos sintomáticos en Bariloche', range: [0, maxY]},
 		    //showlegend: false,
 		    hovermode: "closest",
 		}
