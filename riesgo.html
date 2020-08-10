@@ -642,9 +642,10 @@ function plotriesgo(ciudad){
 			name: 'activos predichos una semana antes'
 		};
 
-		var maxY=maxIA14predicho*1.6*2.0;
 
 		var maxIA14predicho=IA14predicho[size2+6];
+		var maxY=maxIA14predicho*1.6*2.0;
+
 		var ultimafecha={
 			x: [fechaextended[size2],fechaextended[size2]],
 			y: [0,maxY],
