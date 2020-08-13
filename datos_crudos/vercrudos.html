@@ -1157,6 +1157,108 @@ function hacerTUCUMAN(){
 }//Tucuman
 
 
+//////////////////////////////////////////
+function hacerSANTAFE(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaSantaFe.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], SANTAFE = [], CAPITAL = [], 
+	  ROSARIO = [], CASEROS = [], GENERALLOPEZ = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    SANTAFE.push( row['Santa Fe'] );
+	    CAPITAL.push( row['La Capital'] );
+	    ROSARIO.push( row['Rosario'] );
+	    CASEROS.push( row['Caseros'] );
+	    GENERALLOPEZ.push( row['General López'] );
+	  }
+	  makePlotly(fecha, SANTAFE, CAPITAL, ROSARIO, CASEROS, GENERALLOPEZ);
+	}
+
+	function makePlotly(fecha, SANTAFE, CAPITAL, ROSARIO, CASEROS, GENERALLOPEZ)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: SANTAFE,
+	    name: "Provincia de Santa Fe",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Dto. Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: ROSARIO,
+	    name: "Dto. Rosario",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CASEROS,
+	    name: "Dto. Caseros",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: GENERALLOPEZ,
+	    name: "Dto. General López",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Santa Fe + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('TUCUMANDiv', traces,layout);
+	};
+	  makeplot();
+}//Santa Fe
+
+
+
 </script>
 
 </body>
