@@ -123,6 +123,11 @@ la tendencia observada por lo menos 10 días atras. </b>
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
 la tendencia observada por lo menos 10 días atras. </b>
 
+<div id='MENDOZADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
 <div id='NEUQUENDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 <p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
@@ -139,6 +144,28 @@ la tendencia observada por lo menos 10 días atras. </b>
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
 la tendencia observada por lo menos 10 días atras. </b>
 
+<div id='SANTACRUZDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='SANTAFEDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='TIERRADELFUEGODiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+
+<div id='TUCUMANDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+
 <script>
 
 hacerRioNegro();
@@ -149,6 +176,7 @@ hacerCORDOBA();
 hacerJUJUY();
 hacerNEUQUEN();
 hacerSALTA();
+hacerTUCUMAN();
 
 
 //////////////////////////////////////////
@@ -1032,6 +1060,102 @@ function hacerSALTA(){
 	};
 	  makeplot();
 }//Salta
+
+
+
+//////////////////////////////////////////
+function hacerTUCUMAN(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaTucuman.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], TUCUMAN = [], CAPITAL = [], 
+	  CRUZALTA = [], TAFIVIEJO = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    TUCUMAN.push( row['Tucumán'] );
+	    CAPITAL.push( row['Capital'] );
+	    CRUZALTA.push( row['Cruz Alta'] );
+	    TAFIVIEJO.push( row['Tafí Viejo'] );
+	  }
+	  makePlotly(fecha, TUCUMAN, CAPITAL, CRUZALTA, TAFIVIEJO);
+	}
+
+	function makePlotly(fecha, TUCUMAN, CAPITAL, CRUZALTA, TAFIVIEJO)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: TUCUMAN,
+	    name: "Provincia de Tucumán",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Dto. Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CRUZALTA,
+	    name: "Dto. Cruz Alta",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: TAFIVIEJO,
+	    name: "Dto. Tafí Viejo",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Tucumán + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('TUCUMANDiv', traces,layout);
+	};
+	  makeplot();
+}//Tucuman
+
 
 </script>
 
