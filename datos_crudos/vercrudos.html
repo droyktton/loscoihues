@@ -159,7 +159,6 @@ la tendencia observada por lo menos 10 días atras. </b>
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
 la tendencia observada por lo menos 10 días atras. </b>
 
-
 <div id='TUCUMANDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 <p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
@@ -168,15 +167,19 @@ la tendencia observada por lo menos 10 días atras. </b>
 
 <script>
 
-hacerRioNegro();
 hacerBuenosAires();
 hacerCABA();
 hacerCHACO();
 hacerCORDOBA();
 hacerJUJUY();
+hacerMENDOZA();
 hacerNEUQUEN();
+hacerRioNegro();
 hacerSALTA();
 hacerTUCUMAN();
+hacerSANTAFE();
+hacerSANTACRUZ();
+hacerTIERRADELFUEGO();
 
 
 //////////////////////////////////////////
@@ -1252,12 +1255,293 @@ function hacerSANTAFE(){
 		hovermode: "closest",
 	    }
 
-	    Plotly.newPlot('TUCUMANDiv', traces,layout);
+	    Plotly.newPlot('SANTAFEDiv', traces,layout);
 	};
 	  makeplot();
 }//Santa Fe
 
 
+//////////////////////////////////////////
+function hacerSANTACRUZ(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaSantaCruz.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], SANTACRUZ = [], CAPITAL = [], 
+	  LAGOARGENTINA = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    SANTACRUZ.push( row['Santa Cruz'] );
+	    CAPITAL.push( row['Guer Aike'] );
+	    LAGOARGENTINA.push( row['Lago Argentino'] );
+	  }
+	  makePlotly(fecha, SANTACRUZ, CAPITAL, LAGOARGENTINA);
+	}
+
+	function makePlotly(fecha, SANTACRUZ, CAPITAL, LAGOARGENTINA)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: SANTACRUZ,
+	    name: "Provincia de Santa Cruz",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Dto. Guer Aike (Río Gallegos, etc.)",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LAGOARGENTINA,
+	    name: "Dto. Lago Argentino",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Santa Cruz + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('SANTACRUZDiv', traces,layout);
+	};
+	  makeplot();
+}//Santa Cruz
+
+
+//////////////////////////////////////////
+function hacerTIERRADELFUEGO(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaTierradelFuego.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], TIERRADELFUEGO = [], RIOGRANDE = [], 
+	  USHUAIA = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    TIERRADELFUEGO.push( row['Tierra del Fuego'] );
+	    RIOGRANDE.push( row['Río Grande'] );
+	    USHUAIA.push( row['Ushuaia'] );
+	  }
+	  makePlotly(fecha, TIERRADELFUEGO, RIOGRANDE, USHUAIA);
+	}
+
+	function makePlotly(fecha, TIERRADELFUEGO, RIOGRANDE, USHUAIA)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: TIERRADELFUEGO,
+	    name: "Provincia de Tierra del Fuego",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: RIOGRANDE,
+	    name: "Dto. Río Grande",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: USHUAIA,
+	    name: "Dto Ushuaia",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Tierra del Fuego + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('TIERRADELFUEGODiv', traces,layout);
+	};
+	  makeplot();
+}//Tierra del Fuego
+
+
+
+//////////////////////////////////////////
+function hacerMENDOZA(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaMendoza.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], MENDOZA = [], CAPITAL = [], 
+	  LASHERAS = [], LUJAN = [], GUAYMALLEN=[], SANMARTIN=[];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    MENDOZA.push( row['Mendoza'] );
+	    CAPITAL.push( row['Capital'] );
+	    LASHERAS.push( row['Las Heras'] );
+	    LUJAN.push( row['Luján de Cuyo'] );
+	    GUAYMALLEN.push( row['Guaymallén'] );
+	    SANMARTIN.push( row['San Martín'] );
+	  }
+	  makePlotly(fecha, MENDOZA, CAPITAL, LASHERAS, LUJAN, GUAYMALLEN, SANMARTIN);
+	}
+
+	function makePlotly(fecha, MENDOZA, CAPITAL, LASHERAS, LUJAN, GUAYMALLEN, SANMARTIN)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: MENDOZA,
+	    name: "Provincia de Mendoza",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Dto. Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LASHERAS,
+	    name: "Dto Las Heras",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: LUJAN,
+	    name: "Dto Luján de Cuyo",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: GUAYMALLEN,
+	    name: "Dto Guaymallén",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: SANMARTIN,
+	    name: "Dto San Martín",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Mendoza + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('MENDOZADiv', traces,layout);
+	};
+	  makeplot();
+}//Mendoza
 
 </script>
 
