@@ -54,8 +54,14 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 </p>
 
 <div class="main">
+
+<h1> 
+Aspectos de los datos del MSN a tener en cuenta
+</h1>
 <p>
-<b>Carga de Datos Lenta</b>
+<h2> 
+Carga de Datos Lenta
+</h2> 
 Una de las dificultades más importantes para poder hacer predicciones 
 epidemológicas es la carga lenta de los datos diarios. El 
 gráfico muestra un ejemplo, extraído de fuentes oficiales del Ministerio de Salud de la Nación. 
@@ -65,9 +71,57 @@ y la misma estructura se repite día a día. Se debe a que las bases de datos no
 rápidamente. En las poblaciones de la figura, se aprecia una demora de hasta 
 10 días.
 </p>
-
 <img src="./datosdemorados2.png" alt="gnuplot"  width=800/>
 
+
+<p>
+<h2> 
+¿Fechas erróneas?
+</h2> 
+Otra de las dificultades más importantes para poder hacer predicciones 
+epidemológicas es que la fecha de inicio de síntomas, que es central para 
+el estudio epidemológico, muchas veces o no está reportada, o está reportada 
+en forma no fiable. 
+Hay dos fechas que reporta el MSN por cada caso positivo: 
+la fecha de inicio de síntomas y la fecha de apertura del caso. 
+Lo que encontramos es que la fecha de apertura de los casos, que 
+debería ser posterior a la fecha de inicio de síntomas, muchas veces es anterior. 
+Este tipo de error de carga ocurre con muchas localidades.
+En las figuras siguientes se grafica la fecha de apertura de caso en el eje vertical
+y fecha de inicio de síntomas en el eje horizontal. Lo esperable 
+sería que los puntos de cada caso estén -sobre o por encima- de la recta 
+(roja en el gráfico) a 45 grados, que 
+indica igualdad de las dos fechas. Como puede apreciarse sin embargo, 
+muchos puntos están por debajo. Es decir, todos esos puntos en la "zona gris" 
+tienen una fecha de apertura -anterior- a la fecha de inicio de síntomas 
+y por lo tanto no son fiables.
+</p>
+<h3>Río Negro</h3>
+<img src="./datos_crudos/FechasRioNegro.png" alt="gnuplot"  width=800/>
+<h3>Buenos Aires</h3>
+<img src="./datos_crudos/FechasBuenosAires.png" alt="gnuplot"  width=800/>
+<h3>CABA</h3>
+<img src="./datos_crudos/FechasCABA.png" alt="gnuplot"  width=800/>
+<h3>Chaco</h3>
+<img src="./datos_crudos/FechasChaco.png" alt="gnuplot"  width=800/>
+<h3>Córdoba</h3>
+<img src="./datos_crudos/FechasCordoba.png" alt="gnuplot"  width=800/>
+<h3>Jujuy</h3>
+<img src="./datos_crudos/FechasJujuy.png" alt="gnuplot"  width=800/>
+<h3>Mendoza</h3>
+<img src="./datos_crudos/FechasMendoza.png" alt="gnuplot"  width=800/>
+<h3>Neuquén</h3>
+<img src="./datos_crudos/FechasNeuquen.png" alt="gnuplot"  width=800/>
+<h3>Salta</h3>
+<img src="./datos_crudos/FechasSalta.png" alt="gnuplot"  width=800/>
+<h3>Santa Cruz</h3>
+<img src="./datos_crudos/FechasSantaCruz.png" alt="gnuplot"  width=800/>
+<h3>Santa Fe</h3>
+<img src="./datos_crudos/FechasSantaFe.png" alt="gnuplot"  width=800/>
+<h3>Tierra del Fuego</h3>
+<img src="./datos_crudos/FechasTierradelFuego.png" alt="gnuplot"  width=800/>
+<h3>Tucumán</h3>
+<img src="./datos_crudos/FechasTucuman.png" alt="gnuplot"  width=800/>
 
 </div>
 
