@@ -1,0 +1,260 @@
+<!-- K. Laneri and A. B. Kolton 2020 -->
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+
+
+	<!-- Responsive layouts -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	/* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+
+	.main {
+	  background-color:#f1f1f1;
+	  padding:20px;
+	  float:left;
+	  width:60%; /* The width is 60%, by default */
+	}
+
+	/* Use a media query to add a break point at 800px: */
+	@media screen and (max-width:800px) {
+	  .left, .main, .right {
+	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	  }
+	}
+	</style>
+
+
+
+	<style>
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
+	</style>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+</head>
+
+
+<body>
+
+<p>
+<a href="../index.html">[Volver]</a>
+Todos los gráficos mostrados aquí están hechos con
+<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
+La calidad de los indicadores que ponemos a disposición dependen fuertemente de la calidad de estos datos.
+</p>
+
+<p>
+<h2> ¿Cuál es el verdadero número de activos sintomáticos? </h2>
+</p>
+Según la organización mundial de la salud (WHO), el tiempo medio de recuperación 
+de un infectado con síntomas leves, que es la amplia mayoría, 
+es de aproximadamente dos semanas. Casos más graves tienen tiempos de recuperación de 3 a 6 semanas.
+Ver por ejemplo este <a href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf#:~:text=Using%20available%20preliminary%20data%2C,severe%20or%20critical%20disease."> documento 
+</a>. 
+En base a este dato en nuestros diagramas de Riesgo hemos estimado el número de 
+activos directamente a partir de los casos diarios 
+como el número acumulado de infectados con <i>fecha de inicio de síntomas</i> 
+desde hace 14 días hasta hoy.</p> 
+
+<p>Cuando comparamos lo que se reporta 
+como Casos Activos en los datos oficiales de la Ciudad de Bariloche nos encontramos con 
+una diferencia importante, como se puede apreciar en el gráfico. Como 
+se puede apreciar, la máxima diferencia puede ser de hasta casi 200 casos.
+</p> 
+
+<!--
+<p>
+Es difícil saber a que se debe la diferencia, pero podemos ennumerar algunas cuestiones a ser tenidas en cuenta.
+<ul>
+<li> La fecha de inicio de síntomas que se reporta tiene errores. Ver discusión sobre las fechas aquí... </li>
+<li> ¿Está sobrestimado el tiempo de recuperación medio informado por la WHO luego del brote en Wuhan? </li>
+<li> ¿Cómo y cuándo se declara a un caso como recuperado en Bariloche? </li>
+</ul>
+</p> 
+-->
+
+<div id='RioNegroDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<script src="DatosCovidBariloche.js"></script>
+
+<script>
+
+hacerRioNegro();
+
+function hacerRioNegro(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaRíoNegro.csv";
+	//file="./NuevosCasosConfirmadosPorDiaRioNegro.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], RioNegro = [], Bariloche = [], Roca = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    RioNegro.push( row['Río Negro'] );
+	    Bariloche.push( row['Bariloche'] );
+	    Roca.push( row['General Roca'] );	    
+	  }
+	  console.log(fecha[fecha.length-1]);
+	  makePlotly( fecha, RioNegro, Bariloche,Roca);
+	}
+
+	function makePlotly( fecha, RioNegro, Bariloche,Roca){
+	  var plotDiv = document.getElementById("plot");
+
+	  var Diarios=[];
+	  for(var i=0;i<Totales.length;i++) 
+	  Diarios[i]=(i>0)?(Totales[i]-Totales[i-1]):0;	
+
+	  var TotalesBariloche=[];
+	  var cumu=0;
+	  for(var i=0;i<Bariloche.length;i++){
+		cumu=cumu+parseInt(Bariloche[i]);
+		TotalesBariloche[i]=cumu;			  		  
+	  }  
+
+	  var ActivosBariloche=[];
+	  for(var i=0;i<Bariloche.length;i++){
+		var cumu=0;
+	  	for(j=i-14;j<=i;j++){
+			cumu=cumu+((j>=0)?parseInt(Bariloche[j]):0);
+	  	}
+		ActivosBariloche[i]=cumu;			  		  
+	  }  
+
+	  var ActivosOficial=[];
+	  for(var i=0;i<Activos.length;i++){
+		var cumu=0;
+	  	for(j=i-14;j<=i;j++){
+			cumu=cumu+((j>=0)?parseInt(Diarios[j]):0);
+	  	}
+		ActivosOficial[i]=cumu;			  		  
+	  }  
+
+
+	  var Activos7Bariloche=[];
+	  for(var i=0;i<Bariloche.length;i++){
+		var cumu=0;
+	  	for(j=i-8;j<=i;j++){
+			cumu=cumu+((j>=0)?parseInt(Bariloche[j]):0);
+	  	}
+		Activos7Bariloche[i]=cumu;			  		  
+	  }  
+
+	  var FechasCorridas=[];
+	  var corr=4;
+	  for(var i=0;i<Activos.length;i++){
+		FechasCorridas[i]=(i-corr>=0)?(Fechas[i-corr]):(Fechas[0]);
+	  }  
+	  	
+	  console.log(fecha[Bariloche.length-1]);
+	  console.log(Fechas[Activos.length-1]);
+	  console.log(Diarios);
+
+	  var traces = [
+	  {
+	    //x: TotalesBariloche,
+	    x: fecha,
+	    y: ActivosBariloche,
+	    name: "MSN - Activos (14 días de recuperación)",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    //x: TotalesBariloche,
+	    x: FechasCorridas,
+	    y: ActivosOficial,
+	    name: "Datos Oficiales Bariloche - Activos estimados usando 14 días de recuperación",
+	    mode: 'markers+lines',
+	  },
+/*	  {
+	    //x: TotalesBariloche,
+	    x: fecha,
+	    y: Activos7Bariloche,
+	    name: "MSN - Activos (7 días de recuperación)",
+	    mode: 'markers+lines',
+	  },*/
+	  {
+	    //x: Totales,
+	    x: Fechas,
+	    y: Activos,
+	    name: "Parte oficial Bariloche - Activos Declarados",
+	    mode: 'markers+lines',
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Activos Declarados vs Activos Estimados en Bariloche usando Datos Oficiales de la Ciudad de Bariloche",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha'},
+		//yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		yaxis: {title: 'Casos Activos (Sintomáticos)',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('RioNegroDiv', traces,layout);
+	};
+	  makeplot();
+}//RIO NEGRO
+
+</script>
+
+</body>
+
