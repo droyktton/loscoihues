@@ -1,0 +1,189 @@
+<!-- K. Laneri and A. B. Kolton 2020 -->
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-171435841-1');
+	</script>
+
+
+
+	<!-- Responsive layouts -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	/* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+
+	.main {
+	  background-color:#f1f1f1;
+	  padding:20px;
+	  float:left;
+	  width:60%; /* The width is 60%, by default */
+	}
+
+	/* Use a media query to add a break point at 800px: */
+	@media screen and (max-width:800px) {
+	  .left, .main, .right {
+	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	  }
+	}
+	</style>
+
+
+
+	<style>
+		div.scrollmenu {
+		  background-color: #999;
+		  overflow: auto;
+		  white-space: nowrap;
+		}
+
+		div.scrollmenu a {
+		  display: inline-block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px;
+		  text-decoration: none;
+		}
+
+		div.scrollmenu a:hover {
+		  background-color: #111;
+		}
+	</style>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+</head>
+
+
+<body>
+
+<p>
+<a href="../index.html">[Volver]</a>
+Todos los gráficos mostrados aquí están hechos con
+<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
+La calidad de los indicadores que ponemos a disposición dependen fuertemente de la calidad de estos datos.
+</p>
+
+<p>
+<h2> Series temporales crudas </h2>
+</p>
+
+<div id='miDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<script>
+
+hacerRioNegro();
+
+//////////////////////////////////////////
+function hacerRioNegro(){
+	file="https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaRioNegro.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+	  //console.log(allRows);
+	  var fecha = [], RioNegro = [], Bariloche = [], Roca = [];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    RioNegro.push( row['Río Negro'] );
+	    Bariloche.push( row['Bariloche'] );
+	    Roca.push( row['General Roca'] );	    
+	  }
+	  makePlotly( fecha, RioNegro, Bariloche,Roca);
+	}
+
+	function makePlotly( fecha, RioNegro, Bariloche,Roca){
+	  var acumRio=[], ;
+	  
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: RioNegro,
+	    name: "Prov.de Río Negro",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: Bariloche,
+	    name: "Dto. Bariloche",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: Roca,
+	    name: "Dto. Gral. Roca",
+	    mode: 'markers+lines',
+	  },  
+	  	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Río Negro + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('miDiv', traces,layout);
+	};
+	  makeplot();
+}//RIO NEGRO
+
+</script>
+
+</body>
+

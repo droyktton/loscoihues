@@ -100,7 +100,10 @@ La calidad de los indicadores depende fuertemente de la calidad de estos datos.
 
 <p id="myDiv2tit"></p>
 <div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
-<p><i><b>ATENCION</b>: los últimos días de la predicción a futuro están 
+<h3>ATENCION</h3> 
+<ul>
+<li>
+Los últimos días de la predicción a futuro están 
 sujetos a incertidumbres y fluctuaciones grandes, originadas principalmente 
 en los datos que descargamos del MSN. 
 Ver por ejemplo el efecto de las demoras o <a href="./cargaincompleta.html"> cargas incompletas </a> 
@@ -112,8 +115,16 @@ ingresan los casos demorados.
 Por otro lado cambios repentinos en las metodologías de testeo y en la definición de "caso" 
 también pueden afectar las predicciones. La calidad de las predicciones depende fuertemente 
 de la calidad de los datos. Interpretar con mucha precaución la evolución de los 
-últimos días. 
-</i><p>
+últimos días. </li>
+<li>
+El número de activos sintomáticos un día dado es estimado como la acumulación de los casos diarios 
+con inicio de síntomas desde el día hasta 14 días atras. Esto se basa en que el tiempo medio de 
+recuperación de un sintomático leve (es decir la mayoría de los casos) es de 14 días aproximadamente.
+Este número de activos estimados puede diferir apreciablemente con el reportado 
+en los partes oficiales de la Ciudad de Bariloche. Ver discusión <a href="./datos_crudos/discutirbariloche.html">aquí</a>.
+</li>
+</ul>
+
 
 <p id="myDiv3tit"></p>
 <div id='myDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
