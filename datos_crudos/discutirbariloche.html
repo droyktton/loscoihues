@@ -89,22 +89,23 @@ La calidad de los indicadores que ponemos a disposición dependen fuertemente de
 </p>
 
 <p>
-<h2> ¿Cuál es el verdadero número de activos sintomáticos? </h2>
+<h2> ¿Cuál es el verdadero número de infectados activos sintomáticos en Bariloche? </h2>
 </p>
 Según la organización mundial de la salud (WHO), el tiempo medio de recuperación 
 de un infectado con síntomas leves, que es la amplia mayoría, 
 es de aproximadamente dos semanas. Casos más graves tienen tiempos de recuperación de 3 a 6 semanas.
 Ver por ejemplo este <a href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf#:~:text=Using%20available%20preliminary%20data%2C,severe%20or%20critical%20disease."> documento 
 </a>. 
-En base a este dato en nuestros diagramas de Riesgo hemos estimado el número de 
-activos directamente a partir de los casos diarios 
+En base a este dato, en nuestros diagramas de Riesgo hemos estimado el número de 
+activos directamente a partir de los casos sintomáticos diarios reportados, 
 como el número acumulado de infectados con <i>fecha de inicio de síntomas</i> 
 desde hace 14 días hasta hoy.</p> 
 
-<p>Cuando comparamos lo que se reporta 
-como Casos Activos en los datos oficiales de la Ciudad de Bariloche nos encontramos con 
-una diferencia importante, como se puede apreciar en el gráfico. Como 
-se puede apreciar, la máxima diferencia puede ser de hasta casi 200 casos.
+<p>Cuando comparamos el número de activos estimado con lo que se reporta 
+como Casos Activos en los partes oficiales de la Ciudad de Bariloche, nos encontramos con 
+diferencias importantes. Como se puede apreciar en el gráfico la máxima 
+diferencia puede ser de hasta 200 casos activos, siendo mayor la estimación basada en el 
+tiempo medio de recuperación de 14 días.
 </p> 
 
 <!--
@@ -209,14 +210,14 @@ function hacerRioNegro(){
 	    //x: TotalesBariloche,
 	    x: fecha,
 	    y: ActivosBariloche,
-	    name: "MSN - Activos (14 días de recuperación)",
+	    name: "Datos Bariloche MSN - Activos estimados usando 14 días de recuperación",
 	    mode: 'markers+lines',
 	  },
 	  {
 	    //x: TotalesBariloche,
 	    x: FechasCorridas,
 	    y: ActivosOficial,
-	    name: "Datos Oficiales Bariloche - Activos estimados usando 14 días de recuperación",
+	    name: "Parte Oficial Bariloche - Activos estimados usando 14 días de recuperación",
 	    mode: 'markers+lines',
 	  },
 /*	  {
@@ -230,7 +231,7 @@ function hacerRioNegro(){
 	    //x: Totales,
 	    x: Fechas,
 	    y: Activos,
-	    name: "Parte oficial Bariloche - Activos Declarados",
+	    name: "Parte Oficial Bariloche - Activos Declarados",
 	    mode: 'markers+lines',
 	  },
 	  ];
@@ -238,7 +239,7 @@ function hacerRioNegro(){
 	  
 	   var layout = {
 		title: {
-			text: "Activos Declarados vs Activos Estimados en Bariloche usando Datos Oficiales de la Ciudad de Bariloche",
+			text: "Activos Declarados vs Activos Estimados en Bariloche",
 			x: 0,
 		},
 		autosize: true,
