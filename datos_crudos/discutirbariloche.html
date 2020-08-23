@@ -101,8 +101,9 @@ activos directamente a partir de los casos sintomáticos diarios reportados,
 como el número acumulado de infectados con <i>fecha de inicio de síntomas</i> 
 desde hace 14 días hasta hoy.</p> 
 
-<p>Cuando comparamos el número de activos estimado con lo que se reporta 
-como Casos Activos en los partes oficiales de la Ciudad de Bariloche, nos encontramos con 
+<p>Cuando comparamos el número de activos estimado (curva azul) con lo que se reporta 
+como Casos Activos en los partes oficiales de la Ciudad de Bariloche y en la mayoría 
+de los medios de comunicación locales (curva verde), nos encontramos con 
 diferencias importantes. Como se puede apreciar en el gráfico la  
 diferencia puede ser de hasta 200 casos activos, siendo en general 
 menor el número de activos declarado en el parte oficial.
@@ -120,6 +121,63 @@ Es difícil saber a que se debe la diferencia, pero podemos ennumerar algunas cu
 -->
 
 <div id='RioNegroDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<p> La diferencia observada puede provenir de variadas contribuciones, 
+pero creemos que la que la explica mejor  
+es la demora que hay entre el inicio de síntomas, el testeo y el 
+consiguiente reporte. 
+Para demostrar esto, en la curva naranja usamos el número de casos 
+positivos diarios del parte oficial de Bariloche, asignándoles 
+empíricamente a cada grupo diario una fecha de inicio de síntomas 
+aproximada de cuatro días antes. Como puede observarse, hay un buen acuerdo 
+de la curva naranja con la curva azul calculada usando la fecha conocida y 
+más precisa de inicio de síntomas en <i>cada</i> caso. Esto indica 
+que, en Bariloche, la demora entre inicio de síntomas y testeo/reporte es en promedio de 
+aproximadamente 4 días.</p>
+
+
+<p> Puede observarse también que la diferencia entre estimado y declarado 
+se achica acercándonos a la fecha presente. Esto se debe a que es imposible conocer 
+a todos los que inician síntomas en los cuatro últimos días (zona amarilla en el gráfico) 
+puesto que serían testeados en un futuro. Esto afecta también al número de activos 
+estimados en la curva azul. La diferencia entre la curva verde (activos declarados) 
+y la azul (activos estimados) es que en los próximos días el número 
+de activos estimados para cada fecha se reajustará retroactivamente 
+mientras que el número declarado no.
+</p>
+
+<p> Como segunda contribución importante a la diferencia entre 
+activos declarados y estimados podemos mencionar el actual 
+criterio de alta. Si las altas contemplan, en promedio, 
+menos de los 14 días de recuperación, también es de esperar 
+que el número de activos declarados dé más bajo. 
+</p> 
+
+<h3>Conclusión</h3>
+<p>
+En base a la información que disponemos nuestra interpretación de 
+estas observaciones es que el 
+número verdadero de activos en Bariloche un día dado, 
+entendido como el número de 
+personas que iniciaron síntomas y no se recuperaron aún, 
+es <i>en general mayor que el declarado (balanceando altas y bajas) 
+en una cantidad que equivale, empíricamente, a la acumulación 
+de 4 días de casos</i>. 
+</p> 
+<h4>Una regla empírica para Bariloche</h4>
+<p>
+El análisis sugiere una regla empírica para Bariloche.
+En la práctica, la deficiencia de casos activos en el parte 
+oficial podría estimarse fácil y cuantitativamente multiplicando 
+por 4 la media de casos diarios en los últimos días. Sumando este número 
+al número de activos declarado, tendríamos una aproximación más realista 
+al verdadero número de activos. Por ejemplo, si hoy hay 400 activos y 
+la media de casos la última semana fue de 20, entonces una aproximación 
+más realista al número de casos activos sería 400+4*20=480 casos. 
+Con esta estimación mejorada del número de activos, conociendo el 
+numéro reproductivo empírico, podemos estimar más precisamente 
+el <a href="../riesgo.html">riesgo en Bariloche<a> en los próximos días.  
+</p> 
 
 <script src="DatosCovidBariloche.js"></script>
 
@@ -213,13 +271,13 @@ function hacerRioNegro(){
 	    name: "Activos estimados usando casos diarios en Bariloche (datos MSN)",
 	    mode: 'markers+lines',
 	  },
-	  /*{
+	  {
 	    //x: TotalesBariloche,
 	    x: FechasCorridas,
 	    y: ActivosOficial,
 	    name: "Activos estimados usando casos diarios (datos parte oficial Bche.)",
 	    mode: 'markers+lines',
-	  },*/
+	  },
 /*	  {
 	    //x: TotalesBariloche,
 	    x: fecha,
@@ -233,6 +291,24 @@ function hacerRioNegro(){
 	    y: Activos,
 	    name: "Parte Oficial Bariloche - Activos Declarados",
 	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [Fechas[Fechas.length-1-4],Fechas[Fechas.length-1-4]],
+	    y: [0,800],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,800],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta (testeo > fecha > inicio de síntomas)',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
 	  },
 	  ];
 	  
