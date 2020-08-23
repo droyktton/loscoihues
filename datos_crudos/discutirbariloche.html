@@ -179,6 +179,9 @@ numéro reproductivo empírico, podemos estimar más precisamente
 el <a href="../riesgo.html">riesgo en Bariloche<a> en los próximos días.  
 </p> 
 
+
+<div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+
 <script src="DatosCovidBariloche.js"></script>
 
 <script>
@@ -311,8 +314,7 @@ function hacerRioNegro(){
 	    showlegend: true,			
 	  },
 	  ];
-	  
-	  
+	  	  
 	   var layout = {
 		title: {
 			text: "Activos Declarados vs Activos Estimados en Bariloche",
@@ -327,6 +329,50 @@ function hacerRioNegro(){
 	    }
 
 	    Plotly.newPlot('RioNegroDiv', traces,layout);
+
+	   var traces2 = [
+	   {
+	    x: Fechas,
+	    y: Totales,
+	    name: "Número total de Infectados",
+	    mode: 'markers+lines',
+	   },
+	   {
+	    x: Fechas,
+	    y: Recuperados,
+	    name: "Número total de Recuperados",
+	    mode: 'markers+lines',
+	   },
+	   {
+	    x: Fechas,
+	    y: Activos,
+	    name: "Número de Activos",
+	    mode: 'markers+lines',
+	   },
+	   {
+	    x: Fechas,
+	    y: Muertes,
+	    name: "Número de Muertes",
+	    mode: 'markers+lines',
+	   },
+	   ]
+
+
+	   var layout2 = {
+		title: {
+			text: "Parte Oficial Bariloche",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha'},
+		//yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		yaxis: {autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);
+	    
 	};
 	  makeplot();
 }//RIO NEGRO
