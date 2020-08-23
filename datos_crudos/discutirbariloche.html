@@ -102,8 +102,8 @@ como el número acumulado de infectados con <i>fecha de inicio de síntomas</i>
 desde hace 14 días hasta hoy.</p> 
 
 <p>Cuando comparamos el número de activos estimado (curva azul) con lo que se reporta 
-como Casos Activos en los partes oficiales de la Ciudad de Bariloche y en la mayoría 
-de los medios de comunicación locales (curva verde), nos encontramos con 
+como Casos Activos (curva verde) en los <a href="./parteoficialbche.html">partes oficiales de la Ciudad de Bariloche<a> 
+y en la mayoría de los medios de comunicación locales, nos encontramos con 
 diferencias importantes. Como se puede apreciar en el gráfico la  
 diferencia puede ser de hasta 200 casos activos, siendo en general 
 menor el número de activos declarado en el parte oficial.
@@ -179,8 +179,6 @@ numéro reproductivo empírico, podemos estimar más precisamente
 el <a href="../riesgo.html">riesgo en Bariloche<a> en los próximos días.  
 </p> 
 
-
-<div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <script src="DatosCovidBariloche.js"></script>
 
@@ -330,7 +328,7 @@ function hacerRioNegro(){
 
 	    Plotly.newPlot('RioNegroDiv', traces,layout);
 
-	   var traces2 = [
+	   /*var traces2 = [
 	   {
 	    x: Fechas,
 	    y: Totales,
@@ -371,7 +369,7 @@ function hacerRioNegro(){
 		hovermode: "closest",
 	    }
 
-	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);
+	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);*/
 	    
 	};
 	  makeplot();
