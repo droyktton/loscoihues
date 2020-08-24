@@ -86,6 +86,7 @@
 </p>
 
 <div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+<div id='RioNegroDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <script src="DatosCovidBariloche.js"></script>
 
@@ -136,6 +137,32 @@ function hacerParteOficial(){
 	    }
 
 	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);
+
+	   var Diarios=[];	
+	   for(var i=0;i<Totales.length;i++)
+	   Diarios[i]=(i-1>=0)?(Totales[i]-Totales[i-1]):(Totales[i]); 
+
+	   var traces3 = [
+	   {
+	    x: Fechas,
+	    y: Diarios,
+	    type: 'bar',
+	    name: "Número total de Infectados",
+	   },
+	   ]
+	   var layout3 = {
+		title: {
+			text: "",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('RioNegroDiv3', traces3,layout3);
 }
 
 </script>

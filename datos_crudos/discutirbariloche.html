@@ -91,7 +91,7 @@ La calidad de los indicadores que ponemos a disposición dependen fuertemente de
 <p>
 <h2> ¿Cuál es el verdadero número de infectados activos sintomáticos en Bariloche? </h2>
 </p>
-Según la organización mundial de la salud (<a href="https://www.who.int/es">WHO<a>), el tiempo medio de recuperación 
+Según la organización mundial de la salud (<a href="https://www.who.int/es">OMS/WHO<a>), el tiempo medio de recuperación 
 de un infectado con síntomas leves, que representa a la amplia mayoría de los casos, 
 es de aproximadamente dos semanas. Casos más graves tienen tiempos de recuperación de 3 a 6 semanas.
 Ver por ejemplo este <a href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf#:~:text=Using%20available%20preliminary%20data%2C,severe%20or%20critical%20disease."> documento 
@@ -147,10 +147,16 @@ mientras que el número declarado no.
 </p>
 
 <p> Como segunda contribución importante a la diferencia entre 
-activos declarados y estimados podemos mencionar el actual 
-criterio de alta. Si las altas contemplan, en promedio, 
-menos de los 14 días de recuperación, también es de esperar 
-que el número de activos declarados dé más bajo. 
+activos declarados y estimados cabe mencionar el
+criterio de alta utilizado. Si las altas contemplan, en promedio, 
+menos de dos semanas de recuperación, también es de esperar 
+que el número de activos declarados dé más bajo que el estimado. 
+A este respecto, cabe notar que el <a href="https://www.who.int/news-room/commentaries/detail/criteria-for-releasing-covid-19-patients-from-isolation"> actual criterio recomendado por la OMS </a> es de 13 días para pacientes 
+que hayan tenido síntomas por menos de 10 días (mayoría de los casos), y para el resto se recomienda agregar 
+tres días más luego de la desaparición de síntomas. Por lo tanto, dos semanas sigue siendo 
+el período promedio aceptado de recuperación desde el inicio de síntomas. Cabe aclarar sin embargo que 
+el infectado puede empezar a contagiar aproximadamente unos dos días antes de iniciar síntomas, un hecho 
+que es muy importante para la estimación del número reproductivo empírico. 
 </p> 
 
 <h3>Conclusión</h3>
@@ -176,9 +182,12 @@ declarados en el
 parte oficial y la media de casos reportados oficialmente 
 la última semana fue por ejemplo de 20, entonces una aproximación 
 más realista al número de casos activos sería 400+4*20=480 casos. 
-Con esta estimación mejorada del número de activos, conociendo el 
-numéro reproductivo empírico, podemos estimar más precisamente 
-el <a href="../riesgo.html">riesgo en Bariloche<a> en los próximos días.  
+Se espera que ésta última sea cercana a la estimada acumulando casos 
+con fecha de inicio de síntomas en una semana.
+Tener una buena estimación del número de activos nos permite, 
+conociendo el numéro reproductivo empírico, cuantificar 
+el <a href="../riesgo.html">riesgo en Bariloche<a> en 
+los próximos días.  
 </p> 
 
 
@@ -307,7 +316,7 @@ function hacerRioNegro(){
 	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
 	    y: [0,800],
 	    mode: 'lines',
-	    name: 'posiblemente incompleta (testeo > fecha > inicio de síntomas)',	
+	    name: 'posiblemente incompleta (testeo > fecha en la zona > inicio de síntomas)',	
 	    fill: 'tonextx',
 	    fillcolor: 'rgba(240, 255, 0, 0.3)',
 	    line: {color: 'rgba(240, 255, 0, 0.3)'},
