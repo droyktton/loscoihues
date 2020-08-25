@@ -196,6 +196,11 @@ function hacerParteOficial(){
 	   for(var i=1;i<Totales.length;i++)
 	   Diarios[i]=(Totales[i]-Totales[i-1]); 
 
+	   var promedioultimasemana=0;
+	   for(var i=Diarios.length-7;i<Diarios.length;i++)
+	   promedioultimasemana=promedioultimasemana+Diarios[i];
+	   promedioultimasemana=promedioultimasemana/7.0;	
+
 	   var traces3 = [
 	   {
 	    x: Fechas,
@@ -206,7 +211,7 @@ function hacerParteOficial(){
 	   ]
 	   var layout3 = {
 		title: {
-			text: "",
+			text: "Casos Diarios en Bariloche, promedio ultima semana=" +promedioultimasemana,
 			x: 0,
 		},
 		autosize: true,
