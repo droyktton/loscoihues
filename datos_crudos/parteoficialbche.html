@@ -88,13 +88,20 @@
 <div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
 <div id='RioNegroDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
 
-<script src="DatosCovidBariloche.js"></script>
+<!--<script src="DatosCovidBariloche.js"></script>-->
+<script src="test.js"></script>
 
 <script>
 
 hacerParteOficial();
 
 function hacerParteOficial(){
+
+	   var ultimaFechas=Fechas[Fechas.length-1];
+	   var ultimaMuertes=Muertes[Fechas.length-1];
+	   var ultimaActivos=Activos[Fechas.length-1];
+	   var ultimaRecuperados=Recuperados[Fechas.length-1];
+	   var ultimaTotales=Totales[Fechas.length-1];
 
 	   var traces2 = [
 	   {
@@ -121,11 +128,46 @@ function hacerParteOficial(){
 	    name: "Número de Muertes",
 	    mode: 'markers+lines',
 	   },
+	   /*{
+    	    type: "indicator",
+            mode: "number",
+	    title: { text: "Ultima Fecha" },            
+	    value: ultimaFechas,
+	    domain: { x: [0.0, 0.1], y: [0.9, 1.0] }
+           },*/
+	   {
+    	    type: "indicator",
+            mode: "number",
+	    title: { text: "Totales" },            
+            value: ultimaTotales,
+	    domain: { x: [0.2, 0.3], y: [0.9, 1.0] }
+           },
+	   {
+    	    type: "indicator",
+            mode: "number",
+	    title: { text: "Activos*" },            
+            value: ultimaActivos,
+	    domain: { x: [0.4, 0.5], y: [0.9, 1.0] }
+           },
+	   {
+    	    type: "indicator",
+            mode: "number",
+	    title: { text: "Recuperados" },            
+            value: ultimaRecuperados,
+	    domain: { x: [0.6, 0.7], y: [0.9, 1.0] }
+           },
+	   {
+    	    type: "indicator",
+            mode: "number",
+	    title: { text: "Muertes" },            
+	    value: ultimaMuertes,
+	    domain: { x: [0.8, 0.9], y: [0.9, 1.0] }
+           },
 	   ]
 
 	   var layout2 = {
 		title: {
-			text: "Parte Oficial Bariloche",
+			text: "Parte Oficial Bariloche al "+ultimaFechas,
 			x: 0,
 		},
 		autosize: true,
@@ -134,13 +176,15 @@ function hacerParteOficial(){
 		yaxis: {autorange: 'true'},
 		//showlegend: false,
 		hovermode: "closest",
-	    }
+		//grid: { rows: 2, columns: 2, pattern: "independent" },	    
+	   }
 
 	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);
 
-	   var Diarios=[];	
-	   for(var i=0;i<Totales.length;i++)
-	   Diarios[i]=(i-1>=0)?(Totales[i]-Totales[i-1]):(Totales[i]); 
+	   var Diarios=[];
+	   Diarios[0]=Totales[0];	
+	   for(var i=1;i<Totales.length;i++)
+	   Diarios[i]=(Totales[i]-Totales[i-1]); 
 
 	   var traces3 = [
 	   {
