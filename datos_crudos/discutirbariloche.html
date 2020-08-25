@@ -142,8 +142,9 @@ a todos los que inician síntomas en los cuatro últimos días (zona amarilla en
 puesto que serían testeados en un futuro. Esto afecta también al número de activos 
 estimados en la curva azul. La diferencia entre la curva verde (activos declarados) 
 y la azul (activos estimados) es que en los próximos días el número 
-de activos estimados para cada fecha se reajustará retroactivamente 
-mientras que el número declarado no.
+de activos estimados para cada fecha se reajustará retroactivamente, 
+acercándose al valor real, mientras que el número declarado en el 
+parte oficial no lo hará.
 </p>
 
 <p> Como segunda contribución importante a la diferencia entre 
@@ -313,10 +314,10 @@ function hacerRioNegro(){
 	    line: {color: 'rgba(240, 255, 0, 0.3)'},
 	  },
 	  {
-	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    x: [Fechas[Fechas.length-1],Fechas[Fechas.length-1]],
 	    y: [0,800],
 	    mode: 'lines',
-	    name: 'posiblemente incompleta (muchos iniciaron síntomas pero serán testeados en el futuro)',	
+	    name: 'posiblemente incompletas',	
 	    fill: 'tonextx',
 	    fillcolor: 'rgba(240, 255, 0, 0.3)',
 	    line: {color: 'rgba(240, 255, 0, 0.3)'},
