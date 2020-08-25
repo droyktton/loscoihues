@@ -70,6 +70,17 @@
   color: white;
 }
 
+/* Header/Logo Title */
+.header {
+  padding: 0px;
+  text-align: center;
+  background: LightGrey;
+  color: black;
+  font-size: 15px;
+  height: 20px;
+}
+
+
 @media only screen and (max-width:620px) {
   /* For mobile phones: */
   .menu, .main, .right {
@@ -81,7 +92,16 @@
 </head>
 <body style="font-family:Verdana;color:#aaaaaa;">
 
+<div class="header" id='bannerdiv'>
+<!--  <h1>Header</h1> 
+  <p>Bariloche</p>-->
+  <div id='bannerdiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</div>
+
+
+
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+
 
 <img src="banderaargentinacoronavirus.jpg" alt="bandevirus" width="300">
 <h1> Riesgómetro COVID19 </h1>
@@ -161,7 +181,7 @@
 	<a href="./datos_crudos/parteoficialbche.html" style="font-family:arial;background-color:LightGrey;"> 
 	Parte Oficial de Bariloche </a>
 	<a href="./datos_crudos/discutirbariloche.html" style="font-family:arial;background-color:LightGrey;"> 
-	<i><b>¿Cuál es el verdadero número de activos (sintomáticos) en Bariloche?</i></b> </a>
+	<i><b> ¿Cuál es el verdadero número de activos (sintomáticos) en Bariloche?</i></b> </a>
 	</div>
 	<!--<ul>
 	<li>  
@@ -198,6 +218,26 @@ Reflexiones simples sobre el
 Desarrollado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> - 
 <a> Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
 </div>
+
+<script src="datos_crudos/DatosCovidBariloche.js"></script>
+
+<script>
+	   var ultimaFechas=Fechas[Fechas.length-1];
+	   var ultimaMuertes=Muertes[Fechas.length-1];
+	   var ultimaActivos=Activos[Fechas.length-1];
+	   var ultimaRecuperados=Recuperados[Fechas.length-1];
+	   var ultimaTotales=Totales[Fechas.length-1];
+	   var ultimaActivos=Activos[Fechas.length-1];
+	   var ultimaDiarios=Totales[Fechas.length-1]-Totales[Fechas.length-2];	
+	   document.getElementById("bannerdiv").innerHTML = "<i>Bariloche</i> "+
+	   ultimaFechas+": Nuevos Casos:<b>"+ultimaDiarios+"</b>, Total:<b>"+ultimaTotales+"</b>, Muertes:<b>"
+	   +ultimaMuertes+"</b>, Recuperados:<b>"+ultimaRecuperados+
+	   "</b>, Activos:<b>"+ultimaActivos+
+	   "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">"
+	   +" [*] </a>"
+	   //"</b>, *Activos:<b>"+ultimaActivos
+</script>
+
 
 </body>
 </html>
