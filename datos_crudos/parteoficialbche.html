@@ -199,8 +199,8 @@ function hacerParteOficial(){
 	   var promedioultimasemana=0;
 	   for(var i=Diarios.length-7;i<Diarios.length;i++)
 	   promedioultimasemana=promedioultimasemana+Diarios[i];
-	   promedioultimasemana=promedioultimasemana/7.0;	
-
+	   //promedioultimasemana=promedioultimasemana/7.0;	
+	   promedioultimasemana=Number((promedioultimasemana/7.0).toFixed(1));
 	   var traces3 = [
 	   {
 	    x: Fechas,
