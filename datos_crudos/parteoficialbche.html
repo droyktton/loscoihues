@@ -113,6 +113,13 @@ function hacerParteOficial(){
 	   var ultimaRecuperados=Recuperados[Fechas.length-1];
 	   var ultimaTotales=Totales[Fechas.length-1];
 
+	   var penultimaTotales=Totales[Fechas.length-2];
+	   var penultimaMuertes=Muertes[Fechas.length-2];
+	   var penultimaActivos=Activos[Fechas.length-2];
+	   var penultimaRecuperados=Recuperados[Fechas.length-2];
+	   var penultimaTotales=Totales[Fechas.length-2];
+
+
 	   var traces2 = [
 	   {
 	    x: Fechas,
@@ -147,31 +154,39 @@ function hacerParteOficial(){
            },*/
 	   {
     	    type: "indicator",
-            mode: "number",
+            mode: "number+delta",
 	    title: { text: "Totales" },            
             value: ultimaTotales,
-	    domain: { x: [0.2, 0.3], y: [0.9, 1.0] }
+	    domain: { x: [0.1, 0.2], y: [0.9, 1.0] },
+	    delta: { reference: penultimaTotales, valueformat: ".0f" },
+    	    ticker: { showticker: true },
            },
 	   {
     	    type: "indicator",
-            mode: "number",
+            mode: "number+delta",
 	    title: { text: "Activos*" },            
             value: ultimaActivos,
-	    domain: { x: [0.4, 0.5], y: [0.9, 1.0] }
+	    domain: { x: [0.3, 0.4], y: [0.9, 1.0] },
+	    delta: { reference: penultimaActivos, valueformat: ".0f" },
+    	    ticker: { showticker: true },
            },
 	   {
     	    type: "indicator",
-            mode: "number",
+            mode: "number+delta",
 	    title: { text: "Recuperados" },            
             value: ultimaRecuperados,
-	    domain: { x: [0.6, 0.7], y: [0.9, 1.0] }
+	    domain: { x: [0.5, 0.6], y: [0.9, 1.0] },
+	    delta: { reference: penultimaRecuperados, valueformat: ".0f" },
+    	    ticker: { showticker: true },
            },
 	   {
     	    type: "indicator",
-            mode: "number",
+            mode: "number+delta",
 	    title: { text: "Muertes" },            
 	    value: ultimaMuertes,
-	    domain: { x: [0.8, 0.9], y: [0.9, 1.0] }
+	    domain: { x: [0.7, 0.8], y: [0.9, 1.0] },
+	    delta: { reference: penultimaMuertes, valueformat: ".0f" },
+    	    ticker: { showticker: true },
            },
 	   ]
 
