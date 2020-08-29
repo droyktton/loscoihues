@@ -221,7 +221,8 @@ function hacerParteOficial(){
 		hovermode: "closest",
 	    }
 
-	    Plotly.newPlot('RioNegroDiv3', traces3,layout3);
+	    var config = {responsive: true};
+	    Plotly.newPlot('RioNegroDiv3', traces3,layout3,config);
 }
 
 </script>
