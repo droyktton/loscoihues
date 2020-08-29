@@ -342,8 +342,9 @@ function hacerRioNegro(){
 		//showlegend: false,
 		hovermode: "closest",
 	    }
-
-	    Plotly.newPlot('RioNegroDiv', traces,layout);
+	    
+	    var config = {responsive: true};
+	    Plotly.newPlot('RioNegroDiv', traces,layout,config);
 
 	   /*var traces2 = [
 	   {

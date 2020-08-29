@@ -121,6 +121,7 @@ function hacerParteOficial(){
 	   var penultimaRecuperados=Recuperados[Fechas.length-2];
 	   var penultimaTotales=Totales[Fechas.length-2];
 
+	    var config = {responsive: true};
 
 	   var traces2 = [
 	   {
@@ -275,8 +276,8 @@ function hacerParteOficial(){
 		//grid: { rows: 2, columns: 2, pattern: "independent" },	    
 	   }
 
-	   Plotly.newPlot('IndicatorsDiv', indicators, layoutind);
-	   Plotly.newPlot('RioNegroDiv2', traces2,layout2);
+	   Plotly.newPlot('IndicatorsDiv', indicators, layoutind,config);
+	   Plotly.newPlot('RioNegroDiv2', traces2,layout2,config);
 
 	   var Diarios=[];
 	   Diarios[0]=Totales[0];	
@@ -308,7 +309,6 @@ function hacerParteOficial(){
 		hovermode: "closest",
 	    }
 
-	    var config = {responsive: true};
 	    Plotly.newPlot('RioNegroDiv3', traces3,layout3,config);
 }
 
