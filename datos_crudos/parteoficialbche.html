@@ -85,6 +85,8 @@
 <a href="../index.html">[Volver]</a>
 </p>
 
+<h3>Parte Oficial Bariloche al <div id='hoy'> </div></h3>
+<div id='IndicatorsDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 <div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 <p>* El número de activos del parte oficial subestima el número de activos porque 
@@ -124,25 +126,25 @@ function hacerParteOficial(){
 	   {
 	    x: Fechas,
 	    y: Totales,
-	    name: "Número total de Infectados",
+	    name: "Infectados",
 	    mode: 'markers+lines',
 	   },
 	   {
 	    x: Fechas,
 	    y: Recuperados,
-	    name: "Número total de Recuperados",
+	    name: "Recuperados",
 	    mode: 'markers+lines',
 	   },
 	   {
 	    x: Fechas,
 	    y: Activos,
-	    name: "Número de Activos",
+	    name: "*Activos",
 	    mode: 'markers+lines',
 	   },
 	   {
 	    x: Fechas,
 	    y: Muertes,
-	    name: "Número de Muertes",
+	    name: "Muertes",
 	    mode: 'markers+lines',
 	   },
 	   /*{
@@ -152,7 +154,7 @@ function hacerParteOficial(){
 	    value: ultimaFechas,
 	    domain: { x: [0.0, 0.1], y: [0.9, 1.0] }
            },*/
-	   {
+	   /*{
     	    type: "indicator",
             mode: "number+delta",
 	    title: { text: "Totales" },            
@@ -187,12 +189,81 @@ function hacerParteOficial(){
 	    domain: { x: [0.7, 0.8], y: [0.9, 1.0] },
 	    delta: { reference: penultimaMuertes, valueformat: ".0f" },
     	    ticker: { showticker: true },
+           },*/
+	   ]
+
+	   document.getElementById("hoy").innerHTML = ultimaFechas;
+
+	   var indicators=[
+	   {
+    	    type: "indicator",
+            mode: "number+delta",
+	    title: { text: "Totales" },            
+            value: ultimaTotales,
+            domain: { row: 0, column: 0 },
+	    //domain: { x: [0.1, 0.2], y: [0.9, 1.0] },
+	    delta: { reference: penultimaTotales, valueformat: ".0f" },
+    	    ticker: { showticker: true },
+           },
+	   {
+    	    type: "indicator",
+            mode: "number+delta",
+	    title: { text: "Activos*" },            
+            value: ultimaActivos,
+            domain: { row: 1, column: 0 },
+	    //domain: { x: [0.3, 0.4], y: [0.9, 1.0] },
+	    delta: { reference: penultimaActivos, valueformat: ".0f" },
+    	    ticker: { showticker: true },
+           },
+	   {
+    	    type: "indicator",
+            mode: "number+delta",
+	    title: { text: "Recuperados" },            
+            value: ultimaRecuperados,
+            domain: { row: 0, column: 1 },
+	    //domain: { x: [0.5, 0.6], y: [0.9, 1.0] },
+	    delta: { reference: penultimaRecuperados, valueformat: ".0f" },
+    	    ticker: { showticker: true },
+           },
+	   {
+    	    type: "indicator",
+            mode: "number+delta",
+	    title: { text: "Muertes" },            
+	    value: ultimaMuertes,
+            domain: { row: 1, column: 1 },
+	    //domain: { x: [0.7, 0.8], y: [0.9, 1.0] },
+	    delta: { reference: penultimaMuertes, valueformat: ".0f" },
+    	    ticker: { showticker: true },
            },
 	   ]
+	   
+	   
+	  var layoutind = {
+	  /*title: {
+		text: "Parte Oficial Bariloche al "+ultimaFechas,
+		x: 0,
+	  },*/
+	  width: 600,
+	  height: 400,
+	  margin: { t: 25, b: 25, l: 25, r: 25 },
+	  grid: { rows: 2, columns: 2, pattern: "independent" },
+	  template: {
+	    data: {
+	      indicator: [
+		{
+		  title: { text: "Speed" },
+		  mode: "number+delta+gauge",
+		  delta: { reference: 90 }
+		}
+	      ]
+	    }
+	  }
+	 };
+	   
 
 	   var layout2 = {
 		title: {
-			text: "Parte Oficial Bariloche al "+ultimaFechas,
+			text: "Series Temporales",
 			x: 0,
 		},
 		autosize: true,
@@ -204,7 +275,8 @@ function hacerParteOficial(){
 		//grid: { rows: 2, columns: 2, pattern: "independent" },	    
 	   }
 
-	    Plotly.newPlot('RioNegroDiv2', traces2,layout2);
+	   Plotly.newPlot('IndicatorsDiv', indicators, layoutind);
+	   Plotly.newPlot('RioNegroDiv2', traces2,layout2);
 
 	   var Diarios=[];
 	   Diarios[0]=Totales[0];	
@@ -226,11 +298,11 @@ function hacerParteOficial(){
 	   ]
 	   var layout3 = {
 		title: {
-			text: "Casos Diarios en Bariloche, promedio ultima semana=" +promedioultimasemana,
+			text: "Casos Diarios en Bariloche, promedio última semana=" +promedioultimasemana,
 			x: 0,
 		},
 		autosize: true,
-		xaxis: {title: 'Fecha'},
+		xaxis: {title: 'Fecha de Reporte'},
 		yaxis: {title: 'Casos Diarios (Sintomáticos)',autorange: 'true'},
 		//showlegend: false,
 		hovermode: "closest",
