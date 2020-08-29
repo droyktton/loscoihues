@@ -144,7 +144,8 @@ estimados en la curva azul. La diferencia entre la curva verde (activos declarad
 y la azul (activos estimados) es que en los próximos días el número 
 de activos estimados para cada fecha se reajustará retroactivamente, 
 acercándose al valor real, mientras que el número declarado en el 
-parte oficial no lo hará.
+parte oficial no lo hará. Por otro lado, también afecta que las altas se 
+suelen acumular y reportar en grandes bloques. 
 </p>
 
 <p> Como segunda contribución importante a la diferencia entre 
@@ -169,7 +170,9 @@ entendido como el número de
 personas que iniciaron síntomas y no se recuperaron aún, 
 es <i>en general mayor que el declarado (balanceando altas y bajas) 
 en una cantidad que equivale, empíricamente, a la acumulación 
-de 4 días de casos</i>. 
+de 4 días de casos</i>. Este efecto sobrepasa claramente las 
+fluctuaciones debidas a la carga de datos en períodos donde el 
+número de casos diarios es importante. 
 </p> 
 <h4>Una regla empírica para Bariloche</h4>
 <p>
@@ -184,7 +187,9 @@ parte oficial y la media de casos reportados oficialmente
 la última semana fue por ejemplo de 20, entonces una aproximación 
 más realista al número de casos activos sería 400+4*20=480 casos. 
 Se espera así que el número resultante sea cercano al estimado 
-acumulando casos con fecha de inicio de síntomas en dos semanas.
+acumulando casos con fecha de inicio de síntomas en dos semanas. 
+Esta estimación es buena justamente en los períodos críticos 
+de gran crecimiento del número de infectados.
 Tener una buena estimación del número de activos nos permite, 
 conociendo el numéro reproductivo empírico, cuantificar 
 mejor el <a href="../riesgo.html">riesgo en Bariloche<a> en 
@@ -331,7 +336,7 @@ function hacerRioNegro(){
 			x: 0,
 		},
 		autosize: true,
-		xaxis: {title: 'Fecha'},
+		xaxis: {title: 'Fecha de Reporte'},
 		//yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
 		yaxis: {title: 'Casos Activos (Sintomáticos)',autorange: 'true'},
 		//showlegend: false,
