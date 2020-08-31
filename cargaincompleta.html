@@ -68,7 +68,7 @@ gráfico muestra un ejemplo, extraído de fuentes oficiales del Ministerio de Sa
 En las poblaciones referidas se puede observar una caída sistemática 
 del número de casos diarios los últimos días. Esta caída es artificial 
 y la misma estructura se repite día a día. Se debe a que las bases de datos no se actualizan 
-rápidamente. En las poblaciones de la figura, se aprecia una demora de hasta 
+rápidamente. En las pobla	ciones de la figura, se aprecia una demora de hasta 
 10 días.
 </p>
 <img src="./datosdemorados2.png" alt="gnuplot"  width=800/>
@@ -80,8 +80,9 @@ rápidamente. En las poblaciones de la figura, se aprecia una demora de hasta
 </h2> 
 Otra de las dificultades más importantes para poder hacer predicciones 
 epidemológicas es que la fecha de inicio de síntomas, que es central para 
-el estudio epidemológico, muchas veces o no está reportada, o está reportada 
-en forma no fiable. 
+el estudio epidemológico, en el 40% de los casos no está reportada, 
+y cuando lo está, hay un 3% donde está reportada en forma no fiable, 
+como explicamos a continuación. 
 Hay dos fechas que reporta el MSN por cada caso positivo: 
 la fecha de inicio de síntomas y la fecha de apertura del caso. 
 Lo que encontramos es que la fecha de apertura de los casos, que 
@@ -94,7 +95,9 @@ sería que los puntos de cada caso estén -sobre o por encima- de la recta
 indica igualdad de las dos fechas. Como puede apreciarse sin embargo, 
 muchos puntos están por debajo. Es decir, todos esos puntos en la "zona gris" 
 tienen una fecha de apertura -anterior- a la fecha de inicio de síntomas 
-y por lo tanto no son fiables.
+y por lo tanto no son fiables (con la mucho más reciente modalidad de considerar 
+positivos a los contactos estrechos de un infectado sin testearlos, podría darse 
+sin embargo una fecha de apertura anterior a la de inicio de síntomas).
 </p>
 <h3>Río Negro</h3>
 <img src="./datos_crudos/FechasRioNegro.png" alt="gnuplot"  width=800/>
