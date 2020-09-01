@@ -118,7 +118,17 @@ la tendencia observada por lo menos 10 días atras. </b>
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
 la tendencia observada por lo menos 10 días atras. </b>
 
+<div id='ENTRERIOSDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
 <div id='JUJUYDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
+a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
+la tendencia observada por lo menos 10 días atras. </b>
+
+<div id='LARIOJADiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 <p> <b> ADVERTENCIA </b> La caída final de los casos diarios los últimos días es, en general, artificial, y debida 
 a la carga demorada de casos. Una verdadera disminución debería evaluarse considerando 
 la tendencia observada por lo menos 10 días atras. </b>
@@ -179,6 +189,8 @@ hacerTUCUMAN();
 hacerSANTAFE();
 hacerSANTACRUZ();
 hacerTIERRADELFUEGO();
+hacerENTRERIOS();
+hacerLARIOJA();
 
 
 //////////////////////////////////////////
@@ -1541,6 +1553,201 @@ function hacerMENDOZA(){
 	};
 	  makeplot();
 }//Mendoza
+
+
+
+
+//////////////////////////////////////////
+function hacerENTRERIOS(){
+file=
+"https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaEntre Ríos.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], ENTRERIOS = [], PARANA = [], 
+	  GUALEGUAYCHU = [], CONCORDIA=[];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    ENTRERIOS.push( row['Entre Ríos'] );
+	    PARANA.push( row['Paraná'] );
+	    CONCORDIA.push( row['Concordia'] );
+	    GUALEGUAYCHU.push( row['Gualeguaychú'] );
+	  }
+	  makePlotly(fecha, ENTRERIOS, PARANA, GUALEGUAYCHU, CONCORDIA);
+	}
+
+	function makePlotly(fecha, ENTRERIOS, PARANA, GUALEGUAYCHU, CONCORDIA)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: ENTRERIOS,
+	    name: "Provincia de Entre Ríos",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: PARANA,
+	    name: "Paraná",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: GUALEGUAYCHU,
+	    name: "Gualeguaychú",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CONCORDIA,
+	    name: "Concordia",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de Entre Ríos + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('ENTRERIOSDiv', traces,layout);
+	};
+	  makeplot();
+}//Entre Rios
+
+
+
+//////////////////////////////////////////
+function hacerLARIOJA(){
+file=
+"https://raw.githubusercontent.com/droyktton/loscoihues/master/datos_crudos/NuevosCasosConfirmadosPorDiaLa\ Rioja.csv";
+
+	function makeplot() {
+	  Plotly.d3.csv(
+	  file, function(data){ processData(data) } );
+	};
+
+	function processData(allRows) {
+
+	  //console.log(allRows);
+	  var fecha = [], LARIOJA = [], CAPITAL = [], 
+	  CHAMICAL = [], CHILECITO=[];
+
+	  for (var i=0; i<allRows.length; i++) {
+	    row = allRows[i];
+	    fecha.push( row['fecha'] );
+	    
+	    LARIOJA.push( row['La Rioja'] );
+	    CAPITAL.push( row['Capital'] );
+	    CHAMICAL.push( row['Chamical'] );
+	    CHILECITO.push( row['Chilecito'] );
+	  }
+	  makePlotly(fecha, LARIOJA, CAPITAL, CHAMICAL, CHILECITO);
+	}
+
+	function makePlotly(fecha, LARIOJA, CAPITAL, CHAMICAL, CHILECITO)
+	{
+	  var plotDiv = document.getElementById("plot");
+	  var traces = [
+	  {
+	    x: fecha,
+	    y: LARIOJA,
+	    name: "Provincia de La Rioja",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CAPITAL,
+	    name: "Capital",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CHAMICAL,
+	    name: "Chamical",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: fecha,
+	    y: CHILECITO,
+	    name: "Chilecito",
+	    mode: 'markers+lines',
+	  },
+	  {
+	    x: [fecha[fecha.length-1-10],fecha[fecha.length-1-10]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: '',	
+	    showlegend: false,
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	  },
+	  {
+	    x: [fecha[fecha.length-1],fecha[fecha.length-1]],
+	    y: [0,10000],
+	    mode: 'lines',
+	    name: 'posiblemente incompleta',	
+	    fill: 'tonextx',
+	    fillcolor: 'rgba(240, 255, 0, 0.3)',
+	    line: {color: 'rgba(240, 255, 0, 0.3)'},
+	    showlegend: true,			
+	  },
+	  ];
+	  
+	  
+	   var layout = {
+		title: {
+			text: "Provincia de La Rioja + algunos departamentos",
+			x: 0,
+		},
+		autosize: true,
+		xaxis: {title: 'Fecha de Inicio de Síntomas'},
+		yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+		//showlegend: false,
+		hovermode: "closest",
+	    }
+
+	    Plotly.newPlot('LARIOJADiv', traces,layout);
+	};
+	  makeplot();
+}//La Rioja
+
+
 
 </script>
 
