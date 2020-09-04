@@ -13,8 +13,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
 
+<style>
 * {
   box-sizing: border-box;
 }
@@ -89,15 +89,82 @@
 }
 
 </style>
+
+<style style="text/css">
+        .marquee {
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            background: #fefefe;
+            color: #333;
+            border: 1px solid #4a4a4a;
+        }
+        
+        .marquee p {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            line-height: 30px;
+            text-align: center;
+            -moz-transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            -moz-animation: scroll-left 2s linear infinite;
+            -webkit-animation: scroll-left 2s linear infinite;
+            animation: scroll-left 50s linear infinite;
+        }
+        
+        @-moz-keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+            }
+        }
+        
+        @-webkit-keyframes scroll-left {
+            0% {
+                -webkit-transform: translateX(100%);
+            }
+            100% {
+                -webkit-transform: translateX(-100%);
+            }
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+    
+    <div class="marquee">
+    <p>	
+    <div id='bannerdiv'></div>
+    </p>
+    </div>
+    
 </head>
+
 <body style="font-family:Verdana;color:#aaaaaa;">
 
-<div class="header" id='bannerdiv'>
-<!--  <h1>Header</h1> 
-  <p>Bariloche</p>-->
-  <div id='bannerdiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-</div>
 
+
+
+<!--
+<div class="header" id='bannerdiv'>
+  <div id='bannerdiv'></div>
+</div>
+-->
 
 
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
@@ -232,12 +299,12 @@ Desarrollado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> -
 	   var ultimaTotales=Totales[Fechas.length-1];
 	   var ultimaActivos=Activos[Fechas.length-1];
 	   var ultimaDiarios=Totales[Fechas.length-1]-Totales[Fechas.length-2];	
-	   document.getElementById("bannerdiv").innerHTML = "<i>Bariloche</i> "+
+	   document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> "+
 	   ultimaFechas+": Nuevos Casos:<b>"+ultimaDiarios+"</b>, Total:<b>"+ultimaTotales+"</b>, Muertes:<b>"
 	   +ultimaMuertes+"</b>, Recuperados:<b>"+ultimaRecuperados+
 	   "</b>, Activos:<b>"+ultimaActivos+
 	   "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">"
-	   +" [*] </a>"
+	   +" [*] </a></p>"
 	   //"</b>, *Activos:<b>"+ultimaActivos
 </script>
 
