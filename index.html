@@ -74,10 +74,10 @@
 .header {
   padding: 2px;
   text-align: center;
-  background: LightGrey;
+  background: White;
   color: black;
   font-size: 12px;
-  height: 20px;
+  height: 50px;
 }
 
 
@@ -102,7 +102,7 @@
         
         .marquee p {
             position: absolute;
-            width: 100%;
+            width: 200%;
             height: 100%;
             margin: 0;
             line-height: 30px;
@@ -112,7 +112,7 @@
             transform: translateX(100%);
             -moz-animation: scroll-left 2s linear infinite;
             -webkit-animation: scroll-left 2s linear infinite;
-            animation: scroll-left 50s linear infinite;
+            animation: scroll-left 30s linear infinite;
         }
         
         @-moz-keyframes scroll-left {
@@ -147,25 +147,22 @@
         }
     </style>
     
+<!--
     <div class="marquee">
     <p>	
     <div id='bannerdiv'></div>
     </p>
     </div>
+-->
     
 </head>
 
 <body style="font-family:Verdana;color:#aaaaaa;">
 
-
-
-
-<!--
+<!---->
 <div class="header" id='bannerdiv'>
   <div id='bannerdiv'></div>
 </div>
--->
-
 
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
 
@@ -304,7 +301,7 @@ Desarrollado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> -
 	   +ultimaMuertes+"</b>, Recuperados:<b>"+ultimaRecuperados+
 	   "</b>, Activos:<b>"+ultimaActivos+
 	   "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">"
-	   +" [*] </a></p>"
+	   +" [*]</a></p>"
 	   //"</b>, *Activos:<b>"+ultimaActivos
 </script>
 
