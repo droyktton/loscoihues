@@ -261,7 +261,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length; i++) {
+		for (var i=0; i<allRows.length-10; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );
@@ -493,7 +493,7 @@ function plotriesgo(ciudad){
 		      y: 0.95,
 		      xref: 'paper',
 		      yref: 'paper',
-		      text: fecha[0]+" al "+fecha[size2-1],
+		      text: "FIS: "+fecha[0]+" al "+fecha[size2-1],
 		      font: { color: "white",size: 15},
 		      showarrow: false,
 		    },
