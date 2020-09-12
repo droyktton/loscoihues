@@ -261,7 +261,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length-10; i++) {
+		for (var i=0; i<allRows.length-difTucuman; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );

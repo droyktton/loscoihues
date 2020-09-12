@@ -259,7 +259,7 @@ function plotriesgo(ciudad){
 		//console.log(allRows);
 		var ia14 = [], rho7 = [], fecha = [];
 
-		for (var i=0; i<allRows.length; i++) {
+		for (var i=0; i<allRows.length-difTierraDelFuego; i++) {
 			row = allRows[i];
 			fecha.push( row['fecha'] )
 			rho7.push( row['rho7dpromedio'] );
