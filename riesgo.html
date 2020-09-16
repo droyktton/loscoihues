@@ -263,16 +263,14 @@ Implementado por K. F. Laneri y A. B. Kolton para <a href="https://covidbariloch
 
 ciudad='';	
 plotriesgo('./RiesgoBariloche');
-
+//plotriesgo('https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche');
 function plotriesgo(ciudad){
 
-	
+	titulo="test";
 	if(ciudad=='./RiesgoBariloche') titulo="<b>Diagrama de Riesgo: San Carlos de Bariloche</b>"
 	if(ciudad=='./RiesgoRioNegro') titulo="<b>Diagrama de Riesgo: Río Negro</b>"
 	if(ciudad=='./RiesgoGeneralRoca') titulo="<b>Diagrama de Riesgo: General Roca</b>"
 	
-
-
 
 	// para que ande local
 /*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
@@ -661,7 +659,7 @@ function plotriesgo(ciudad){
 		}
 		var dataActivosPredichos = {
 			y: copiaIA14predicho,
-			x: fechaextended,
+			x: fecha,
 			mode: 'markers+lines',
 		  	type: 'scatter',
 		  	marker: 
@@ -687,7 +685,7 @@ function plotriesgo(ciudad){
 		var maxY=800;
 
 		var ultimafecha={
-			x: [fechaextended[size2],fechaextended[size2]],
+			x: [fechaextended[size2-10],fechaextended[size2-10]],
 			y: [0,maxY],
 			mode: 'lines',
 			opacity: 0.5,
@@ -698,13 +696,13 @@ function plotriesgo(ciudad){
 		};
 
 		var ultimafechamas7={
-			x: [fechaextended[size2+6],fechaextended[size2+6]],
+			x: [fechaextended[size2],fechaextended[size2]],
 			y: [0,maxY],
 			mode: 'lines',
 			opacity: 0.5,
 		  	line: { width: 1, color: 'black'},
 			//name: 'yaxis2 data',
-			name: 'predicción a futuro',
+			name: 'Carga de Datos Incompleta',
 			fill: 'tonextx',
 			fillcolor: 'rgba(255, 0, 0, 0.3)',			
 		};
@@ -794,7 +792,7 @@ function plotriesgo(ciudad){
 			//document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: <i>predicciones vs mediciones</i> </h2></p>';
 			//document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
 		
-			Plotly.newPlot('myDiv3',[dataR,rho7eq1,rho7eq2],layoutR,config);
+			Plotly.newPlot('myDiv3',[dataR,rho7eq1,rho7eq2,ultimafecha,ultimafechamas7],layoutR,config);
 			Plotly.newPlot('myDiv2',[dataActivos,dataActivosPredichos,ultimafecha,ultimafechamas7],layoutActivos,config);
 		}
 		else{
