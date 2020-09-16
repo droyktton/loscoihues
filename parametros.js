@@ -1,10 +1,10 @@
 difRN=0;
-difBsAs=7;
-difCABA=7;
+difBsAs=10;
+difCABA=10;
 difCba=7;
 difChaco=7;
 difEntreRios=7;
-difJujuy=7;
+difJujuy=10;
 difLaRioja=7;
 difMendoza=7;
 difNeu=7;
