@@ -1,6 +1,6 @@
 PATHACTUAL=$PWD
-PATHTABLERO="/home/ale/Codigos/webexp/tablero-publico/html"
-PATHTCOIHUES="/home/ale/Codigos/webexp/loscoihues/"
+PATHTABLERO="/home/koltona/Codigos/tablero-publico/html"
+PATHTCOIHUES="/home/koltona/Codigos/loscoihues/"
 
 cd $PATHTABLERO
 printf "bajando tablero...\n"
