@@ -371,9 +371,10 @@
 
             Plotly.newPlot('RioNegroDiv3', traces3, layout3, config);
 
+            var indetectados = 125000 - (penultimaTotales + penultimaRecuperados + penultimaActivos + penultimaMuertes);
 
             var pastel = [{
-                values: [penultimaTotales, penultimaRecuperados, penultimaActivos, penultimaMuertes, 125000 - (penultimaTotales + penultimaRecuperados + penultimaActivos + penultimaMuertes)],
+                values: [penultimaTotales, penultimaRecuperados, penultimaActivos, penultimaMuertes, indetectados],
                 labels: ['Infectados Detectados', 'Recuperados', 'Activos', 'Muertes', 'Susceptibles/Infectados Indetectados'],
                 type: 'pie'
             }];
