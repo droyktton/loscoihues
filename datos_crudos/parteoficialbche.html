@@ -1,22 +1,25 @@
 <!-- K. Laneri and A. B. Kolton 2020 -->
 
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-	  gtag('config', 'UA-171435841-1');
-	</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-171435841-1');
+    </script>
 
 
 
-	<!-- Responsive layouts -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-	/* {
+    <!-- Responsive layouts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* {
 	  box-sizing:border-box;
 	}
 
@@ -33,129 +36,133 @@
 	  width:20%; // The width is 20%, by default 
 	} 
 	*/
+        
+        .main {
+            background-color: #f1f1f1;
+            padding: 20px;
+            float: left;
+            width: 60%;
+            /* The width is 60%, by default */
+        }
+        /* Use a media query to add a break point at 800px: */
+        
+        @media screen and (max-width:800px) {
+            .left,
+            .main,
+            .right {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+            }
+        }
+    </style>
 
-	.main {
-	  background-color:#f1f1f1;
-	  padding:20px;
-	  float:left;
-	  width:60%; /* The width is 60%, by default */
-	}
-
-	/* Use a media query to add a break point at 800px: */
-	@media screen and (max-width:800px) {
-	  .left, .main, .right {
-	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
-	  }
-	}
-	</style>
 
 
+    <style>
+        div.scrollmenu {
+            background-color: #999;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+        
+        div.scrollmenu a:hover {
+            background-color: #111;
+        }
+    </style>
 
-	<style>
-		div.scrollmenu {
-		  background-color: #999;
-		  overflow: auto;
-		  white-space: nowrap;
-		}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		div.scrollmenu a {
-		  display: inline-block;
-		  color: white;
-		  text-align: center;
-		  padding: 14px;
-		  text-decoration: none;
-		}
-
-		div.scrollmenu a:hover {
-		  background-color: #111;
-		}
-	</style>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
-	<!-- Load plotly.js into the DOM -->
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
 </head>
 
 
 <body>
 
-<p>
-<a href="../index.html">[Volver]</a>
-</p>
+    <p>
+        <a href="../index.html">[Volver]</a>
+    </p>
 
-<h3>Parte Oficial Bariloche al <div id='hoy'> </div></h3>
-<div id='IndicatorsDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-<div id='RioNegroDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <h3>Parte Oficial Bariloche al
+        <div id='hoy'> </div>
+    </h3>
+    <div id='IndicatorsDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <div id='RioNegroDiv2'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
 
-<p>* El número de activos del parte oficial subestima el número de activos porque 
-no reajusta retroactivamente para tener en cuenta los sintomáticos de los últimos 
-días que no llegaron a ser testeados. Nuestra estimación es que la demora media entre 
-inicio de síntomas y testeo/reporte es actualmente de cuatro días en Bariloche. 
-El déficit es aproximadamente el correspondiente a 4 veces la media diaria de casos 
-en la última semana (Ejemplo: si hay declarados 400 activos y la media de casos los últimos cuatro días fue 
-de 20 casos diarios, el número de activos se estima que sea 400+20*4=480 aproximadamente). 
-Ver estimación de demoras y discusión ampliada <a href="./discutirbariloche.html"> aquí </a>. 
-</p>
+    <p>* El número de activos del parte oficial subestima el número de activos porque no reajusta retroactivamente para tener en cuenta los sintomáticos de los últimos días que no llegaron a ser testeados. Nuestra estimación es que la demora media entre
+        inicio de síntomas y testeo/reporte es actualmente de cuatro días en Bariloche. El déficit es aproximadamente el correspondiente a 4 veces la media diaria de casos en la última semana (Ejemplo: si hay declarados 400 activos y la media de casos
+        los últimos cuatro días fue de 20 casos diarios, el número de activos se estima que sea 400+20*4=480 aproximadamente). Ver estimación de demoras y discusión ampliada <a href="./discutirbariloche.html"> aquí </a>.
+    </p>
 
-<div id='RioNegroDiv3'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='RioNegroDiv3'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
 
-<script src="DatosCovidBariloche.js"></script>
+    <script src="DatosCovidBariloche.js"></script>
 
-<script>
+    <script>
+        hacerParteOficial();
 
-hacerParteOficial();
+        function hacerParteOficial() {
 
-function hacerParteOficial(){
+            var ultimaFechas = Fechas[Fechas.length - 1];
+            var ultimaMuertes = Muertes[Fechas.length - 1];
+            var ultimaActivos = Activos[Fechas.length - 1];
+            var ultimaRecuperados = Recuperados[Fechas.length - 1];
+            var ultimaTotales = Totales[Fechas.length - 1];
 
-	   var ultimaFechas=Fechas[Fechas.length-1];
-	   var ultimaMuertes=Muertes[Fechas.length-1];
-	   var ultimaActivos=Activos[Fechas.length-1];
-	   var ultimaRecuperados=Recuperados[Fechas.length-1];
-	   var ultimaTotales=Totales[Fechas.length-1];
+            var penultimaTotales = Totales[Fechas.length - 2];
+            var penultimaMuertes = Muertes[Fechas.length - 2];
+            var penultimaActivos = Activos[Fechas.length - 2];
+            var penultimaRecuperados = Recuperados[Fechas.length - 2];
+            var penultimaTotales = Totales[Fechas.length - 2];
 
-	   var penultimaTotales=Totales[Fechas.length-2];
-	   var penultimaMuertes=Muertes[Fechas.length-2];
-	   var penultimaActivos=Activos[Fechas.length-2];
-	   var penultimaRecuperados=Recuperados[Fechas.length-2];
-	   var penultimaTotales=Totales[Fechas.length-2];
+            var config = {
+                responsive: true
+            };
 
-	    var config = {responsive: true};
-
-	   var traces2 = [
-	   {
-	    x: Fechas,
-	    y: Totales,
-	    name: "Infectados",
-	    mode: 'markers+lines',
-	   },
-	   {
-	    x: Fechas,
-	    y: Recuperados,
-	    name: "Recuperados",
-	    mode: 'markers+lines',
-	   },
-	   {
-	    x: Fechas,
-	    y: Activos,
-	    name: "Activos (subestimados*)",
-	    mode: 'markers+lines',
-	   },
-	   {
-	    x: Fechas,
-	    y: Muertes,
-	    name: "Muertes",
-	    mode: 'markers+lines',
-	   },
-	   /*{
+            var traces2 = [{
+                    x: Fechas,
+                    y: Totales,
+                    name: "Infectados",
+                    mode: 'markers+lines',
+                }, {
+                    x: Fechas,
+                    y: Recuperados,
+                    name: "Recuperados",
+                    mode: 'markers+lines',
+                }, {
+                    x: Fechas,
+                    y: Activos,
+                    name: "Activos (subestimados*)",
+                    mode: 'markers+lines',
+                }, {
+                    x: Fechas,
+                    y: Muertes,
+                    name: "Muertes",
+                    mode: 'markers+lines',
+                },
+                /*{
     	    type: "indicator",
             mode: "number",
 	    title: { text: "Ultima Fecha" },            
 	    value: ultimaFechas,
 	    domain: { x: [0.0, 0.1], y: [0.9, 1.0] }
            },*/
-	   /*{
+                /*{
     	    type: "indicator",
             mode: "number+delta",
 	    title: { text: "Totales" },            
@@ -191,128 +198,196 @@ function hacerParteOficial(){
 	    delta: { reference: penultimaMuertes, valueformat: ".0f" },
     	    ticker: { showticker: true },
            },*/
-	   ]
+            ]
 
-	   document.getElementById("hoy").innerHTML = ultimaFechas;
+            document.getElementById("hoy").innerHTML = ultimaFechas;
 
-	   var indicators=[
-	   {
-    	    type: "indicator",
-            mode: "number+delta",
-	    title: { text: "Totales" },            
-            value: ultimaTotales,
-            domain: { row: 0, column: 0 },
-	    //domain: { x: [0.1, 0.2], y: [0.9, 1.0] },
-	    delta: { reference: penultimaTotales, valueformat: ".0f" },
-    	    ticker: { showticker: true },
-           },
-	   {
-    	    type: "indicator",
-            mode: "number+delta",
-	    title: { text: "Activos (subestimados*)" },            
-            value: ultimaActivos,
-            domain: { row: 1, column: 0 },
-	    //domain: { x: [0.3, 0.4], y: [0.9, 1.0] },
-	    delta: { reference: penultimaActivos, valueformat: ".0f" },
-    	    ticker: { showticker: true },
-           },
-	   {
-    	    type: "indicator",
-            mode: "number+delta",
-	    title: { text: "Recuperados" },            
-            value: ultimaRecuperados,
-            domain: { row: 0, column: 1 },
-	    //domain: { x: [0.5, 0.6], y: [0.9, 1.0] },
-	    delta: { reference: penultimaRecuperados, valueformat: ".0f" },
-    	    ticker: { showticker: true },
-           },
-	   {
-    	    type: "indicator",
-            mode: "number+delta",
-	    title: { text: "Muertes" },            
-	    value: ultimaMuertes,
-            domain: { row: 1, column: 1 },
-	    //domain: { x: [0.7, 0.8], y: [0.9, 1.0] },
-	    delta: { reference: penultimaMuertes, valueformat: ".0f" },
-    	    ticker: { showticker: true },
-           },
-	   ]
-	   
-	   
-	  var layoutind = {
-	  /*title: {
+            var indicators = [{
+                type: "indicator",
+                mode: "number+delta",
+                title: {
+                    text: "Totales"
+                },
+                value: ultimaTotales,
+                domain: {
+                    row: 0,
+                    column: 0
+                },
+                //domain: { x: [0.1, 0.2], y: [0.9, 1.0] },
+                delta: {
+                    reference: penultimaTotales,
+                    valueformat: ".0f"
+                },
+                ticker: {
+                    showticker: true
+                },
+            }, {
+                type: "indicator",
+                mode: "number+delta",
+                title: {
+                    text: "Activos (subestimados*)"
+                },
+                value: ultimaActivos,
+                domain: {
+                    row: 1,
+                    column: 0
+                },
+                //domain: { x: [0.3, 0.4], y: [0.9, 1.0] },
+                delta: {
+                    reference: penultimaActivos,
+                    valueformat: ".0f"
+                },
+                ticker: {
+                    showticker: true
+                },
+            }, {
+                type: "indicator",
+                mode: "number+delta",
+                title: {
+                    text: "Recuperados"
+                },
+                value: ultimaRecuperados,
+                domain: {
+                    row: 0,
+                    column: 1
+                },
+                //domain: { x: [0.5, 0.6], y: [0.9, 1.0] },
+                delta: {
+                    reference: penultimaRecuperados,
+                    valueformat: ".0f"
+                },
+                ticker: {
+                    showticker: true
+                },
+            }, {
+                type: "indicator",
+                mode: "number+delta",
+                title: {
+                    text: "Muertes"
+                },
+                value: ultimaMuertes,
+                domain: {
+                    row: 1,
+                    column: 1
+                },
+                //domain: { x: [0.7, 0.8], y: [0.9, 1.0] },
+                delta: {
+                    reference: penultimaMuertes,
+                    valueformat: ".0f"
+                },
+                ticker: {
+                    showticker: true
+                },
+            }, ]
+
+
+            var layoutind = {
+                /*title: {
 		text: "Parte Oficial Bariloche al "+ultimaFechas,
 		x: 0,
 	  },*/
-	  //width: 600,
-	  //height: 400,
-	  margin: { t: 25, b: 25, l: 25, r: 25 },
-	  grid: { rows: 2, columns: 2, pattern: "independent" },
-	  template: {
-	    data: {
-	      indicator: [
-		{
-		  title: { text: "Speed" },
-		  mode: "number+delta+gauge",
-		  delta: { reference: 90 }
-		}
-	      ]
-	    }
-	  }
-	 };
-	   
+                //width: 600,
+                //height: 400,
+                margin: {
+                    t: 25,
+                    b: 25,
+                    l: 25,
+                    r: 25
+                },
+                grid: {
+                    rows: 2,
+                    columns: 2,
+                    pattern: "independent"
+                },
+                template: {
+                    data: {
+                        indicator: [{
+                            title: {
+                                text: "Speed"
+                            },
+                            mode: "number+delta+gauge",
+                            delta: {
+                                reference: 90
+                            }
+                        }]
+                    }
+                }
+            };
 
-	   var layout2 = {
-		title: {
-			text: "Series Temporales",
-			x: 0,
-		},
-		autosize: true,
-		xaxis: {title: 'Fecha de Reporte'},
-		//yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
-		yaxis: {autorange: 'true'},
-		//showlegend: false,
-		hovermode: "closest",
-		//grid: { rows: 2, columns: 2, pattern: "independent" },	    
-	   }
 
-	   Plotly.newPlot('IndicatorsDiv', indicators, layoutind,config);
-	   Plotly.newPlot('RioNegroDiv2', traces2,layout2,config);
+            var layout2 = {
+                title: {
+                    text: "Series Temporales",
+                    x: 0,
+                },
+                autosize: true,
+                xaxis: {
+                    title: 'Fecha de Reporte'
+                },
+                //yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
+                yaxis: {
+                    autorange: 'true'
+                },
+                //showlegend: false,
+                hovermode: "closest",
+                //grid: { rows: 2, columns: 2, pattern: "independent" },	    
+            }
 
-	   var Diarios=[];
-	   Diarios[0]=Totales[0];	
-	   for(var i=1;i<Totales.length;i++)
-	   Diarios[i]=(Totales[i]-Totales[i-1]); 
+            Plotly.newPlot('IndicatorsDiv', indicators, layoutind, config);
+            Plotly.newPlot('RioNegroDiv2', traces2, layout2, config);
 
-	   var promedioultimasemana=0;
-	   for(var i=Diarios.length-7;i<Diarios.length;i++)
-	   promedioultimasemana=promedioultimasemana+Diarios[i];
-	   //promedioultimasemana=promedioultimasemana/7.0;	
-	   promedioultimasemana=Number((promedioultimasemana/7.0).toFixed(1));
-	   var traces3 = [
-	   {
-	    x: Fechas,
-	    y: Diarios,
-	    type: 'bar',
-	    name: "Número total de Infectados",
-	   },
-	   ]
-	   var layout3 = {
-		title: {
-			text: "Casos Diarios en Bariloche, promedio última semana=" +promedioultimasemana,
-			x: 0,
-		},
-		autosize: true,
-		xaxis: {title: 'Fecha de Reporte'},
-		yaxis: {title: 'Casos Diarios (Sintomáticos)',autorange: 'true'},
-		//showlegend: false,
-		hovermode: "closest",
-	    }
+            var Diarios = [];
+            Diarios[0] = Totales[0];
+            for (var i = 1; i < Totales.length; i++)
+                Diarios[i] = (Totales[i] - Totales[i - 1]);
 
-	    Plotly.newPlot('RioNegroDiv3', traces3,layout3,config);
-}
+            var promedioultimasemana = 0;
+            for (var i = Diarios.length - 7; i < Diarios.length; i++)
+                promedioultimasemana = promedioultimasemana + Diarios[i];
+            //promedioultimasemana=promedioultimasemana/7.0;	
+            promedioultimasemana = Number((promedioultimasemana / 7.0).toFixed(1));
+            var traces3 = [{
+                x: Fechas,
+                y: Diarios,
+                type: 'bar',
+                name: "Número total de Infectados",
+            }, ]
+            var layout3 = {
+                title: {
+                    text: "Casos Diarios en Bariloche, promedio última semana=" + promedioultimasemana,
+                    x: 0,
+                },
+                autosize: true,
+                xaxis: {
+                    title: 'Fecha de Reporte'
+                },
+                yaxis: {
+                    title: 'Casos Diarios (Sintomáticos)',
+                    autorange: 'true'
+                },
+                //showlegend: false,
+                hovermode: "closest",
+            }
 
-</script>
+            Plotly.newPlot('RioNegroDiv3', traces3, layout3, config);
+
+
+            var pastel = [{
+                values: [penultimaTotales, penultimaRecuperados, penultimaActivos, penultimaMuertes, 125000 - (penultimaTotales + penultimaRecuperados + penultimaActivos + penultimaMuertes)],
+                labels: ['Infectados Detectados', 'Recuperados', 'Activos', 'Muertes', 'Susceptibles/Infectados Indetectados'],
+                type: 'pie'
+            }];
+
+
+            var layoutpastel = {
+                height: 400,
+                width: 500
+            };
+
+            Plotly.newPlot('myDiv', pastel, layoutpastel); *
+
+
+        }
+    </script>
 
 </body>
-
