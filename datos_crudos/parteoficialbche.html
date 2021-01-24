@@ -111,6 +111,10 @@
         <!-- Plotly chart will be drawn inside this DIV -->
     </div>
 
+    <div id='RioNegroDiv4'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+
     <script src="DatosCovidBariloche.js"></script>
 
     <script>
@@ -334,7 +338,7 @@
             }
 
             Plotly.newPlot('IndicatorsDiv', indicators, layoutind, config);
-            Plotly.newPlot('RioNegroDiv2', traces2, layout2, config);
+            Plotly.newPlot('RioNegroDiv3', traces2, layout2, config);
 
             var Diarios = [];
             Diarios[0] = Totales[0];
@@ -369,23 +373,24 @@
                 hovermode: "closest",
             }
 
-            Plotly.newPlot('RioNegroDiv3', traces3, layout3, config);
+            Plotly.newPlot('RioNegroDiv2', traces3, layout3, config);
 
-            var indetectados = 125000 - (penultimaTotales + penultimaRecuperados + penultimaActivos + penultimaMuertes);
+            var indetectados = 125000 - (penultimaTotales);
 
             var pastel = [{
-                values: [penultimaTotales, penultimaRecuperados, penultimaActivos, penultimaMuertes, indetectados],
-                labels: ['Infectados Detectados', 'Recuperados', 'Activos', 'Muertes', 'Susceptibles/Infectados Indetectados'],
+                values: [penultimaRecuperados, penultimaActivos, penultimaMuertes, indetectados],
+                labels: ['Recuperados', 'Activos', 'Muertes', 'Susceptibles/Infectados No Detectados'],
                 type: 'pie'
             }];
 
 
             var layoutpastel = {
-                height: 400,
-                width: 500
+                height: 600,
+                width: 800,
+                title: 'Porcentuales sobre Poblacion de Bariloche'
             };
 
-            Plotly.newPlot('myDiv', pastel, layoutpastel); *
+            Plotly.newPlot('RioNegroDiv4', pastel, layoutpastel);
 
 
         }
