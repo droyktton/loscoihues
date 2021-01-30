@@ -3,14 +3,14 @@
 ####guardo datos en un archivo que luego serán leídos por 
 ####otro programa que hará el diagrama de riesgo
 
-setwd("~/backupOct2019/COVID19/DIAGRAMAS_DE_RIESGO/PaisDatosMinSal/")
+setwd("/home/koltona/Codigos/loscoihues/scriptR")
 library(tidyverse)
 library(dplyr)
 library(readxl)
 library(lubridate)
 library(xts)
 library(stringi)
-library(plotly)
+#library(plotly)
 #Leo base de datos del MInSal
 DatosMinSalTodo<-read.csv("CasosRioNegroMinSal.csv")
 ## SELECCIONO SOLO LOS CONFIRMADOS

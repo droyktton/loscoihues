@@ -3,7 +3,7 @@
 ####guardo datos en un archivo que luego serán leídos por 
 ####otro programa que hará el diagrama de riesgo
 
-setwd("~/backupOct2019/COVID19/DIAGRAMAS_DE_RIESGO/PaisDatosMinSal/")
+setwd("/home/koltona/Codigos/loscoihues/scriptR")
 library(tidyverse)
 library(dplyr)
 library(readxl)

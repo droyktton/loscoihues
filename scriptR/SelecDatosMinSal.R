@@ -4,7 +4,7 @@
 #### y como es muy pesada selecciono los casos confirmados y sospechosos de CABA
 #####y los guardo  en un archivo ###########
 
-setwd("~/backupOct2019/COVID19/DIAGRAMAS_DE_RIESGO/PaisDatosMinSal/")
+setwd("/home/koltona/Codigos/loscoihues/scriptR")
 library(tidyverse)
 library(dplyr)
 library(readxl)

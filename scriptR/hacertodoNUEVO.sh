@@ -1,3 +1,4 @@
+
 ###borro el archivo viejo
 #rm Covid19Casos.csv
 ###bajo el archivo nuevo
@@ -12,11 +13,13 @@
 
 #desde aca
 ####copio
-cp /home/karina/backupOct2019/ProgsBitbucket/loscoihues/Riesgo* /home/karina/backupOct2019/ProgsBitbucket/loscoihues/riesgos_dia_anterior/
+
+
+cp /home/koltona/Codigos/loscoihues/Riesgo* /home/koltona/Codigos/loscoihues/riesgos_dia_anterior/
 
 
 #######hago las cuentas
-cd /home/karina/backupOct2019/COVID19/DIAGRAMAS_DE_RIESGO/PaisDatosMinSal
+cd /home/koltona/Codigos/loscoihues/scriptR/
 ##borro file viejo
 rm Covid19Casos.csv
 #bajo el nuevo
@@ -40,13 +43,12 @@ R CMD BATCH NUEVORiskDiag_LARIOJA.R
 R CMD BATCH NUEVORiskDiag_ENTRERIOS.R
 
 ##copio nuevos archivos
-cp Riesgo* /home/karina/backupOct2019/ProgsBitbucket/loscoihues 
-cp NuevosCasosConfirmadosPorDia* /home/karina/backupOct2019/ProgsBitbucket/loscoihues/datos_crudos
-cp Fechas* /home/karina/backupOct2019/ProgsBitbucket/loscoihues/datos_crudos
-cd ..
+cp Riesgo* /home/koltona/Codigos/loscoihues/ 
+cp NuevosCasosConfirmadosPorDia* /home/koltona/Codigos/loscoihues/datos_crudos/
+cp Fechas* /home/koltona/Codigos/loscoihues/datos_crudos/
 
 ###### subo al repositorio
-cd /home/karina/backupOct2019/ProgsBitbucket/loscoihues
+cd /home/koltona/Codigos/loscoihues
 git pull
 git add Riesgo* datos_crudos
 git commit -m "actualizacion"
@@ -69,8 +71,8 @@ gnuplot comparar_ayer_hoy.gnu
 
 ###Instrucciones para actualizar los casos etc de CovidBariloche
 ###git pull
-cd /home/karina/backupOct2019/ProgsBitbucket/CovidBariloche/TableroPrivado/tablero-privado
-git pull
+#cd /home/karina/backupOct2019/ProgsBitbucket/CovidBariloche/TableroPrivado/tablero-privado
+#git pull
 ####ir al archivo index.html
 
 ###OJO no hacer push ni nada ahi!!!!!!!!!!!!!!!!
