@@ -1,0 +1,819 @@
+<!-- K. Laneri and A. B. Kolton 2020 -->
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-171435841-1');
+    </script>
+
+    <script src="parametros.js"></script>
+
+
+    <!-- Responsive layouts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* {
+	  box-sizing:border-box;
+	}
+
+	.left {
+	  background-color:#2196F3;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	}
+	.right {
+	  background-color:#4CAF50;
+	  padding:20px;
+	  float:left;
+	  width:20%; // The width is 20%, by default 
+	} 
+	*/
+        
+        .main {
+            background-color: #f1f1f1;
+            padding: 20px;
+            float: left;
+            width: 60%;
+            /* The width is 60%, by default */
+        }
+        /* Use a media query to add a break point at 800px: */
+        
+        @media screen and (max-width:800px) {
+            .left,
+            .main,
+            .right {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+            }
+        }
+    </style>
+
+
+
+    <style>
+        div.scrollmenu {
+            background-color: #999;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+        
+        div.scrollmenu a:hover {
+            background-color: #111;
+        }
+    </style>
+
+
+
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
+</head>
+
+
+<body>
+
+    <p>
+        <a href="./index.html">[Volver]</a> Todos los gráficos mostrados aquí están hechos con
+        <a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos del Ministerio de Salud de La Nación Argentina</a>. La calidad de los indicadores depende fuertemente de la calidad de estos datos.
+    </p>
+
+    <h3>Elegir Provincia o Departamentos</h3>
+
+    <div class="scrollmenu">
+        <a href="#" class="active" onclick="plotriesgo('./RiesgoCorrientesCorrientes')">Provincia de Corrientes</a>
+        <a href="#" onclick="plotriesgo('./RiesgoCorrientesCapital')">Capital</a>
+        <a href="#" onclick="plotriesgo('./RiesgoCorrientesGoya')">Goya </a>
+        <a href="#" onclick="plotriesgo('./RiesgoCorrientesTomé')">Satnto Tomé</a>
+    </div>
+
+
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+
+    <p id="myDiv2tit"></p>
+    <div id='myDiv2'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+
+    <p id="myDiv3tit"></p>
+    <div id='myDiv3'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+
+
+    <!-- ############################################################################ -->
+    <!-- ############################################################################ -->
+    <!-- ############################################################################ -->
+    <!--===================================== AQUI BREVE DESCRIPCION =====================================-->
+    <div class="main">
+        <p style="font-family:arial;"> En el primer gráfico los ejes corresponden a dos indicadores: el "Número de Activos" y el "Número Reproductivo Empírico".
+
+            <ul>
+                <li style="font-family:arial;">
+                    <b>El Número Reproductivo Empírico</b>, R7, es similar al
+                    <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number#Effective_reproduction_number">
+"Número de Reproducción Efectivo" </a> que determina a cuantas personas contagia en promedio un infectado hasta que se recupera. Valores de R7 mayores que 1 indican un crecimiento exponencial, o multiplicativo, de la epidemia.
+                </li>
+                <p></p>
+
+                <li style="font-family:arial;">
+                    <b>El Número de Activos</b>, A14, es una medida del número de <i>casos positivos activos</i>. Mide el número de personas cuyo testeo dió positivo con fecha de inicio de síntomas en los últimos 14 días, por cada 100mil habitantes. Es
+                    decir, las personas que podrían en principio contagiar, pero sin contemplar a los activos asintomáticos.
+                </li>
+            </ul>
+
+
+            <p style="font-family:arial;">
+                Cada punto del gráfico es una foto de situación de un día dado. Los días más recientes aparecen como puntos más brillantes. La curva es la trayectoria que siguen estos indicadores en base a cálculos derivados exclusivamente del número de casos positivos
+                hasta ese día, en la población seleccionada. Seleccionando un dado punto, se accede a la información del valor de R7, A14.</p>
+
+            <p style="font-family:arial;">
+                La interpretación del gráfico es la siguiente: si para un dado día, el número de activos es A14 y el número reproductivo empírico R7, el producto P = A14 x R7 predice aproximadamente el número de activos que habrán dentro de una semana, por cada 100000
+                habitantes. Esta estimación puede no ser precisa debido a las fluctuaciones que provienen de los datos, tal como efectos de la carga atrasada de casos positivos o la incertidumbre en la fecha de inicio de síntomas de los casos. Aun así
+                tiene un buen valor predictivo, de tipo estadístico.</p>
+
+            <p style="font-family:arial;">
+                <b>Ejemplo:</b> Para un dado día el valor de R7 es 1.5, la cantidad de casos está creciendo exponencialmente. Y si además el número de activos A14 es 50 por cada 100mil habitantes el número activos predichos en una semana es P=R7*A14=75,
+                por cada 100mil habitantes. Para conocer el número de activos en una población dada se debe multiplicar P por en número de habitantes y dividir por 100mil.
+
+
+                <p style="font-family:arial;">
+                    En base a esto tenemos diversos escenarios:</p>
+
+                <ol>
+                    <li style="font-family:arial;"> El <b>mejor escenario</b> es un número reproductivo empírico bajo (idealmente por debajo de 1) y número de activos bajo (abajo y a la izquierda del gráfico). En este caso, se predicen muy pocos nuevos casos para los próximos días.
+                    </li>
+
+
+                    <li style="font-family:arial;"> <b>Escenario moderadamente grave</b> cuando el número reproductivo empírico R7 es bajo pero el número de activos A14 alto. Un incremento repentino de R7 podría producir una importate alza en el número de activos en los próximos días.
+                    </li>
+
+                    <li style="font-family:arial;"> <b>Escenario moderadamente grave</b> cuando el número reproductivo empírico R7 es alto pero el número de activos A14 bajo. Si R7 es alto y mayor que 1 el número de contagios crecerá exponencialmente provocando un crecimiento muy rápido
+                        del número de activos en los próximos días.
+                    </li>
+
+                    <li style="font-family:arial;"> <b>Escenario grave</b>, cuando ambos indicadores son altos (arriba y a la derecha del gráfico). Implica un riesgo de colapso sanitario ya que la velocidad de recuperación de infectados sería mucho mas lenta que la de contagio. .
+            </p>
+            </li>
+            </ol>
+
+            <p style="font-family:arial;">
+                <b><i>Predicción a corto término</b> </p>
+            </i>
+            <p style="font-family:arial;">
+                Como se explicó en el ejemplo anterior, el producto de los valores del eje vertical por el horizontal del gráfico, P=R7 x A14, nos da la cantidad de activos por cada 100mil habitantes esperables en aproximadamente una semana (ver <a href="./calidadprediccion.html"
+                    style="font-family:arial;"> 
+	aquí</a>). Suponiendo que una fracción "f" de esos casos necesitará de cuidados intensivos, es deseable que el número de UTIs y UCIs disponibles sea suficiente para cubrir una cantidad del orden de P*f por cada 100mil habitantes. En el gráfico usamos
+                que f=0.035 es aproximadamente la fracción de test positivos que necesitarán cuidados intensivos según la estadística disponible de Argentina (ver <a href="explicacion.png" style="font-family:arial;"> explicación gráfica</a>).
+
+
+                <p style="font-family:arial;">Cada punto del gráfico tiene asociado un índice de riesgo (rojo: alto riesgo, azul: bajo riesgo). En la escala de colores se indica el número de Unidades de Cuidados Intensivos (CI) necesaria por cada 100mil habitantes en la semana próxima
+                    a la fecha consultada.
+
+
+                    <p style="font-family:arial;"> <b>Ejemplo:</b> En el gráfico, la zona roja comienza para una cantidad de 5 unidades de cuidados intensivos por cada 100mil habitantes, de manera que si un punto del gráfico comenzara a entrar en la zona roja, se nececitarían del orden
+                        de 5*Poblacion/100000 unidades de cuidados intensivos disponibles. Por ejemplo si se tratara de Bariloche (considerando una población estimada para Bariloche de 163743 habitantes) necesitaríamos 8 unidades de CI aproximadamente.</p>
+
+                    <p style="font-family:arial;">
+                        El indicador de riesgo P puede ayudar a la planificación. Dado que los recursos pueden aumentar (en caso en que se agreguen UCIs y UTIs) o disminuír en función del tiempo, el gráfico nos permite estimar la cantidad de unidades de cuidados intensivos necesarias
+                        para cubrir los casos graves y de esta forma planificar la eventual necesidad de ampliación de la capacidad hospitalaria. Por otro lado, la predicción P=A14*R7 permite preveer el número de casos positivos que necesitaríamos aislar.
+                    </p>
+
+
+                    <!--==========================================================================-->
+
+
+                    <p style="font-family:arial;"><b>Este indicador es estadístico y en gran medida empírico, 
+y debe ser usado en conjunto con otros indicadores.</b> </p>
+
+                    <p> Para mas detalles sobre el cálculo y usos de este indicador
+                        </ul>
+                        <li><a href="./DiagramasRiesgoRNyBRC.pdf"> Tutorial del Cálculo </a></li>
+                        <li><a href="https://biocomsc.upc.edu/en/covid-19"> Computational Biology and Complex Systems. BIOCOMSC </a></li>
+                        </ul>
+                        <p>
+                            Implementado por K. F. Laneri y A. B. Kolton para <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
+                        </p>
+    </div>
+    <!-- ############################################################################ -->
+    <!-- ############################################################################ -->
+    <!-- ############################################################################ -->
+
+
+
+    <script>
+        //location.reload();
+
+        ciudad = '';
+        plotriesgo('./RiesgoCorrientesCorrientes');
+
+        function plotriesgo(ciudad) {
+
+            if (ciudad == './RiesgoCorrientesCorrientes') titulo = "<b>Diagrama de Riesgo: Provincia de Corrientes</b>"
+            if (ciudad == './RiesgoCorrientesCapital') titulo = "<b>Diagrama de Riesgo: Capital</b>"
+            if (ciudad == './RiesgoCorrientesGoya') titulo = "<b>Diagrama de Riesgo: Goya</b>"
+            if (ciudad == './RiesgoCorrientesTomé') titulo = "<b>Diagrama de Riesgo: Santo Tomé</b>"
+
+            // para que ande local
+            /*	if(ciudad=='./RiesgoBariloche') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche';
+            	if(ciudad=='./RiesgoGeneralRoca') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoGeneralRoca';
+            	if(ciudad=='./RiesgoRioNegro') ciudad='https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoRioNegro';
+            */
+
+
+            // lee csv actualizado
+            function makeplot() {
+                Plotly.d3.csv(
+                    ciudad,
+                    function(datos) {
+                        processData(datos)
+                    }
+                );
+            };
+
+            // Desempaqueto el csv en los tres arrays
+            function processData(allRows) {
+                //console.log(allRows);
+                var ia14 = [],
+                    rho7 = [],
+                    fecha = [];
+
+                for (var i = 0; i < allRows.length - difEntreRios; i++) {
+                    row = allRows[i];
+                    fecha.push(row['fecha'])
+                    rho7.push(row['rho7dpromedio']);
+                    ia14.push(row['incidenciaAcum14d']);
+                }
+                //console.log('fecha',fecha , 'ia14',ia14, 'rho7',rho7);
+
+                // grafica los arrays
+                makePlotly(ia14, rho7, fecha);
+            };
+
+            function makePlotly(IA14, rho7, fecha) {
+                var size = 50,
+                    x = new Array(size),
+                    y = new Array(size),
+                    z = new Array(size),
+                    i, j;
+
+                var size2 = IA14.length;
+
+                // esto tiene que poder hacerse con una sola llamada a max(...).
+                var maxIA14 = 0.0;
+                var maxrho7 = 0.0;
+
+                var IA14predicho = new Array(size2 + 10);
+                var fechaextended = new Array(size2 + 10);
+
+                for (var i = 0; i < size2; i++) {
+                    ia14i = parseFloat(IA14[i])
+                    rho7i = parseFloat(rho7[i])
+                    if (maxIA14 < ia14i) maxIA14 = ia14i;
+                    if (maxrho7 < rho7i) maxrho7 = rho7i;
+                    //console.log("maxIA14=",maxIA14);		
+                    IA14predicho[i + 7] = IA14[i] * rho7[i];
+                    fechaextended[i] = fecha[i];
+                    //console.log(fecha[i]);
+                }
+                var d = new Date(fecha[size2 - 1]);
+                for (var i = 0; i < 7; i++) {
+                    d.setDate(d.getDate() + 1);
+                    fechaextended[size2 + i] = d.toISOString();
+                    //console.log(fechaextended[size2+i]);
+                };
+
+                console.log('ndatos=', size2, 'maxia14=', maxIA14, 'maxrho7=', maxrho7);
+
+                var ytesteo = [];
+
+                var DTL = 782; // cada cien mil
+                var UTIpUCI = (43 * 100000.0 / 135704.0) / (0.035); // CuidadosIntensivosLibresCadaCienMil/fracccioninternadosintensivos
+
+                //console.log("Limite Testeo=",DTL,"Limite Hospitalario=",UTIpUCI);
+
+                for (var i = 0; i <= size; i++) {
+                    x[i] = i * 1.4 * maxIA14 / size; //i*50.0/size; //i*1.5*maxIA14/size;  
+                    y[i] = i * 1.4 * maxrho7 / size; //i*10.0/size; // i*1.5**maxrho7/size; // i*maxrho7/size;
+                    z[i] = new Array(size);
+                    ytesteo[i] = DTL / x[i];
+                }
+
+                var amp = 5.0;
+                for (var i = 0; i < size; i++) {
+                    for (j = 0; j < size; j++) {
+                        z[i][j] = x[i] * y[j] * amp; //Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+                        //EPG = z*0.035/amp
+                    }
+                }
+
+
+                // EPG heatmap
+                var data = {
+                    z: z,
+                    x: x,
+                    y: y,
+                    type: 'contour',
+                    line: {
+                        smoothing: 0.85,
+                        width: 0
+                    },
+                    contours: {
+                        coloring: 'heatmap'
+                    },
+                    //name: 'yaxis data'
+                    hoverinfo: "none",
+                    name: '',
+                    colorscale: 'RdBu',
+                    autocontour: false,
+                    contours: {
+                        start: 0,
+                        end: 1500,
+                        size: 2
+                    },
+                    colorbar: {
+                        x: 1.0,
+                        len: 1.0,
+                        tickmode: "array",
+                        //tickvals: [0,DTL,UTIpUCI],
+                        //ticktext: ["Bajo Riesgo", "Capacidad de Testeo", "Capacidad Hospitalaria"]
+                        //EPG = z*0.035/5.0
+                        tickvals: [750, 1000, 1250, 1500],
+                        ticktext: [
+                            "~" + Math.trunc(750.0 * 0.035 * 100 / amp) / 100. + " CI cada 100000 hab",
+                            "~" + Math.trunc(1000.0 * 0.035 * 100 / amp) / 100. + " CI cada 100000 hab",
+                            "~" + Math.trunc(1250.0 * 0.035 * 100 / amp) / 100. + " CI cada 100000 hab",
+                            "~" + Math.trunc(1500.0 * 0.035 * 100 / amp) / 100. + " CI cada 100000 hab",
+                        ]
+                    }
+                };
+
+                /*var x1=new Array(10);
+                var y1=new Array(10);
+                for(var i=0;i<10;i++){
+                  x1[i]=10+5*Math.cos(6.28*0.1*i);
+                  y1[i]=10+5*Math.sin(6.28*0.1*i);
+                }
+                */
+
+                var opa = [];
+                var textomarkers = [];
+                for (var i = 0; i < size2; i++) {
+                    opa[i] = 2 * (i * 1.0 / size2) * (i * 1.0 / size2);
+                    if (i > size2 - 13) {
+                        opa[i] = 0.2;
+                    }
+                    taudup = Math.trunc(100 * 3.47 / Math.log(rho7[i])) / 100.0;
+                    //if(taudup<0) textomarkers[i]=fecha[i]+", no creciente";
+                    //else textomarkers[i]=fecha[i]+", Tdup="+taudup+" días";
+                    var ci = Number((IA14[i] * rho7[i] * 0.035).toFixed(1))
+                    textomarkers[i] = fecha[i] + ", CI~" + ci;
+                }
+
+                // curva de riesgo
+                var data2 = {
+                    x: IA14,
+                    y: rho7,
+                    mode: 'markers+lines',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: 'yellow',
+                        opacity: opa,
+                        line: {
+                            color: 'rgb(231, 99, 250)',
+                            width: 2,
+                            arrowhead: 10,
+                        }
+                    },
+                    line: {
+                        size: 1,
+                        color: 'black',
+                        dash: 'dot',
+                        shape: 'spline',
+                    },
+                    //name: 'yaxis2 data',
+                    text: textomarkers,
+                    name: ''
+                };
+
+                // linea de rho7==1
+                var data3 = {
+                    x: [0, maxIA14 * 1.4],
+                    y: [1, 1],
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 5,
+                        color: 'black',
+                        dash: 'dash'
+                    },
+                    //name: 'yaxis2 data',
+                    name: ''
+                };
+
+                // linea de capacidad de testeo
+                var testeo = {
+                    x: x,
+                    y: ytesteo,
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 5,
+                        color: 'yellow'
+                    },
+                    //name: 'yaxis2 data',
+                    name: 'Capacidad de Testeo',
+                    textposition: 'top center'
+                };
+
+                // ultimo punto, el mas reciente 
+                var ultimo = {
+                        x: [IA14[size2 - 1]],
+                        y: [rho7[size2 - 1]],
+                        mode: 'markers',
+                        marker: {
+                            size: 25,
+                            color: 'orange',
+                            symbol: 'star-triangle-up',
+                            line: {
+                                color: 'rgb(231, 99, 250)',
+                                width: 2
+                            }
+                        },
+                        name: '',
+                        text: '',
+                        hoverinfo: 'skip'
+                    }
+                    // priner punto, el mas viejo 
+                var primero = {
+                    x: [IA14[0]],
+                    y: [rho7[0]],
+                    mode: 'markers',
+                    marker: {
+                        size: 25,
+                        color: 'orange',
+                        symbol: 'circle',
+                        line: {
+                            color: 'rgb(231, 99, 250)',
+                            width: 2
+                        }
+                    },
+                    name: '',
+                    text: '',
+                    hoverinfo: 'skip'
+                }
+
+                var rho7i2 = rho7[2];
+                var IA14i2 = IA14[2];
+
+                var layout = {
+                    // title: 'Diagrama de Riesgo de Bariloche',	
+                    title: {
+                        text: titulo,
+                        x: 0,
+                    },
+                    autosize: true,
+                    //height: 600,
+                    //width: 900,
+                    yaxis: {
+                        title: 'Número Reproductivo Empírico',
+                        range: [0, maxrho7 * 1.2]
+                    },
+                    xaxis: {
+                        title: 'Número de activos Sintomáticos cada 100000 habitantes',
+                        range: [0, maxIA14 * 1.2]
+                    },
+                    //yaxis2: {title: 'Line and Scatter Plot Axis', range: [0, 10]}
+                    zaxis: {
+                        title: 'Indice de Riesgo',
+                        range: [0, 1]
+                    },
+                    showlegend: false,
+                    hovermode: "closest",
+                    annotations: [
+                        /*{
+                          x: 8.0,
+                          y: 1.0,
+                          xref: 'x',
+                          yref: 'y',
+                          text: 'No Exponencial',
+                          showarrow: true,
+                          arrowhead: 10,
+                          arrowcolor: 'green',
+                          arrowside: 'end+start',
+                          ax: 0,
+                          ay: 100,
+                          font: { color: "white",size: 15},
+                        },*/
+                        {
+                            x: 0.95,
+                            y: 0.95,
+                            xref: 'paper',
+                            yref: 'paper',
+                            text: "FIS: " + fecha[0] + " al " + fecha[size2 - 1],
+                            font: {
+                                color: "white",
+                                size: 15
+                            },
+                            showarrow: false,
+                        }, {
+                            x: IA14[0],
+                            y: rho7[0],
+                            xref: 'x',
+                            yref: 'y',
+                            text: "inicio",
+                            font: {
+                                color: "black",
+                                size: 13
+                            },
+                            showarrow: true,
+                        }, {
+                            x: IA14[size2 - 1],
+                            y: rho7[size2 - 1],
+                            xref: 'x',
+                            yref: 'y',
+                            text: "último",
+                            font: {
+                                color: "black",
+                                size: 13
+                            },
+                            showarrow: true,
+                        }, {
+                            x: 0.02,
+                            y: 0.12,
+                            xref: 'paper',
+                            yref: 'paper',
+                            text: "<i>En remisión</i>",
+                            font: {
+                                color: "white",
+                                size: 12
+                            },
+                            showarrow: false,
+                        }, {
+                            x: 0.02,
+                            y: 0.3,
+                            xref: 'paper',
+                            yref: 'paper',
+                            text: "<i>En aumento</i>",
+                            font: {
+                                color: "white",
+                                size: 12
+                            },
+                            showarrow: false,
+                        },
+                        /*{
+                          x: 0,
+                          y: 1.5,
+                          xref: 'x',
+                          yref: 'y',
+                          ax: 0,
+                          ay: 160,
+                          showarrow: true,
+                          arrowhead: 5,
+                          arrowcolor: 'orange',
+                          arrowwidth: 5,
+                        },*/
+                    ],
+                };
+
+                var plotData = [data, data2, data3, ultimo, primero];
+
+                var config = {
+                    responsive: true
+                };
+
+                Plotly.newPlot('myDiv', plotData, layout, config);
+
+                //////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////
+                //if(ciudad=='./RiesgoBariloche')
+                //{
+                var copiaIA14 = [];
+                var copiaIA14predicho = [];
+                for (var i = 0; i < IA14.length; i++) {
+                    copiaIA14[i] = IA14[i] * 1.6;
+                }
+                for (var i = 0; i < IA14predicho.length; i++) {
+                    copiaIA14predicho[i] = IA14predicho[i] * 1.6;
+                }
+
+                // Activos
+                var dataActivos = {
+                    y: copiaIA14,
+                    x: fecha,
+                    mode: 'markers',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: 'yellow',
+                        opacity: opa,
+                        line: {
+                            color: 'rgb(231, 99, 250)',
+                            width: 2,
+                            arrowhead: 10,
+                        }
+                    },
+                    line: {
+                        size: 1,
+                        color: 'black',
+                        dash: 'dot',
+                        shape: 'spline',
+                    },
+                    name: 'activos medidos'
+                };
+
+
+                // Predicción
+                var opa2 = [];
+                for (var i = 0; i < size2 + 7; i++) {
+                    if (i < size2) opa2[i] = 0.3;
+                    else opa2[i] = 1.0;
+                }
+                var dataActivosPredichos = {
+                    y: copiaIA14predicho,
+                    x: fechaextended,
+                    mode: 'markers+lines',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: 'red',
+                        opacity: opa2,
+                        line: {
+                            color: 'rgb(231, 99, 250)',
+                            width: 2,
+                            arrowhead: 10,
+                        }
+                    },
+                    line: {
+                        size: 1,
+                        color: 'black',
+                        dash: 'dot',
+                        shape: 'spline',
+                    },
+                    name: 'activos predichos una semana antes'
+                };
+
+                var maxIA14predicho = IA14predicho[size2 + 6];
+                var ultimafecha = {
+                    x: [fechaextended[size2], fechaextended[size2]],
+                    y: [0, maxIA14predicho * 1.6 * 1.2],
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 1,
+                        color: 'black'
+                    },
+                    //name: 'yaxis2 data',
+                    name: '',
+                    showlegend: false,
+                };
+
+                var ultimafechamas7 = {
+                    x: [fechaextended[size2 + 6], fechaextended[size2 + 6]],
+                    y: [0, maxIA14predicho * 1.6 * 1.2],
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 1,
+                        color: 'black'
+                    },
+                    //name: 'yaxis2 data',
+                    name: 'predicción a futuro',
+                    fill: 'tonextx',
+                    fillcolor: 'rgba(255, 0, 0, 0.3)',
+                };
+
+                var layoutActivos = {
+                    title: {
+                        text: "Número de activos sintomáticos: <i>predicciones vs mediciones</i>",
+                        x: 0,
+                    },
+                    autosize: true,
+                    xaxis: {
+                        title: 'Fecha de Inicio de Síntomas'
+                    },
+                    yaxis: {
+                        title: 'Número de activos sintomáticos en Bariloche',
+                        range: [0, maxIA14predicho * 1.6 * 1.2]
+                    },
+                    //showlegend: false,
+                    hovermode: "closest",
+                }
+
+
+                //////////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////////
+
+                // Reproductivo
+                var dataR = {
+                    y: rho7,
+                    x: fecha,
+                    mode: 'markers+lines',
+                    type: 'scatter',
+                    marker: {
+                        size: 12,
+                        color: 'yellow',
+                        opacity: opa,
+                        line: {
+                            color: 'rgb(231, 99, 250)',
+                            width: 2,
+                            arrowhead: 10,
+                        }
+                    },
+                    line: {
+                        size: 1,
+                        color: 'black',
+                        dash: 'dot',
+                        shape: 'spline',
+                    },
+                    text: textomarkers,
+                    name: ''
+                };
+
+                // linea de rho7==1
+                var rho7eq1 = {
+                    x: [fechaextended[0], fechaextended[size2]],
+                    y: [1, 1],
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 1,
+                        color: 'black'
+                    },
+                    //name: 'yaxis2 data',
+                    name: '',
+                    fill: 'tozeroy',
+                    fillcolor: 'rgba(0, 0, 255, 0.1)',
+                };
+
+                var rho7eq2 = {
+                    x: [fechaextended[0], fechaextended[size2]],
+                    y: [maxrho7 * 1.2, maxrho7 * 1.2],
+                    mode: 'lines',
+                    opacity: 0.5,
+                    line: {
+                        width: 1,
+                        color: 'black'
+                    },
+                    //name: 'yaxis2 data',
+                    name: '',
+                    fill: 'tonexty',
+                    fillcolor: 'rgba(255, 0, 0, 0.1)',
+                };
+
+                var layoutR = {
+                    title: {
+                        text: "Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos",
+                        x: 0,
+                    },
+                    autosize: true,
+                    xaxis: {
+                        title: 'Fecha de Inicio de Síntomas'
+                    },
+                    yaxis: {
+                        title: 'Número Reproductivo Empírico',
+                        range: [0, maxrho7 * 1.2]
+                    },
+                    showlegend: false,
+                    hovermode: "closest",
+                }
+
+                if (ciudad == './RiesgoBariloche' ||
+                    ciudad == 'https://raw.githubusercontent.com/droyktton/loscoihues/master/RiesgoBariloche') {
+                    console.log(ciudad);
+                    //document.getElementById("myDiv2tit").innerHTML='<p><h2>Número de activos sintomáticos: <i>predicciones vs mediciones</i> </h2></p>';
+                    //document.getElementById("myDiv3tit").innerHTML='<p><h2>Número Reproductivo Empírico (R): R>1 Crecimiento exponencial de activos sintomáticos </h2></p>'
+
+                    Plotly.newPlot('myDiv3', [dataR, rho7eq1, rho7eq2], layoutR, config);
+                    Plotly.newPlot('myDiv2', [dataActivos, dataActivosPredichos, ultimafecha, ultimafechamas7], layoutActivos, config);
+                } else {
+                    document.getElementById("myDiv2tit").innerHTML = "";
+                    document.getElementById("myDiv3tit").innerHTML = "";
+                    document.getElementById("myDiv3").innerHTML = "";
+                    document.getElementById("myDiv2").innerHTML = "";
+                }
+
+            }
+
+            makeplot();
+        }
+    </script>
