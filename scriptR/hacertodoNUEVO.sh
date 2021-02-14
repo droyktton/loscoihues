@@ -41,6 +41,9 @@ R CMD BATCH NUEVORiskDiag_SANTACRUZ.R
 R CMD BATCH NUEVORiskDiag_TIERRADELFUEGO.R
 R CMD BATCH NUEVORiskDiag_LARIOJA.R
 R CMD BATCH NUEVORiskDiag_ENTRERIOS.R
+R CMD BATCH NUEVORiskDiag_CORRIENTES.R
+R CMD BATCH NUEVORiskDiag_MISIONES.R
+R CMD BATCH NUEVORiskDiag_CATAMARCA.R
 
 ##copio nuevos archivos
 cp Riesgo* /home/koltona/Codigos/loscoihues/ 
@@ -58,6 +61,7 @@ git push
 cd riesgos_dia_anterior
 gnuplot comparar_ayer_hoy.gnu
 
+#rm  /home/koltona/Codigos/loscoihues/scriptR/*.csv
 
 #lo siguiente es para usar la base de datos del tablero
 #cd /home/karina/backupOct2019/ProgsBitbucket/CovidBariloche/TableroPrivado/tablero-privado
