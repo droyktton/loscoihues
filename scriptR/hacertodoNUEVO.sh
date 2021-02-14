@@ -44,6 +44,7 @@ R CMD BATCH NUEVORiskDiag_ENTRERIOS.R
 R CMD BATCH NUEVORiskDiag_CORRIENTES.R
 R CMD BATCH NUEVORiskDiag_MISIONES.R
 R CMD BATCH NUEVORiskDiag_CATAMARCA.R
+R CMD BATCH NUEVORiskDiag_SANJUAN.R
 
 ##copio nuevos archivos
 cp Riesgo* /home/koltona/Codigos/loscoihues/ 
