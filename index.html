@@ -2,103 +2,112 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-171435841-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171435841-1');
 </script>
 
 
 <html>
+
 <head>
 
-<!-- <script src="./p5/p5.js"></script>
+    <!-- <script src="./p5/p5.js"></script>
     <link rel="stylesheet" type="text/css" href="./p5/style.css">
     <meta charset="utf-8">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
 
-<script src="./p5/sketch.js"></script>
+    <script src="./p5/sketch.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-  box-sizing: border-box;
-}
-.menu {
-  float:left;
-  width:20%;
-  text-align:center;
-}
-.menu a {
-  background-color:#e5e5e5;
-  padding:5px;
-  margin-top:2px;
-  display:block;
-  width:100%;
-  color:black;
-}
-.main {
-  float:left;
-  width:60%;
-  padding:0 20px;
-}
-.right {
-  background-color:#e5e5e5;
-  float:left;
-  width:20%;
-  padding:15px;
-  margin-top:7px;
-  text-align:center;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .menu {
+            float: left;
+            width: 20%;
+            text-align: center;
+        }
+        
+        .menu a {
+            background-color: #e5e5e5;
+            padding: 5px;
+            margin-top: 2px;
+            display: block;
+            width: 100%;
+            color: black;
+        }
+        
+        .main {
+            float: left;
+            width: 60%;
+            padding: 0 20px;
+        }
+        
+        .right {
+            background-color: #e5e5e5;
+            float: left;
+            width: 20%;
+            padding: 15px;
+            margin-top: 7px;
+            text-align: center;
+        }
+        
+        .vertical-menu {
+            float: left;
+            width: 20%;
+            height: 300px;
+            overflow-y: auto;
+            text-align: center;
+        }
+        
+        .vertical-menu a {
+            background-color: #eee;
+            color: black;
+            display: block;
+            padding: 15px;
+            width: 100%;
+            text-decoration: none;
+        }
+        
+        .vertical-menu a:hover {
+            background-color: #ccc;
+        }
+        
+        .vertical-menu a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        /* Header/Logo Title */
+        
+        .header {
+            padding: 2px;
+            text-align: center;
+            background: White;
+            color: black;
+            font-size: 12px;
+            height: 50px;
+        }
+        
+        @media only screen and (max-width:620px) {
+            /* For mobile phones: */
+            .menu,
+            .main,
+            .right {
+                width: 100%;
+            }
+        }
+    </style>
 
-.vertical-menu {
-  float: left;
-  width: 20%;
-  height: 300px;
-  overflow-y: auto;
-  text-align:center;
-}
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 15px;
-  width: 100%;
-  text-decoration: none;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
-
-.vertical-menu a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Header/Logo Title */
-.header {
-  padding: 2px;
-  text-align: center;
-  background: White;
-  color: black;
-  font-size: 12px;
-  height: 50px;
-}
-
-
-@media only screen and (max-width:620px) {
-  /* For mobile phones: */
-  .menu, .main, .right {
-    width:100%;
-  }
-}
-
-</style>
-
-<style style="text/css">
+    <style style="text/css">
         .marquee {
             height: 30px;
             overflow: hidden;
@@ -154,112 +163,107 @@
             }
         }
     </style>
-    
-<!--
+
+    <!--
     <div class="marquee">
     <p>	
     <div id='bannerdiv'></div>
     </p>
     </div>
 -->
-    
+
 </head>
 
 <body style="font-family:Verdana;color:#aaaaaa;">
 
-<!---->
-<div class="header" id='bannerdiv'>
-  <div id='bannerdiv'></div>
-</div>
+    <!---->
+    <div class="header" id='bannerdiv'>
+        <div id='bannerdiv'></div>
+    </div>
 
-<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+    <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
 
-<div id="sketch-div"></div>
-<!--<img src="banderaargentinacoronavirus.jpg" alt="bandevirus" width="300">-->
+        <div id="sketch-div"></div>
+        <!--<img src="banderaargentinacoronavirus.jpg" alt="bandevirus" width="300">-->
 
-<h1> Riesgómetro COVID19 </h1>
+        <h1> Riesgómetro COVID19 </h1>
 
-</div>
+    </div>
 
-<div style="overflow:auto">
-<!-- -->
-  <div class="menu">
-	<a href="riesgoBsAs.html" style="font-family:arial;background-color:DodgerBlue;">Buenos Aires</a>
-	<a href="riesgoCABA.html" style="font-family:arial;background-color:Orange;">CABA</a>
-	<a href="riesgoChaco.html" style="font-family:arial;background-color:MediumSeaGreen;">Chaco</a>
-	<a href="riesgoCba.html" style="font-family:arial;background-color:SlateBlue;">Córdoba</a>
-	<a href="riesgoEntreRios.html" style="font-family:arial;background-color:AntiqueWhite;">Entre Ríos</a>
-	<a href="riesgoJujuy.html" style="font-family:arial;background-color:Yellow;">Jujuy</a>
-	<a href="riesgoLaRioja.html" style="font-family:arial;background-color:BurlyWood;">La Rioja</a>
-	<a href="riesgoMendoza.html" style="font-family:arial;background-color:LightGreen;">Mendoza</a>
-	<a href="riesgoNeu.html" style="font-family:arial;background-color:greenyellow;">Neuquén</a>
-	<a href="riesgo.html" style="font-family:arial;background-color:Tomato;">Río Negro</a>
-	<a href="riesgoSalta.html" style="font-family:arial;background-color:Brown;">Salta</a>
-	<a href="riesgoSantaCruz.html" style="font-family:arial;background-color:Chocolate;">Santa Cruz</a>
-	<a href="riesgoSantaFe.html" style="font-family:arial;background-color:LightBlue;">Santa Fe</a>
-	<a href="riesgoTierraDelFuego.html" style="font-family:arial;background-color:Red;">Tierra del Fuego</a>
-	<a href="riesgoTucuman.html" style="font-family:arial;background-color:Aqua;">Tucumán</a>
-  </div>
+    <div style="overflow:auto">
+        <!-- -->
+        <div class="menu">
+            <a href="riesgoBsAs.html" style="font-family:arial;background-color:DodgerBlue;">Buenos Aires</a>
+            <a href="riesgoCABA.html" style="font-family:arial;background-color:Orange;">CABA</a>
+            <a href="riesgoChaco.html" style="font-family:arial;background-color:MediumSeaGreen;">Chaco</a>
+            <a href="riesgoCba.html" style="font-family:arial;background-color:SlateBlue;">Córdoba</a>
+            <a href="riesgoCorrientes.html" style="font-family:arial;background-color:Blue;">Corrientes</a>
+            <a href="riesgoEntreRios.html" style="font-family:arial;background-color:AntiqueWhite;">Entre Ríos</a>
+            <a href="riesgoJujuy.html" style="font-family:arial;background-color:Yellow;">Jujuy</a>
+            <a href="riesgoLaRioja.html" style="font-family:arial;background-color:BurlyWood;">La Rioja</a>
+            <a href="riesgoMendoza.html" style="font-family:arial;background-color:LightGreen;">Mendoza</a>
+            <a href="riesgoNeu.html" style="font-family:arial;background-color:greenyellow;">Neuquén</a>
+            <a href="riesgo.html" style="font-family:arial;background-color:Tomato;">Río Negro</a>
+            <a href="riesgoSalta.html" style="font-family:arial;background-color:Brown;">Salta</a>
+            <a href="riesgoSantaCruz.html" style="font-family:arial;background-color:Chocolate;">Santa Cruz</a>
+            <a href="riesgoSantaFe.html" style="font-family:arial;background-color:LightBlue;">Santa Fe</a>
+            <a href="riesgoTierraDelFuego.html" style="font-family:arial;background-color:Red;">Tierra del Fuego</a>
+            <a href="riesgoTucuman.html" style="font-family:arial;background-color:Aqua;">Tucumán</a>
+        </div>
 
-  <div class="main">
-  	<!--<p style="font-family:arial;color:red">ATENCION: La actualización de los diagramas de riesgo está demorada porque los datos públicos del MSN están inaccesibles (sólo parte Oficial de Bche al día)</p>-->
-  	<p style="font-family:arial;color:black">Bienvenido a la página del Riesgómetro COVID19, para Argentina.</p>
-	<p style="font-family:arial;color:black">
-	Se trata de un predictor de corto término para un posible número de casos positivos en los próximos días, basado en la información de casos de hasta 14 días atrás y en la estimación de los tiempos característicos de contagio y de recuperación de la infección. Cuando se compara este número posible con la capacidad sanitaria de la población referida, se puede obtener una idea aproximada -pero cuantitativa- del riesgo de saturación de esa capacidad, que incluye no sólo la posibilidad de brindar cuidados intensivos sino también la capacidad de realizar los testeos y el seguimiento de los pacientes. Ver <a href="explicacion.png" style="font-family:arial;"> explicación gráfica</a>.	
-	Este indicador de riesgo es estadístico, se basa en aproximaciones e hipótesis y su calidad 
-	depende fuertemente de la calidad de los datos disponibles. Por lo tanto debe ser usado en conjunto con otros indicadores.</p>   
+        <div class="main">
+            <!--<p style="font-family:arial;color:red">ATENCION: La actualización de los diagramas de riesgo está demorada porque los datos públicos del MSN están inaccesibles (sólo parte Oficial de Bche al día)</p>-->
+            <p style="font-family:arial;color:black">Bienvenido a la página del Riesgómetro COVID19, para Argentina.</p>
+            <p style="font-family:arial;color:black">
+                Se trata de un predictor de corto término para un posible número de casos positivos en los próximos días, basado en la información de casos de hasta 14 días atrás y en la estimación de los tiempos característicos de contagio y de recuperación de la infección.
+                Cuando se compara este número posible con la capacidad sanitaria de la población referida, se puede obtener una idea aproximada -pero cuantitativa- del riesgo de saturación de esa capacidad, que incluye no sólo la posibilidad de brindar
+                cuidados intensivos sino también la capacidad de realizar los testeos y el seguimiento de los pacientes. Ver <a href="explicacion.png" style="font-family:arial;"> explicación gráfica</a>. Este indicador de riesgo es estadístico,
+                se basa en aproximaciones e hipótesis y su calidad depende fuertemente de la calidad de los datos disponibles. Por lo tanto debe ser usado en conjunto con otros indicadores.</p>
 
-	<p style="font-family:arial;color:black"> 
-	Elija una zona geográfica para visualizar en detalle la evolución histórica de los Diagramas de Riesgo.
-	En el otro menú puede acceder a una <a href="charts.html" style="font-family:arial;">
-	comparación</a> de la situación de riesgo en las 
- 	distintas poblaciones que estamos 
-	<a href="mapita.html" style="font-family:arial;"> 
-	actualmente monitoreando</a>, a una evaluación de la 
-	<a href="./calidadprediccion.html" style="font-family:arial;"> 
-	calidad de nuestras predicciones</a>, 
-	a discusiones sobre 
-	<a href="./cargaincompleta.html"> 
-	la calidad</a> de los 
-	<a href="./datos_crudos/vercrudos.html">
-	datos crudos</a> que usamos
-	y a <a href="./tutorial/tutorial.pdf"> 
-	detalles técnicos </a>
-	sobre la fundamentación y el cálculo de 
-	nuestros indicadores.
-	Aparentes 
-	<a href="./datos_crudos/discutirbariloche.html">
-	anomalías o inconsistencias</a> también son expuestas 
-	para su discusión.
-	<i> Iremos agregando más poblaciones próximamente...</i> 
-	</p> 
-	
-	<!--<p>  Los agregados 
+            <p style="font-family:arial;color:black">
+                Elija una zona geográfica para visualizar en detalle la evolución histórica de los Diagramas de Riesgo. En el otro menú puede acceder a una <a href="charts.html" style="font-family:arial;">
+	comparación</a> de la situación de riesgo en las distintas poblaciones que estamos
+                <a href="mapita.html" style="font-family:arial;"> 
+	actualmente monitoreando</a>, a una evaluación de la
+                <a href="./calidadprediccion.html" style="font-family:arial;"> 
+	calidad de nuestras predicciones</a>, a discusiones sobre
+                <a href="./cargaincompleta.html"> 
+	la calidad</a> de los
+                <a href="./datos_crudos/vercrudos.html">
+	datos crudos</a> que usamos y a <a href="./tutorial/tutorial.pdf"> 
+	detalles técnicos </a> sobre la fundamentación y el cálculo de nuestros indicadores. Aparentes
+                <a href="./datos_crudos/discutirbariloche.html">
+	anomalías o inconsistencias</a> también son expuestas para su discusión.
+                <i> Iremos agregando más poblaciones próximamente...</i>
+            </p>
+
+            <!--<p>  Los agregados 
 	más recientes a la página se preceden por un "***" en el correspondiente item del menú. </p>-->
-   </div>
+        </div>
 
-   <div class="menu">
-	<!--<div class="menu"> -->
-	<a href="https://youtu.be/Ni0178K9sNs" style="font-family:arial;background-color:LightBlue;"> 
-	Video explicativo</a>	 
-	<a href="./tutorial/explicacion.png" style="font-family:arial;background-color:White;">Explicación Gráfica
+        <div class="menu">
+            <!--<div class="menu"> -->
+            <a href="https://youtu.be/Ni0178K9sNs" style="font-family:arial;background-color:LightBlue;"> 
+	Video explicativo</a>
+            <a href="./tutorial/explicacion.png" style="font-family:arial;background-color:White;">Explicación Gráfica
 	</b></a>
-	<a href="charts.html" style="font-family:arial;background-color:LightBlue;">Ranking de Riesgo</a>
-	<a href="mapita.html" style="font-family:arial;background-color:White;">Mapa Comparativo</a>
-	<a href="./calidadprediccion.html" style="font-family:arial;background-color:LightBlue;"> 
-	Calidad de la predicción</a>	 
-	<a href="./tutorial/tutorial.pdf" style="font-family:arial;background-color:White;"> 
-	Descripción Técnica </a>	 
-	<a href="./datos_crudos/vercrudos.html" style="font-family:arial;background-color:LightBlue;"> Casos Diarios (datos crudos) </a>
-	<a href="./cargaincompleta.html" style="font-family:arial;background-color:White;"> Sobre los datos diarios del MSN </a>
-	<a href="./tdup.html" style="font-family:arial;background-color:LightBlue;"> Sobre el Tiempo de Duplicación. </a>
-<!--	<a href="./miscelanea.html" style="font-family:arial;background-color:Grey;"> Miscelánea </a> -->
-	<a href="./datos_crudos/parteoficialbche.html" style="font-family:arial;background-color:LightGrey;"> 
+            <a href="charts.html" style="font-family:arial;background-color:LightBlue;">Ranking de Riesgo</a>
+            <a href="mapita.html" style="font-family:arial;background-color:White;">Mapa Comparativo</a>
+            <a href="./calidadprediccion.html" style="font-family:arial;background-color:LightBlue;"> 
+	Calidad de la predicción</a>
+            <a href="./tutorial/tutorial.pdf" style="font-family:arial;background-color:White;"> 
+	Descripción Técnica </a>
+            <a href="./datos_crudos/vercrudos.html" style="font-family:arial;background-color:LightBlue;"> Casos Diarios (datos crudos) </a>
+            <a href="./cargaincompleta.html" style="font-family:arial;background-color:White;"> Sobre los datos diarios del MSN </a>
+            <a href="./tdup.html" style="font-family:arial;background-color:LightBlue;"> Sobre el Tiempo de Duplicación. </a>
+            <!--	<a href="./miscelanea.html" style="font-family:arial;background-color:Grey;"> Miscelánea </a> -->
+            <a href="./datos_crudos/parteoficialbche.html" style="font-family:arial;background-color:LightGrey;"> 
 	Parte Oficial de Bariloche </a>
-	<a href="./datos_crudos/discutirbariloche.html" style="font-family:arial;background-color:LightGrey;"> 
-	<i><b> ¿Cuál es el verdadero número de activos (sintomáticos) en Bariloche?</i></b> </a>
-	</div>
-	<!--<ul>
+            <a href="./datos_crudos/discutirbariloche.html" style="font-family:arial;background-color:LightGrey;">
+                <i><b> ¿Cuál es el verdadero número de activos (sintomáticos) en Bariloche?</i></b>
+            </a>
+        </div>
+        <!--<ul>
 	<li>  
 	'<p style="font-family:arial;font-size:15px;">
 	Más detalles sobre el cálculo del Diagrama de Riesgo en este 
@@ -273,9 +277,9 @@
 	</li>  
 	-->
 
-   </div>
-</div>
-<!--
+    </div>
+    </div>
+    <!--
 <ul>
 <li>  
 <p style="font-family:arial;font-size:15px;">
@@ -290,33 +294,34 @@ Reflexiones simples sobre el
 </li>  
 -->
 
-<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">
-Desarrollado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> - 
-<a> Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
-</div>
+    <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">
+        Desarrollado por <a href="https://biocomsc.upc.edu/en/covid-19"> BIOCOMSC </a> -
+        <a> Implementado por K. F. Laneri y A. B. Kolton en colaboración con <a href="https://covidbariloche.gitlab.io/webpage/main/"><i>covidBariloche</i></a>
+    </div>
 
-<script src="datos_crudos/DatosCovidBariloche.js"></script>
+    <script src="datos_crudos/DatosCovidBariloche.js"></script>
 
-<script>
-	   var promedioultimasemana=Totales[Fechas.length-1]-Totales[Fechas.length-1-6];
-	   promedioultimasemana=Number((promedioultimasemana/7.0).toFixed(0));
+    <script>
+        var promedioultimasemana = Totales[Fechas.length - 1] - Totales[Fechas.length - 1 - 6];
+        promedioultimasemana = Number((promedioultimasemana / 7.0).toFixed(0));
 
-	   var ultimaFechas=Fechas[Fechas.length-1];
-	   var ultimaMuertes=Muertes[Fechas.length-1];
-	   var ultimaActivos=Activos[Fechas.length-1];
-	   var ultimaRecuperados=Recuperados[Fechas.length-1];
-	   var ultimaTotales=Totales[Fechas.length-1];
-	   var ultimaActivos=Activos[Fechas.length-1];
-	   var ultimaDiarios=Totales[Fechas.length-1]-Totales[Fechas.length-2];	
-	   document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> "+
-	   ultimaFechas+": Nuevos Casos:<b>"+ultimaDiarios+"</b>, Total:<b>"+ultimaTotales+"</b>, Muertes:<b>"
-	   +ultimaMuertes+"</b>, Recuperados:<b>"+ultimaRecuperados+
-	   "</b>, Activos:<b>"+ultimaActivos+" (+ "+ promedioultimasemana*4 + " aprox. " +
-	   "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">"
-	   +" [*]</a>)</p>"
-	   //"</b>, *Activos:<b>"+ultimaActivos
-</script>
+        var ultimaFechas = Fechas[Fechas.length - 1];
+        var ultimaMuertes = Muertes[Fechas.length - 1];
+        var ultimaActivos = Activos[Fechas.length - 1];
+        var ultimaRecuperados = Recuperados[Fechas.length - 1];
+        var ultimaTotales = Totales[Fechas.length - 1];
+        var ultimaActivos = Activos[Fechas.length - 1];
+        var ultimaDiarios = Totales[Fechas.length - 1] - Totales[Fechas.length - 2];
+        document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> " +
+            ultimaFechas + ": Nuevos Casos:<b>" + ultimaDiarios + "</b>, Total:<b>" + ultimaTotales + "</b>, Muertes:<b>" +
+            ultimaMuertes + "</b>, Recuperados:<b>" + ultimaRecuperados +
+            "</b>, Activos:<b>" + ultimaActivos + " (+ " + promedioultimasemana * 4 + " aprox. " +
+            "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">" +
+            " [*]</a>)</p>"
+            //"</b>, *Activos:<b>"+ultimaActivos
+    </script>
 
 
 </body>
+
 </html>
