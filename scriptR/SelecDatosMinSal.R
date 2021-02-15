@@ -110,7 +110,10 @@ write.csv(ProvSanLuis,"CasosSanLuis.csv",row.names = FALSE)
 ProvSantiagoDelEstero<-DatosPais %>% filter(DatosPais$residencia_provincia_nombre=="Santiago del Estero")
 write.csv(ProvSantiagoDelEstero,"CasosSantiagoDelEstero.csv",row.names = FALSE)
 
-################### Faltan los R
 ### La Pampa ####
 ProvLaPampa<-DatosPais %>% filter(DatosPais$residencia_provincia_nombre=="La Pampa")
 write.csv(ProvLaPampa,"CasosLaPampa.csv",row.names = FALSE)
+
+### Formosa ####
+ProvFormosa<-DatosPais %>% filter(DatosPais$residencia_provincia_nombre=="Formosa")
+write.csv(ProvFormosa,"CasosFormosa.csv",row.names = FALSE)
