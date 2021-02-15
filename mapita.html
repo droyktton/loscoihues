@@ -2,177 +2,208 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-171435841-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171435841-1');
 </script>
 
 
 <head>
-	<!-- Load plotly.js into the DOM -->
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
 
 <body>
-	<p>
-	<a href="./index.html">[Volver]</a>
-	Todos los gráficos mostrados aquí están hechos con
-	<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
-	La calidad de los indicadores depende fuertemente de la calidad de estos datos. 
-	</p>
-	
-	<p><i>El mapa es interactivo</i></p>
-	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
-	<p>
-	<i>En todos los gráficos siguientes, las localidades están ordenadas según el índice de riesgo actual, equivalente al número de activos sintomáticos predichos para dentro de una semana. De menor riesgo a mayor riesgo de izquierda a derecha. Los gráficos son interactivos</i>
-	</p>
+    <p>
+        <a href="./index.html">[Volver]</a> Todos los gráficos mostrados aquí están hechos con
+        <a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>. La calidad de los indicadores depende fuertemente de la calidad de estos datos.
+    </p>
 
-	<div id='myDiv2'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <p><i>El mapa es interactivo</i></p>
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <p>
+        <i>En todos los gráficos siguientes, las localidades están ordenadas según el índice de riesgo actual, equivalente al número de activos sintomáticos predichos para dentro de una semana. De menor riesgo a mayor riesgo de izquierda a derecha. Los gráficos son interactivos</i>
+    </p>
+
+    <div id='myDiv2'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
 </body>
 
 <script>
-Plotly.d3.csv(
-	"https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.sorted.csv",
-	//"./ultimos.sorted.csv",
-	function(err, rows) {
-		function unpack(rows, key) {
-			return rows.map(function(row) {
-				return row[key];
-			});
-		}
-/*    row = allRows[i];
-    Localidad.push( row['Localidad'] );
-    RHO7.push( row['RHO7'] );
-    IA14.push( row['IA14'] );
-    FECHA.push( row['Fecha'] );
-    EPG[i]=IA14[i]*RHO7[i]*0.035;
-*/
+    Plotly.d3.csv(
+        "https://raw.githubusercontent.com/droyktton/loscoihues/master/ultimos.sorted.csv",
+        //"./ultimos.sorted.csv",
+        function(err, rows) {
+            function unpack(rows, key) {
+                return rows.map(function(row) {
+                    return row[key];
+                });
+            }
+            /*    row = allRows[i];
+                Localidad.push( row['Localidad'] );
+                RHO7.push( row['RHO7'] );
+                IA14.push( row['IA14'] );
+                FECHA.push( row['Fecha'] );
+                EPG[i]=IA14[i]*RHO7[i]*0.035;
+            */
 
-		var RHO7 = unpack(rows, "RHO7");
-		var IA14 = unpack(rows, "IA14");
-		var FECHA = unpack(rows, "FECHA");
-		var Localidad = unpack(rows, "Localidad");
-		var label = unpack(rows, "label");
+            var RHO7 = unpack(rows, "RHO7");
+            var IA14 = unpack(rows, "IA14");
+            var FECHA = unpack(rows, "FECHA");
+            var Localidad = unpack(rows, "Localidad");
+            var label = unpack(rows, "label");
 
-		  for (var i=0; i<Localidad.length; i++) {
-			if(Localidad[i]=='CórdobaCórdoba')Localidad[i]='<b>Prov. de Córdoba</b>';
-			if(Localidad[i]=='BuenosAires')Localidad[i]='<b>Prov. de BsAs</b>';
-			if(Localidad[i]=='Lomasde')Localidad[i]='Lomas de Zamora (BsAs)';
-			if(Localidad[i]=='AvellanedaNA')Localidad[i]='Avellaneda (BsAs)';
-			if(Localidad[i]=='ChacoNA')Localidad[i]='<b>Prov. de Chaco</b>';
-			if(Localidad[i]=='QuilmesNA')Localidad[i]='Quilmes (BsAs)';
-			if(Localidad[i]=='CABACABANA')Localidad[i]='<b>CABA</b>';
-			if(Localidad[i]=='LaPlata')Localidad[i]='La Plata (BsAs)';
-			if(Localidad[i]=='LanúsNA')Localidad[i]='Lanús (BsAs)';
-			if(Localidad[i]=='LaMatanza')Localidad[i]='La Matanza (BsAs)';
-			if(Localidad[i]=='SanFernando')Localidad[i]='San Fernando (Chaco)';
-			if(Localidad[i]=='CórdobaJavier')Localidad[i]='San Javier (Córdoba)';
-			if(Localidad[i]=='CórdobaCapital')Localidad[i]='Ciudad de Córdoba';
-			if(Localidad[i]=='CórdobaPunilla')Localidad[i]='Punilla (Córdoba)';
-			if(Localidad[i]=='CórdobaMaría')Localidad[i]='Santa María (Córdoba)';
-			if(Localidad[i]=='CórdobaColón')Localidad[i]='Colón (Córdoba)';
-			if(Localidad[i]=='RioNegro')Localidad[i]='<b>Prov. de Río Negro</b>';
-			if(Localidad[i]=='GeneralRoca')Localidad[i]='General Roca (RN)';
-			if(Localidad[i]=='Bariloche')Localidad[i]='<i>Bariloche (RN)</i>';
-			if(Localidad[i]=='NeuquénLoncopué')Localidad[i]='Loncopué (Neuquén)';
-			if(Localidad[i]=='NeuquénNeuquén')Localidad[i]='<b>Prov. de Neuquén:</b>';
-			if(Localidad[i]=='NeuquénConfluencia')Localidad[i]='Confluencia (Neuquén)';
-			if(Localidad[i]=='JujuyJujuy')Localidad[i]='<b>Prov. de Jujuy</b>';
-			if(Localidad[i]=='JujuyManuel')Localidad[i]='M.Belgrano (Jujuy)';
-			if(Localidad[i]=='JujuyLedesma')Localidad[i]='Ledesma (Jujuy)';
-			if(Localidad[i]=='JujuyCarmen')Localidad[i]='El Carmen (Jujuy)';
-			if(Localidad[i]=='SaltaSalta')Localidad[i]='<b>Prov. de Salta</b>';
-			if(Localidad[i]=='SaltaCapital')Localidad[i]='Capital (Salta)';
-			if(Localidad[i]=='SaltaOran')Localidad[i]='Oran (Salta)';
-			if(Localidad[i]=='SaltaJose')Localidad[i]='San Martín (Salta)';
-			if(Localidad[i]=='SaltaGuemes')Localidad[i]='Guemes (Salta)';
-			if(Localidad[i]=='TucumanTucuman')Localidad[i]='<b>Provincia de Tucumán</b>';
-			if(Localidad[i]=='SantaFeSantaFe')Localidad[i]='<b>Provincia de Santa Fe</b>';
-			if(Localidad[i]=='SantaCruzSantaCruz')Localidad[i]='<b>Provincia de Santa Cruz</b>';
-			if(Localidad[i]=='TierradelFuegoTierra')Localidad[i]='<b>Provincia de Tierra del Fuego</b>';
-			if(Localidad[i]=='MendozaMendoza')Localidad[i]='<b>Provincia de Mendoza</b>';
-			if(Localidad[i]=='MendozaLujande')Localidad[i]='Lujan de Cuyo (Mendoza)';
-			if(Localidad[i]=='MendozaGuaymallen')Localidad[i]='Guaymallén (Mendoza)';
-			if(Localidad[i]=='MendozaLasHeras')Localidad[i]='Las Heras (Mendoza)';
-			if(Localidad[i]=='MendozaCapital')Localidad[i]='Capital (Mendoza)';
-			if(Localidad[i]=='MendozaSanMartin')Localidad[i]='San Martín (Mendoza)';
-			if(Localidad[i]=='SantaFeCaseros')Localidad[i]='Caseros (Santa Fe)';
+            for (var i = 0; i < Localidad.length; i++) {
+                if (Localidad[i] == 'CórdobaCórdoba') Localidad[i] = '<b>Prov. de Córdoba</b>';
+                if (Localidad[i] == 'BuenosAires') Localidad[i] = '<b>Prov. de BsAs</b>';
+                if (Localidad[i] == 'Lomasde') Localidad[i] = 'Lomas de Zamora (BsAs)';
+                if (Localidad[i] == 'AvellanedaNA') Localidad[i] = 'Avellaneda (BsAs)';
+                if (Localidad[i] == 'ChacoNA') Localidad[i] = '<b>Prov. de Chaco</b>';
+                if (Localidad[i] == 'QuilmesNA') Localidad[i] = 'Quilmes (BsAs)';
+                if (Localidad[i] == 'CABACABANA') Localidad[i] = '<b>CABA</b>';
+                if (Localidad[i] == 'LaPlata') Localidad[i] = 'La Plata (BsAs)';
+                if (Localidad[i] == 'LanúsNA') Localidad[i] = 'Lanús (BsAs)';
+                if (Localidad[i] == 'LaMatanza') Localidad[i] = 'La Matanza (BsAs)';
+                if (Localidad[i] == 'SanFernando') Localidad[i] = 'San Fernando (Chaco)';
+                if (Localidad[i] == 'CórdobaJavier') Localidad[i] = 'San Javier (Córdoba)';
+                if (Localidad[i] == 'CórdobaCapital') Localidad[i] = 'Ciudad de Córdoba';
+                if (Localidad[i] == 'CórdobaPunilla') Localidad[i] = 'Punilla (Córdoba)';
+                if (Localidad[i] == 'CórdobaMaría') Localidad[i] = 'Santa María (Córdoba)';
+                if (Localidad[i] == 'CórdobaColón') Localidad[i] = 'Colón (Córdoba)';
+                if (Localidad[i] == 'RioNegro') Localidad[i] = '<b>Prov. de Río Negro</b>';
+                if (Localidad[i] == 'GeneralRoca') Localidad[i] = 'General Roca (RN)';
+                if (Localidad[i] == 'Bariloche') Localidad[i] = '<i>Bariloche (RN)</i>';
+                if (Localidad[i] == 'NeuquénLoncopué') Localidad[i] = 'Loncopué (Neuquén)';
+                if (Localidad[i] == 'NeuquénNeuquén') Localidad[i] = '<b>Prov. de Neuquén:</b>';
+                if (Localidad[i] == 'NeuquénConfluencia') Localidad[i] = 'Confluencia (Neuquén)';
+                if (Localidad[i] == 'JujuyJujuy') Localidad[i] = '<b>Prov. de Jujuy</b>';
+                if (Localidad[i] == 'JujuyManuel') Localidad[i] = 'M.Belgrano (Jujuy)';
+                if (Localidad[i] == 'JujuyLedesma') Localidad[i] = 'Ledesma (Jujuy)';
+                if (Localidad[i] == 'JujuyCarmen') Localidad[i] = 'El Carmen (Jujuy)';
+                if (Localidad[i] == 'SaltaSalta') Localidad[i] = '<b>Prov. de Salta</b>';
+                if (Localidad[i] == 'SaltaCapital') Localidad[i] = 'Capital (Salta)';
+                if (Localidad[i] == 'SaltaOran') Localidad[i] = 'Oran (Salta)';
+                if (Localidad[i] == 'SaltaJose') Localidad[i] = 'San Martín (Salta)';
+                if (Localidad[i] == 'SaltaGuemes') Localidad[i] = 'Guemes (Salta)';
+                if (Localidad[i] == 'TucumanTucuman') Localidad[i] = '<b>Provincia de Tucumán</b>';
+                if (Localidad[i] == 'SantaFeSantaFe') Localidad[i] = '<b>Provincia de Santa Fe</b>';
+                if (Localidad[i] == 'SantaCruzSantaCruz') Localidad[i] = '<b>Provincia de Santa Cruz</b>';
+                if (Localidad[i] == 'TierradelFuegoTierra') Localidad[i] = '<b>Provincia de Tierra del Fuego</b>';
+                if (Localidad[i] == 'MendozaMendoza') Localidad[i] = '<b>Provincia de Mendoza</b>';
+                if (Localidad[i] == 'MendozaLujande') Localidad[i] = 'Lujan de Cuyo (Mendoza)';
+                if (Localidad[i] == 'MendozaGuaymallen') Localidad[i] = 'Guaymallén (Mendoza)';
+                if (Localidad[i] == 'MendozaLasHeras') Localidad[i] = 'Las Heras (Mendoza)';
+                if (Localidad[i] == 'MendozaCapital') Localidad[i] = 'Capital (Mendoza)';
+                if (Localidad[i] == 'MendozaSanMartin') Localidad[i] = 'San Martín (Mendoza)';
+                if (Localidad[i] == 'SantaFeCaseros') Localidad[i] = 'Caseros (Santa Fe)';
 
-			if(Localidad[i]=='LaRiojaRioja')Localidad[i]='<b>Provincia de La Rioja</b>';
-			if(Localidad[i]=='LaRiojaChamical')Localidad[i]='Chamical (La Rioja)';
-			if(Localidad[i]=='LaRiojaChilecito')Localidad[i]='Chilecito (La Rioja)';
-			if(Localidad[i]=='LaRiojaCapital')Localidad[i]='Capital (La Rioja)';
+                if (Localidad[i] == 'LaRiojaRioja') Localidad[i] = '<b>Provincia de La Rioja</b>';
+                if (Localidad[i] == 'LaRiojaChamical') Localidad[i] = 'Chamical (La Rioja)';
+                if (Localidad[i] == 'LaRiojaChilecito') Localidad[i] = 'Chilecito (La Rioja)';
+                if (Localidad[i] == 'LaRiojaCapital') Localidad[i] = 'Capital (La Rioja)';
 
 
-			if(Localidad[i]=='EntreRiosRíos')Localidad[i]='<b>Provincia de Entre Ríos</b>';
-			if(Localidad[i]=='EntreRiosParaná')Localidad[i]='Paraná (Entre Ríos)';
-			if(Localidad[i]=='EntreRiosGualeguaych')Localidad[i]='Gualeguaychú (Entre Ríos)';
-			if(Localidad[i]=='EntreRiosConcordia')Localidad[i]='Concordia (Entre Ríos)';
+                if (Localidad[i] == 'EntreRiosRíos') Localidad[i] = '<b>Provincia de Entre Ríos</b>';
+                if (Localidad[i] == 'EntreRiosParaná') Localidad[i] = 'Paraná (Entre Ríos)';
+                if (Localidad[i] == 'EntreRiosGualeguaych') Localidad[i] = 'Gualeguaychú (Entre Ríos)';
+                if (Localidad[i] == 'EntreRiosConcordia') Localidad[i] = 'Concordia (Entre Ríos)';
 
-		  }
-		
-		var EPG=[];
-		var textos=[];
-		for(var i=0;i<RHO7.length;i++){
-			    //EPG[i]=Math.round(IA14[i]*RHO7[i]*0.035);
-			    EPG[i]=Number((IA14[i]*RHO7[i]*0.035).toFixed(1));
-			    textos[i]=label[i]+", Riesgo="+EPG[i]+"(CI adicionales necesarios/100mil habitantes)";
-		} 
-
-		var data = [
-			{
-				type: "scattermapbox",
-				text: textos,
-				lon: unpack(rows, "lon"),
-				lat: unpack(rows, "lat"),
-				mode: 'markers',
-				marker: { 
-					color:  EPG, 
-					size: 20,
-					line: {
-      						color: 'black',
-      						width: 6,
-    					}
-    				},
-			}
-		];
-
-		var layout = {
-			dragmode: "zoom",
-			//mapbox: { style: "open-street-map", center: { lat: 38, lon: -90 }, zoom: 3 },
-			mapbox: { style: "dark", center: { lat: -36.620922, lon: -64.2912369}, zoom: 3 },
-			margin: { r: 0, t: 0, b: 0, l: 0 },
-			showlegend: false,
-		};
-
-		Plotly.setPlotConfig({
-    		mapboxAccessToken: "pk.eyJ1Ijoia29sdG9uYSIsImEiOiJja2M5eGF3Z3owcHYyMnlwZjRibjU3cmFoIn0.jE11Xk6y4IrzZovXYGTWdA"
-  		});
-  		
-		Plotly.newPlot("myDiv", data, layout);
-		
-		var traceepg = 
-  		[
-  		{x: Localidad,y: EPG, type: 'bar', name: 'Indice de Riesgo',  text: FECHA, marker:{color:EPG}},  
-  		];
-
-	        var layout = {yaxis: {title: 'EPG'}};
-  
-         	Plotly.newPlot('myDiv2', traceepg,
-  		{
-    			yaxis:{
-    			title: 'Número Estimado de CI Adicionales cada 100mil hab',
-    			//type: 'log',
-    			//autorange: true
-    		},
-    		title: '<b>RANKING DE RIESGO SANITARIO</b>: Cuidados Intensivos (CI) estimados para los próximos días/100mil hab'}
-  		);
+                if (Localidad[i] == 'SanJuanJuan') Localidad[i] = '<b>Provincia de San Juan</b>';
+                if (Localidad[i] == 'CatamarcaCatamarca') Localidad[i] = '<b>Provincia de Catamarca</b>';
+                if (Localidad[i] == 'MisionesMisiones') Localidad[i] = '<b>Provincia de Misiones</b>';
+                if (Localidad[i] == 'CorrientesCorrientes') Localidad[i] = '<b>Provincia de Corrientes</b>';
 
 
 
-		
-	}
-);
+            }
+
+            var EPG = [];
+            var textos = [];
+            for (var i = 0; i < RHO7.length; i++) {
+                //EPG[i]=Math.round(IA14[i]*RHO7[i]*0.035);
+                EPG[i] = Number((IA14[i] * RHO7[i] * 0.035).toFixed(1));
+                textos[i] = label[i] + ", Riesgo=" + EPG[i] + "(CI adicionales necesarios/100mil habitantes)";
+            }
+
+            var data = [{
+                type: "scattermapbox",
+                text: textos,
+                lon: unpack(rows, "lon"),
+                lat: unpack(rows, "lat"),
+                mode: 'markers',
+                marker: {
+                    color: EPG,
+                    size: 20,
+                    line: {
+                        color: 'black',
+                        width: 6,
+                    }
+                },
+            }];
+
+            var layout = {
+                dragmode: "zoom",
+                //mapbox: { style: "open-street-map", center: { lat: 38, lon: -90 }, zoom: 3 },
+                mapbox: {
+                    style: "dark",
+                    center: {
+                        lat: -36.620922,
+                        lon: -64.2912369
+                    },
+                    zoom: 3
+                },
+                margin: {
+                    r: 0,
+                    t: 0,
+                    b: 0,
+                    l: 0
+                },
+                showlegend: false,
+            };
+
+            Plotly.setPlotConfig({
+                mapboxAccessToken: "pk.eyJ1Ijoia29sdG9uYSIsImEiOiJja2M5eGF3Z3owcHYyMnlwZjRibjU3cmFoIn0.jE11Xk6y4IrzZovXYGTWdA"
+            });
+
+            Plotly.newPlot("myDiv", data, layout);
+
+            var traceepg = [{
+                x: Localidad,
+                y: EPG,
+                type: 'bar',
+                name: 'Indice de Riesgo',
+                text: FECHA,
+                marker: {
+                    color: EPG
+                }
+            }, ];
+
+            var layout = {
+                yaxis: {
+                    title: 'EPG'
+                }
+            };
+
+            Plotly.newPlot('myDiv2', traceepg, {
+                yaxis: {
+                    title: 'Número Estimado de CI Adicionales cada 100mil hab',
+                    //type: 'log',
+                    //autorange: true
+                },
+                title: '<b>RANKING DE RIESGO SANITARIO</b>: Cuidados Intensivos (CI) estimados para los próximos días/100mil hab'
+            });
+
+
+
+
+        }
+    );
 </script>
