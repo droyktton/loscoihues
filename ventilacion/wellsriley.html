@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="header" text="hola">
+
+<h1> Modelo de Wells-Riley </h1>
+
+ <br>
+Basado en el apéndice 1 de
+<a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
+ esta publicación
+</a>
+</p> 
+
+De define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. <br><br>
+
+En base a eso se definen los siguientes parametros:
+<br><br>
+
+E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
+<br>
+V [m^3] = el volumen de la sala<br>
+ACH [1/h] = los cambios de aire por hora de la sala<br>
+Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate") <br>
+D [h] = tiempo de ocupación del ocupante<br>
+<br>
+<br>
+
+E [cuanta/h]:  <input type="text" id="E" value="3.1"><br>
+
+V [m^3]: <input type="text" id="V" value="300"><br>
+
+ACH [1/h]: <input type="text" id="ACH" value="1"><br>
+
+Qb [ m^3/h ]: <input type="text" id="Qb" value="0.5"><br>
+
+D [h]: <input type="text" id="D" value="1"><br>
+
+<p></p>
+
+
+<button onclick="myFunction()"> 
+Calcular la probabilidad de Infección con el modelo de Wells-Riley <br>
+</button><br>
+
+<p id="demo1" text="hola"></p> 
+
+<p id="demo2" text="hola"></p> 
+
+<p id="demo3" text="hola"></p> 
+
+
+<img src="https://droyktton.github.io/loscoihues/E_y_Qb.png" width="500" height="350" alt="esquema"> 
+
+<br>
+<br>
+
+
+
+<script>
+function myFunction() {
+
+  var E = document.getElementById("E").value; 
+  var Qb = document.getElementById("Qb").value;
+  var V = document.getElementById("V").value;
+  var D = document.getElementById("D").value;
+  var Lambda = document.getElementById("ACH").value;
+
+
+/////////////////////////////////
+// este es el modelo
+
+// Concentracion promedio
+var Cavg= (E/(Lambda*V))*(1.0 - (1.0-Math.exp(-Lambda*D))/(Lambda*D) );
+
+// cuantos promedio
+var n = Qb*D*Cavg;	
+
+// probabilidad de infeccion
+var p=(1-Math.exp(-n));
+
+/////////////////////////////////
+
+  var texton="n = " + n;	
+  document.getElementById("demo1").innerHTML = texton
+
+
+  var textop="probabilidad de infeccion = " + p ;	
+  document.getElementById("demo2").innerHTML = textop
+
+  var textoc="es decir, aproximadamente 1 de cada " + Math.trunc(1.0/p) + " personas se va a infectar" ;	
+  document.getElementById("demo3").innerHTML = textoc
+
+
+}
+</script>
+
+</body>
+</html>
