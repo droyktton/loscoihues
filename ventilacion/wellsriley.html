@@ -7,17 +7,19 @@
 <h1> Modelo de Wells-Riley </h1>
 
 <br>
-Este modelo permite estimar la probabilidad de contagio en una sala de cierto tamaño y características de ventilación, asumiendo la presencia de una persona infectada entre los ocupantes.
-Depende tambien de forma muy fuerte del tipo de actividad realizada. Para mas detalles sobre la justificación y el cálculo 
-mirar 
+El presente modelo permite estimar, grosso modo, la probabilidad de contagio de una persona en una sala de cierto tamaño y 
+características de ventilación, asumiendo la presencia de una persona infectada entre los ocupantes.
+Depende tambien, y de forma muy fuerte, del tipo de actividad realizada, la cual determina el volumen 
+inhalado y exhalado por unidad de tiempo. Para más detalles sobre la justificación y el cálculo mirar 
 <a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
  esta publicación
-</a>, en particular el apendice 1.
+</a>, en particular el apéndice 1.
 </p> 
 
-De define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. <br><br>
+Se define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección 
+de un ocupante que inhalo n cuantos. <br><br>
 
-En base a eso se definen los siguientes parametros:
+En base a eso se definen los siguientes parámetros:
 <br><br>
 
 E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
@@ -53,9 +55,16 @@ Calcular la probabilidad de Infección con el modelo de Wells-Riley <br>
 <p id="demo3" text="hola"></p> 
 
 
+A contiunación valores de referencia para E y Qb según  
+<a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
+publicaciones recientes
+</a>
+
 <img src="https://droyktton.github.io/loscoihues/E_y_Qb.png" width="500" height="350" alt="esquema"> 
 
-preparado por E. Jagla & A. Kolton
+<p>
+Preparado por E. Jagla & A. Kolton
+</p>
 
 <br>
 <br>
