@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<style>
+    .container {
+        width: 500px;
+        clear: both;
+    }
+    
+    .container input {
+        width: 100%;
+        clear: both;
+    }
+    
+    form {
+        display: table;
+    }
+    
+    p {
+        display: table-row;
+    }
+    
+    label {
+        display: table-cell;
+    }
+    
+    input {
+        display: table-cell;
+    }
+</style>
+
+<html>
+
+
+<p id="header" text="hola">
+
+    <h1> ACH -> CO2 ppm </h1>
+
+    <br> Basado en
+    <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-program-How-to-assess-classroom-ventilation-08-28-2020.pdf">[1]</a>
+    <a href=http://www.jorgealiaga.com.ar/wp-content/uploads/2021/02/Estudio-Ventilacion-IES-Aldonza-Lorenzo-1.pdf>[2]</a>
+</p>
+<br>
+
+<form>
+    <p>
+        <label>CO2 exterior [ppm]</label>
+        <input type="text" id="Cext" value="400"><br>
+    </p>
+
+    <p>
+        <label>ACH [1/h] </label>
+        <input type="text" id="ACH" value="7"><br>
+    </p>
+
+    <p>
+        <label>V [m^3]</label>
+        <input type="text" id="V" value="300"><br>
+    </p>
+
+    <p>
+        <label>Nro de personas</label>
+        <input type="text" id="Np" value="10"><br>
+    </p>
+
+    <p>
+        <label>CO2 emitido por persona [lpm]</label>
+        <input type="text" id="GCO2" value="0.2"><br>
+    </p>
+
+</form>
+</p>
+
+<br>
+
+<button onclick="myFunction2()"> 
+Calcular el CO2 interior <br>
+</button><br>
+
+<p style="color:blue" id="demo4" text="hola"></p>
+
+<br><br>
+
+<hr>
+
+<h1> CO2 ppm -> ACH </h1>
+
+Basado en
+<a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-program-How-to-assess-classroom-ventilation-08-28-2020.pdf">[1]</a>
+<a href=http://www.jorgealiaga.com.ar/wp-content/uploads/2021/02/Estudio-Ventilacion-IES-Aldonza-Lorenzo-1.pdf>[2]</a>
+</p>
+<br>
+
+<p>
+    <form>
+        <p><label>CO2 exterior [ppm] </label>
+            <input type="text" id="Cext2" value="400"><br>
+        </p>
+
+        <p><label>CO2 interior [ppm] </label>
+            <input type="text" id="Cint2" value="700"><br>
+        </p>
+
+        <p><label>V [m^3] </label>
+            <input type="text" id="V2" value="300"><br>
+        </p>
+
+        <p><label>Nro de personas </label>
+            <input type="text" id="Np2" value="10"><br>
+        </p>
+
+        <p><label>CO2 emitido por persona [lpm] </label>
+            <input type="text" id="GCO22" value="0.2"><br>
+    </form>
+    </p>
+
+    <br>
+    <button onclick="myFunction3()"> 
+Calcular el ACH  <br>
+</button><br>
+    <p style="color:blue" id="demo5" text="hola"></p>
+
+
+    <br>
+    <br>
+
+    <h3> Tablas para estimar la generación de CO2 </h3>
+    <img src="https://droyktton.github.io/loscoihues/ventilacion/tablaCO2generado.png" width="500" height="500" alt="esquema">
+    <img src="https://droyktton.github.io/loscoihues/ventilacion/tablaActivityLevels.png" width="500" height="500" alt="esquema">
+
+
+    <hr>
+
+
+    <h1> Probabilidad de Infección: Modelo de Wells-Riley </h1>
+
+    <br> Basado en el apéndice 1 de
+    <a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
+ esta publicación
+</a>
+</p>
+
+De define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. <br><br> En base a eso se definen los siguientes
+parametros:
+<br><br> E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
+<br> V [m^3] = el volumen de la sala<br> ACH [1/h] = los cambios de aire por hora de la sala<br> Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate") <br> D [h] = tiempo de ocupación del ocupante<br>
+<br>
+<br>
+
+<form>
+    <p><label>E [cuanta/h]</label>
+        <input type="text" id="E" value="3.1"></p>
+
+    <p><label>V [m^3]</label>
+        <input type="text" id="V" value="300"></p>
+
+    <p><label>ACH [1/h]</label>
+        <input type="text" id="ACH" value="7"></p>
+
+    <p><label>Qb [ m^3/h ]</label>
+        <input type="text" id="Qb" value="0.5">
+
+        <p><label>D [h]</label>
+            <input type="text" id="D" value="1"></p>
+</form>
+
+<br>
+
+<button onclick="myFunction()"> 
+Calcular la probabilidad de Infección con el modelo de Wells-Riley <br>
+</button><br>
+
+<p style="color:blue" id="demo1" text="hola"></p>
+
+<p style="color:blue" id="demo2" text="hola"></p>
+
+<p style="color:blue" id="demo3" text="hola"></p>
+
+
+<h3> Tablas para estimar la emisión de virus y tasa volumétrica de respiración </h3>
+<img src="https://droyktton.github.io/loscoihues/ventilacion/E_y_Qb.png" width="500" height="350" alt="esquema">
+
+<br>
+<br>
+
+
+
+<script>
+    function myFunction() {
+
+        var E = document.getElementById("E").value;
+        var Qb = document.getElementById("Qb").value;
+        var V = document.getElementById("V").value;
+        var D = document.getElementById("D").value;
+        var Lambda = document.getElementById("ACH").value;
+
+
+        /////////////////////////////////
+        // este es el modelo
+
+        // Concentracion promedio
+        var Cavg = (E / (Lambda * V)) * (1.0 - (1.0 - Math.exp(-Lambda * D)) / (Lambda * D));
+
+        // cuantos promedio
+        var n = Qb * D * Cavg;
+
+        // probabilidad de infeccion
+        var p = (1 - Math.exp(-n));
+
+        /////////////////////////////////
+
+        var texton = "<i>n = " + n;
+        document.getElementById("demo1").innerHTML = texton
+
+
+        var textop = "<i>probabilidad de infeccion = " + p;
+        document.getElementById("demo2").innerHTML = textop
+
+        var textoc = "<i>es decir, aproximadamente 1 de cada " + Math.trunc(1.0 / p) + " personas se va a infectar</i>";
+        document.getElementById("demo3").innerHTML = textoc
+
+
+    }
+
+
+    function myFunction2() {
+
+        var ACH = document.getElementById("ACH").value;
+        var Cext = document.getElementById("Cext").value;
+        var V = document.getElementById("V").value;
+        var Np = document.getElementById("Np").value;
+        var GCO2 = document.getElementById("GCO2").value;
+
+        /////////////////////////////////
+        // este es el modelo
+
+        var Cint = (GCO2 * Np + 17 * ACH * V * Cext * 0.000001) / (ACH * V * 17 * 0.000001)
+
+
+        /////////////////////////////////
+
+        var texton = "<i>el CO2 interior es ~ " + Math.trunc(Cint) + " ppm";
+        document.getElementById("demo4").innerHTML = texton
+    }
+
+
+
+    function myFunction3() {
+
+        var Cint = document.getElementById("Cint2").value;
+        var Cext = document.getElementById("Cext2").value;
+        var V = document.getElementById("V2").value;
+        var Np = document.getElementById("Np2").value;
+        var GCO2 = document.getElementById("GCO22").value;
+
+        /////////////////////////////////
+        // este es el modelo
+
+        var ACH = 58823.5 * GCO2 * Np / ((Cint - Cext) * V)
+
+        /////////////////////////////////
+
+        var texton = "<i>el ACH es ~ " + Math.trunc(ACH * 100) * 0.01 + " cambios por hora</i>";
+        document.getElementById("demo5").innerHTML = texton
+    }
+</script>
+
+
+
+
+
+</body>
+
+</html>
