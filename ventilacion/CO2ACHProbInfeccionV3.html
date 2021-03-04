@@ -42,16 +42,15 @@
     sala o "ACH" (63% del cambio de la concentración ocurre en una constante de tiempo, y el 95% en tres constantes). Este tiempo característico depende fuertemente de las características de la ventilación. Lecturas de CO2 en intervalos que abarquen dos
     constantes de tiempo proveen entonces una buena indicación de la suficiencia de esta ventilación, indicándonos cuantitativamente cómo mejorarla. La concentración de equilibrio de CO2 esta directamente relacionada a la cantidad y actividad de las personas,
     así como el volumen y ventilación de la sala, caracterizada por su ACH.
-    <br><br> Si se puede medir concentración de CO2 en una sala ocupada, una recomendación simple y práctica es mantener la concentración de CO2 a valores menores que ~800 ppm. Si no es posible medir durante la actividad en la sala ocupada, es posible
-    aún medir los ACH en la sala desocupada, cargando el ambiente con CO2 de forma controlada y monitoreando su descarga hacia el valor del equilibrio, y asi obtener los ACH. Teniendo estos dos procedimientos en mente, y con el fin de facilitar la búsqueda
-    del objetivo de seguridad perseguido, ofrecemos aquí una calculadora para calcular distintas cantidades, en términos de cantidades medidas o conocidas en un interior en particular.
-
-    <br><br> <b>Referencias</b> (y referencias dentro, hasta el infinito)
-    <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-program-How-to-assess-classroom-ventilation-08-28-2020.pdf">[1]</a>
-    <a href=http://www.jorgealiaga.com.ar/wp-content/uploads/2021/02/Estudio-Ventilacion-IES-Aldonza-Lorenzo-1.pdf>[2]</a>
-    <a href=https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf>[3]</a>
-    <br>
-    <br>
+    <br><br> Si se puede medir concentración de CO2 en una sala ocupada, una recomendación simple pero práctica es mantener su concentración de CO2 en valores
+    < 800 ppm por algunas horas. Si se puede medir en la sala desocupada, uno puede determinar el ACH cargando el ambiente con CO2 de forma controlada y monitoreando su descarga hacia el valor del equilibrio. Ambas mediciones pueden relacionarse y abajo ofrecemos
+        una calculadora para hacerlo cuantitativamente. Finalmente, hay que tener en cuenta que cualquier exceso de CO2 en un interior respecto del exterior implica una concentración finita de virus si hay un infectado en la sala. Como la dosis inhalada por
+        un susceptible determina fuertemente la probabilidad de contagio, la duración de la ocupación también debería tenerse en cuenta, como lo hacemos con la calculadora basada en el modelo de Wells-Riley <br><br> <b>Referencias</b> (y referencias dentro, hasta el infinito)
+        <a href="https://schools.forhealth.org/wp-content/uploads/sites/19/2020/08/Harvard-Healthy-Buildings-program-How-to-assess-classroom-ventilation-08-28-2020.pdf">[1]</a>
+        <a href=http://www.jorgealiaga.com.ar/wp-content/uploads/2021/02/Estudio-Ventilacion-IES-Aldonza-Lorenzo-1.pdf>[2]</a>
+        <a href=https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf>[3]</a>
+        <br>
+        <br>
 </p>
 
 <hr>
@@ -158,16 +157,21 @@ Calcular el ACH  <br>
 
     <h1> Probabilidad de Infección: Modelo de Wells-Riley </h1>
 
-    <br> Basado en el apéndice 1 de
+    <br> Es deseable poder estimar una probabilidad de infección dada la presencia de al menos un infectado en una sala. De hecho, no es suficiente conocer el exceso de CO2, ni el ACH de un interior para determinarla cuantitativamente, ya que además de
+    no incluir el tiempo de ocupación, no incluye información concreta sobre la enfermedad. El modelo de Wells-Riley es muy modelo simple y posiblemente no preciso que sin embargo muestra claramente la dependencia entre las variables mas relevantes. La
+    calculadora está basada en aplicar el modelo con datos específicos de COVID19 como está descripto en el apéndice 1 de
     <a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
- esta publicación
+ [3]
 </a>
 </p>
+<br><br>
 
-De define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. <br><br> En base a eso se definen los siguientes
-parametros:
-<br><br> E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
-<br> V [m^3] = el volumen de la sala<br> ACH [1/h] = los cambios de aire por hora de la sala<br> Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate") <br> D [h] = tiempo de ocupación del ocupante<br>
+<p>
+    En síntesis se define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. En base a este número se definen
+    los siguientes parámetros:
+    <br><br> E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
+    <br> V [m^3] = el volumen de la sala<br> ACH [1/h] = los cambios de aire por hora de la sala<br> Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate") <br> D [h] = tiempo de ocupación del ocupante<br>
+</p>
 <br>
 <br>
 
