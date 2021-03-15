@@ -118,6 +118,37 @@
     <script src="DatosCovidBariloche.js"></script>
 
     <script>
+        var Fechas = new Array();
+
+        Date.prototype.addDays = function(days) {
+            var dat = new Date(this.valueOf())
+            dat.setDate(dat.getDate() + days);
+            return dat;
+        }
+
+        function getDates(startDate, stopDate) {
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push(currentDate)
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+
+        var fechainicial = new Date(2020, 4, 3);
+        var fechafinal = fechainicial.addDays(Muertes.length - 1);
+        //fechafinal.addDays(Muertes.length);
+
+        var dateArray = getDates(fechainicial, fechafinal);
+
+        for (i = 0; i < dateArray.length; i++) {
+            Fechas.push(dateArray[i].toLocaleDateString());
+        }
+        console.log(Fechas)
+    </script>
+
+    <script>
         hacerParteOficial();
 
         function hacerParteOficial() {
