@@ -1,22 +1,25 @@
 <!-- K. Laneri and A. B. Kolton 2020 -->
 
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-	  gtag('config', 'UA-171435841-1');
-	</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-171435841-1');
+    </script>
 
 
 
-	<!-- Responsive layouts -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-	/* {
+    <!-- Responsive layouts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* {
 	  box-sizing:border-box;
 	}
 
@@ -33,76 +36,74 @@
 	  width:20%; // The width is 20%, by default 
 	} 
 	*/
+        
+        .main {
+            background-color: #f1f1f1;
+            padding: 20px;
+            float: left;
+            width: 60%;
+            /* The width is 60%, by default */
+        }
+        /* Use a media query to add a break point at 800px: */
+        
+        @media screen and (max-width:800px) {
+            .left,
+            .main,
+            .right {
+                width: 100%;
+                /* The width is 100%, when the viewport is 800px or smaller */
+            }
+        }
+    </style>
 
-	.main {
-	  background-color:#f1f1f1;
-	  padding:20px;
-	  float:left;
-	  width:60%; /* The width is 60%, by default */
-	}
-
-	/* Use a media query to add a break point at 800px: */
-	@media screen and (max-width:800px) {
-	  .left, .main, .right {
-	    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
-	  }
-	}
-	</style>
 
 
+    <style>
+        div.scrollmenu {
+            background-color: #999;
+            overflow: auto;
+            white-space: nowrap;
+        }
+        
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
+        
+        div.scrollmenu a:hover {
+            background-color: #111;
+        }
+    </style>
 
-	<style>
-		div.scrollmenu {
-		  background-color: #999;
-		  overflow: auto;
-		  white-space: nowrap;
-		}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		div.scrollmenu a {
-		  display: inline-block;
-		  color: white;
-		  text-align: center;
-		  padding: 14px;
-		  text-decoration: none;
-		}
-
-		div.scrollmenu a:hover {
-		  background-color: #111;
-		}
-	</style>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
-	<!-- Load plotly.js into the DOM -->
-	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 
 </head>
 
 
 <body>
 
-<p>
-<a href="../index.html">[Volver]</a>
-Todos los gráficos mostrados aquí están hechos con
-<a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>.
-La calidad de los indicadores que ponemos a disposición dependen fuertemente de la calidad de estos datos.
-</p>
+    <p>
+        <a href="../index.html">[Volver]</a> Todos los gráficos mostrados aquí están hechos con
+        <a href="http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina">Datos Públicos</a>. La calidad de los indicadores que ponemos a disposición dependen fuertemente de la calidad de estos datos.
+    </p>
 
-<p>
-<h2> ¿Cuál es el verdadero número de infectados activos sintomáticos en Bariloche? </h2>
-</p>
-Según la organización mundial de la salud (<a href="https://www.who.int/es">OMS/WHO<a>), el tiempo medio de recuperación 
+    <p>
+        <h2> ¿Cuál es el verdadero número de infectados activos sintomáticos en Bariloche? </h2>
+    </p>
+    Según la organización mundial de la salud (<a href="https://www.who.int/es">OMS/WHO<a>), el tiempo medio de recuperación 
 de un infectado con síntomas leves, que representa a la amplia mayoría de los casos, 
 es de aproximadamente dos semanas. Casos más graves tienen tiempos de recuperación de 3 a 6 semanas.
 Ver por ejemplo este <a href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf#:~:text=Using%20available%20preliminary%20data%2C,severe%20or%20critical%20disease."> documento 
-</a>. 
-En base a este dato, en nuestros diagramas de Riesgo hemos estimado el número de 
-activos directamente a partir de los casos sintomáticos diarios reportados, 
-como el número acumulado de infectados con <i>fecha de inicio de síntomas</i> 
-desde hace 14 días hasta hoy.</p> 
+</a>. En base a este dato, en nuestros diagramas de Riesgo hemos estimado el número de activos directamente a partir de los casos sintomáticos diarios reportados, como el número acumulado de infectados con <i>fecha de inicio de síntomas</i> desde hace
+    14 días hasta hoy.</p>
 
-<p>Cuando comparamos el número de activos estimado (curva azul) con lo que se reporta 
-como Casos Activos (curva verde) en los <a href="./parteoficialbche.html">partes oficiales de la Ciudad de Bariloche<a> 
+    <p>Cuando comparamos el número de activos estimado (curva azul) con lo que se reporta como Casos Activos (curva verde) en los <a href="./parteoficialbche.html">partes oficiales de la Ciudad de Bariloche<a> 
 y en la mayoría de los medios de comunicación locales, nos encontramos con 
 diferencias importantes. Como se puede apreciar en el gráfico la  
 diferencia puede ser de hasta 200 casos activos, siendo en general 
@@ -153,51 +154,60 @@ activos declarados y estimados cabe mencionar el
 criterio de alta utilizado. Si las altas contemplan, en promedio, 
 menos de dos semanas de recuperación, también es de esperar 
 que el número de activos declarados dé más bajo que el estimado. 
-A este respecto, cabe notar que el <a href="https://www.who.int/news-room/commentaries/detail/criteria-for-releasing-covid-19-patients-from-isolation"> actual criterio recomendado por la OMS </a> es de 13 días para pacientes 
-que hayan tenido síntomas por menos de 10 días (mayoría de los casos), y para el resto se recomienda agregar 
-tres días más luego de la desaparición de síntomas. Por lo tanto, dos semanas sigue siendo 
-el período promedio aceptado de recuperación desde el inicio de síntomas. Cabe aclarar sin embargo que 
-el infectado puede empezar a contagiar aproximadamente unos dos días antes de iniciar síntomas, un hecho 
-que es muy importante para la estimación del número reproductivo empírico. 
-</p> 
+A este respecto, cabe notar que el <a href="https://www.who.int/news-room/commentaries/detail/criteria-for-releasing-covid-19-patients-from-isolation"> actual criterio recomendado por la OMS </a> es de 13 días para pacientes que hayan tenido síntomas
+        por menos de 10 días (mayoría de los casos), y para el resto se recomienda agregar tres días más luego de la desaparición de síntomas. Por lo tanto, dos semanas sigue siendo el período promedio aceptado de recuperación desde el inicio de síntomas.
+        Cabe aclarar sin embargo que el infectado puede empezar a contagiar aproximadamente unos dos días antes de iniciar síntomas, un hecho que es muy importante para la estimación del número reproductivo empírico.
+    </p>
 
-<h3>Conclusión</h3>
-<p>
-En base a la información que disponemos nuestra interpretación de 
-estas observaciones es que el 
-número verdadero de activos en Bariloche un día dado, 
-entendido como el número de 
-personas que iniciaron síntomas y no se recuperaron aún, 
-es <i>en general mayor que el declarado (balanceando altas y bajas) 
+    <h3>Conclusión</h3>
+    <p>
+        En base a la información que disponemos nuestra interpretación de estas observaciones es que el número verdadero de activos en Bariloche un día dado, entendido como el número de personas que iniciaron síntomas y no se recuperaron aún, es <i>en general mayor que el declarado (balanceando altas y bajas) 
 en una cantidad que equivale, empíricamente, a la acumulación 
-de 4 días de casos</i>. Este efecto sobrepasa claramente las 
-fluctuaciones debidas a la carga de datos en períodos donde el 
-número de casos diarios es importante. 
-</p> 
-<h4>Una regla empírica para Bariloche</h4>
-<p>
-El análisis sugiere una regla empírica para Bariloche.
-En la práctica, el déficit de casos activos en el parte 
-oficial podría estimarse fácil y cuantitativamente multiplicando 
-por 4 la media de casos diarios en los últimos días. Sumando este número 
-al número de activos declarado, tendríamos una aproximación más realista 
-al verdadero número de activos. Por ejemplo, si hoy hay 400 activos 
-declarados en el 
-parte oficial y la media de casos reportados oficialmente 
-la última semana fue por ejemplo de 20, entonces una aproximación 
-más realista al número de casos activos sería 400+4*20=480 casos. 
-Se espera así que el número resultante sea cercano al estimado 
-acumulando casos con fecha de inicio de síntomas en dos semanas. 
-Esta estimación es buena justamente en los períodos críticos 
-de gran crecimiento del número de infectados.
-Tener una buena estimación del número de activos nos permite, 
-conociendo el numéro reproductivo empírico, cuantificar 
-mejor el <a href="../riesgo.html">riesgo en Bariloche<a> en 
+de 4 días de casos</i>. Este efecto sobrepasa claramente las fluctuaciones debidas a la carga de datos en períodos donde el número de casos diarios es importante.
+    </p>
+    <h4>Una regla empírica para Bariloche</h4>
+    <p>
+        El análisis sugiere una regla empírica para Bariloche. En la práctica, el déficit de casos activos en el parte oficial podría estimarse fácil y cuantitativamente multiplicando por 4 la media de casos diarios en los últimos días. Sumando este número al
+        número de activos declarado, tendríamos una aproximación más realista al verdadero número de activos. Por ejemplo, si hoy hay 400 activos declarados en el parte oficial y la media de casos reportados oficialmente la última semana fue por ejemplo
+        de 20, entonces una aproximación más realista al número de casos activos sería 400+4*20=480 casos. Se espera así que el número resultante sea cercano al estimado acumulando casos con fecha de inicio de síntomas en dos semanas. Esta estimación
+        es buena justamente en los períodos críticos de gran crecimiento del número de infectados. Tener una buena estimación del número de activos nos permite, conociendo el numéro reproductivo empírico, cuantificar mejor el <a href="../riesgo.html">riesgo en Bariloche<a> en 
 los próximos días.  
 </p> 
 
 
 <script src="DatosCovidBariloche.js"></script>
+
+<script>
+	var Fechas = new Array();
+
+	Date.prototype.addDays = function(days) {
+		var dat = new Date(this.valueOf())
+		dat.setDate(dat.getDate() + days);
+		return dat;
+	}
+
+	function getDates(startDate, stopDate) {
+		var dateArray = new Array();
+		var currentDate = startDate;
+		while (currentDate <= stopDate) {
+			dateArray.push(currentDate)
+			currentDate = currentDate.addDays(1);
+		}
+		return dateArray;
+	}
+
+	var fechainicial = new Date(2020, 4, 3);
+	var fechafinal = fechainicial.addDays(Muertes.length - 1);
+	//fechafinal.addDays(Muertes.length);
+
+	var dateArray = getDates(fechainicial, fechafinal);
+
+	for (i = 0; i < dateArray.length; i++) {
+		Fechas.push(dateArray[i].toLocaleDateString());
+	}
+	//console.log(Fechas)
+</script>
+
 
 <script>
 
@@ -396,4 +406,3 @@ function hacerRioNegro(){
 </script>
 
 </body>
-
