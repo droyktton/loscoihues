@@ -11,14 +11,14 @@ library(lubridate)
 library(xts)
 library(stringi)
 #Leo base de datos del MInSal
-DatosMinSalTodo<-read.csv("CasosFormosa.csv")
+DatosMinSalTodo<-read.csv("CasosChubut.csv")
 ## SELECCIONO SOLO LOS CONFIRMADOS
 DatosMinSal<-DatosMinSalTodo %>% filter(clasificacion_resumen =="Confirmado")
 
 
 #####
-localidades<-c("Formosa","Formosa","Pilcomayo")
-Poblocalidades<-c(605193,271381,96978) #estimado indec al 2020
+localidades<-c("Chubut","Escalante","Rawson","Biedma")
+Poblocalidades<-c(618994,234397,144869,116160) #estimado indec al 2020
 names(Poblocalidades)<-localidades
 ###https://sitioanterior.indec.gob.ar/nivel4_default.asp?id_tema_1=2&id_tema_2=24&id_tema_3=119
 

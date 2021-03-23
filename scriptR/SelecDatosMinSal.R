@@ -117,3 +117,7 @@ write.csv(ProvLaPampa,"CasosLaPampa.csv",row.names = FALSE)
 ### Formosa ####
 ProvFormosa<-DatosPais %>% filter(DatosPais$residencia_provincia_nombre=="Formosa")
 write.csv(ProvFormosa,"CasosFormosa.csv",row.names = FALSE)
+
+### Chubut ####
+ProvFormosa<-DatosPais %>% filter(DatosPais$residencia_provincia_nombre=="Chubut")
+write.csv(ProvFormosa,"CasosChubut.csv",row.names = FALSE)
