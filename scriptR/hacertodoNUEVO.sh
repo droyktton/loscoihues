@@ -49,6 +49,7 @@ R CMD BATCH NUEVORiskDiag_SANLUIS.R
 R CMD BATCH NUEVORiskDiag_SANTIAGODELESTERO.R
 R CMD BATCH NUEVORiskDiag_LAPAMPA.R
 R CMD BATCH NUEVORiskDiag_FORMOSA.R
+R CMD BATCH NUEVORiskDiag_CHUBUT.R
 
 ##copio nuevos archivos
 cp Riesgo* /home/koltona/Codigos/loscoihues/ 
