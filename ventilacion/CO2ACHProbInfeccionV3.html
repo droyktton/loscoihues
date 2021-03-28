@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171435841-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171435841-1');
+</script>
 
 <style>
     .container {
@@ -244,7 +256,7 @@ Calcular la probabilidad de Infección con el modelo de Wells-Riley <br>
         var textop = "<i>probabilidad de infeccion = " + p;
         document.getElementById("demo2").innerHTML = textop
 
-        var textoc = "<i>es decir, aproximadamente 1 de cada " + Math.trunc(1.0 / p) + " personas se va a infectar</i>";
+        var textoc = "<i>es decir, en aproximadamente 1 de cada " + Math.trunc(1.0 / p) + " realizaciones</i>";
         document.getElementById("demo3").innerHTML = textoc
 
 
