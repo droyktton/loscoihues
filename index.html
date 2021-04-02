@@ -355,8 +355,9 @@ Reflexiones simples sobre el
         var ultimaTotales = Totales[Fechas.length - 1];
         var ultimaActivos = Activos[Fechas.length - 1];
         var ultimaDiarios = Totales[Fechas.length - 1] - Totales[Fechas.length - 2];
+        //+ ultimaFechas 
         document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> " +
-            ultimaFechas + ": Nuevos Casos:<b>" + ultimaDiarios + "</b>, Total:<b>" + ultimaTotales + "</b>, Muertes:<b>" +
+            ": Nuevos Casos:<b>" + ultimaDiarios + "</b>, Total:<b>" + ultimaTotales + "</b>, Muertes:<b>" +
             ultimaMuertes + "</b>, Recuperados:<b>" + ultimaRecuperados +
             "</b>, Activos:<b>" + ultimaActivos + " (+ " + promedioultimasemana * 4 + " aprox. " +
             "<a href=\"./datos_crudos/discutirbariloche.html\" style=\"font-family:arial;background-color:LightGrey;\">" +
