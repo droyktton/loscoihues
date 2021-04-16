@@ -332,7 +332,7 @@ Reflexiones simples sobre el
             return dateArray;
         }
 
-        var fechainicial = new Date(2020, 4, 3);
+        var fechainicial = new Date(2020, 3, 4);
         var fechafinal = fechainicial.addDays(Muertes.length - 1);
         //fechafinal.addDays(Muertes.length);
 
@@ -356,7 +356,7 @@ Reflexiones simples sobre el
         var ultimaActivos = Activos[Fechas.length - 1];
         var ultimaDiarios = Totales[Fechas.length - 1] - Totales[Fechas.length - 2];
         //+ ultimaFechas 
-        document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> " +
+        document.getElementById("bannerdiv").innerHTML = "<p><i>Bariloche</i> " + ultimaFechas +
             ": Nuevos Casos:<b>" + ultimaDiarios + "</b>, Total:<b>" + ultimaTotales + "</b>, Muertes:<b>" +
             ultimaMuertes + "</b>, Recuperados:<b>" + ultimaRecuperados +
             "</b>, Activos:<b>" + ultimaActivos + " (+ " + promedioultimasemana * 4 + " aprox. " +
