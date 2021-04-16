@@ -362,7 +362,8 @@
                 },
                 //yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
                 yaxis: {
-                    autorange: 'true'
+                    autorange: 'true',
+                    type: 'log',
                 },
                 //showlegend: false,
                 hovermode: "closest",
@@ -378,9 +379,15 @@
 
             Diarios[0] = Totales[0];
             movingAverage[0] = Diarios[0];
+            var maximo = 0;
+            var FechaRecord = Fechas[0];
             for (var i = 1; i < Totales.length; i++) {
                 Diarios[i] = (Totales[i] - Totales[i - 1]);
                 movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 14;
+                if (Diarios[i] > maximo) {
+                    maximo = Diarios[i];
+                    FechaRecord = Fechas[i];
+                }
             }
 
             var promedioultimasemana = 0;
@@ -398,6 +405,11 @@
                 y: movingAverage,
                 mode: 'lines',
                 name: "Promedio móbil en 14 dias",
+            }, {
+                x: [Fechas[0], Fechas[Diarios.length - 1]],
+                y: [maximo, maximo],
+                mode: 'lines',
+                name: "Record " + FechaRecord,
             }]
 
             var layout3 = {
