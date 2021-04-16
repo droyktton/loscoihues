@@ -383,7 +383,7 @@
             var FechaRecord = Fechas[0];
             for (var i = 1; i < Totales.length; i++) {
                 Diarios[i] = (Totales[i] - Totales[i - 1]);
-                movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 14;
+                movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 7;
                 if (Diarios[i] > maximo) {
                     maximo = Diarios[i];
                     FechaRecord = Fechas[i];
@@ -404,7 +404,7 @@
                 x: Fechas,
                 y: movingAverage,
                 mode: 'lines',
-                name: "Promedio móbil en 14 dias",
+                name: "Promedio móbil en 7 dias",
             }, {
                 x: [Fechas[0], Fechas[Diarios.length - 1]],
                 y: [maximo, maximo],
