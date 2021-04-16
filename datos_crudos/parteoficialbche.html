@@ -383,7 +383,17 @@
             var FechaRecord = Fechas[0];
             for (var i = 1; i < Totales.length; i++) {
                 Diarios[i] = (Totales[i] - Totales[i - 1]);
-                movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 7;
+
+                //movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 7;
+
+                var jstart = (i - 6 >= 0) ? (i - 6) : (0);
+
+                movingAverage[i] = 0.0;
+                for (var j = jstart; j <= i; j++) {
+                    movingAverage[i] += Diarios[j];
+                };
+                movingAverage[i] *= 1. / 7.0;
+
                 if (Diarios[i] > maximo) {
                     maximo = Diarios[i];
                     FechaRecord = Fechas[i];
