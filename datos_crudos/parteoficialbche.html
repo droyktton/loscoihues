@@ -357,7 +357,8 @@
                 },
                 autosize: true,
                 xaxis: {
-                    title: 'Fecha de Reporte'
+                    title: 'Fecha de Reporte',
+                    tickangle: 45,
                 },
                 //yaxis: {title: 'Casos Diarios (Sintomáticos)',type: 'log',autorange: 'true'},
                 yaxis: {
@@ -365,16 +366,22 @@
                 },
                 //showlegend: false,
                 hovermode: "closest",
-                //grid: { rows: 2, columns: 2, pattern: "independent" },	    
+                //grid: { rows: 2, columns: 2, pattern: "independent" },
             }
 
             Plotly.newPlot('IndicatorsDiv', indicators, layoutind, config);
             Plotly.newPlot('RioNegroDiv3', traces2, layout2, config);
 
+            var movingAverage = [];
             var Diarios = [];
+
+
             Diarios[0] = Totales[0];
-            for (var i = 1; i < Totales.length; i++)
+            movingAverage[0] = Diarios[0];
+            for (var i = 1; i < Totales.length; i++) {
                 Diarios[i] = (Totales[i] - Totales[i - 1]);
+                movingAverage[i] = movingAverage[i - 1] + (Diarios[i - 1] - movingAverage[i - 1]) / 14;
+            }
 
             var promedioultimasemana = 0;
             for (var i = Diarios.length - 7; i < Diarios.length; i++)
@@ -386,7 +393,13 @@
                 y: Diarios,
                 type: 'bar',
                 name: "Número total de Infectados",
-            }, ]
+            }, {
+                x: Fechas,
+                y: movingAverage,
+                mode: 'lines',
+                name: "Promedio móbil en 14 dias",
+            }]
+
             var layout3 = {
                 title: {
                     text: "Casos Diarios en Bariloche, promedio última semana=" + promedioultimasemana,
@@ -394,7 +407,8 @@
                 },
                 autosize: true,
                 xaxis: {
-                    title: 'Fecha de Reporte'
+                    title: 'Fecha de Reporte',
+                    tickangle: 45,
                 },
                 yaxis: {
                     title: 'Casos Diarios (Sintomáticos)',
@@ -402,6 +416,7 @@
                 },
                 //showlegend: false,
                 hovermode: "closest",
+                tickangle: 45,
             }
 
             Plotly.newPlot('RioNegroDiv2', traces3, layout3, config);
