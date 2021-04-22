@@ -379,8 +379,12 @@
 
             Diarios[0] = Totales[0];
             movingAverage[0] = Diarios[0];
+
             var maximo = 0;
             var FechaRecord = Fechas[0];
+            var maximosemanal = 0;
+            var FechaRecordSemanal = Fechas[0];
+
             for (var i = 1; i < Totales.length; i++) {
                 Diarios[i] = (Totales[i] - Totales[i - 1]);
 
@@ -398,6 +402,12 @@
                     maximo = Diarios[i];
                     FechaRecord = Fechas[i];
                 }
+
+                if (movingAverage[i] > maximosemanal) {
+                    maximosemanal = movingAverage[i];
+                    FechaRecordSemanal = Fechas[i];
+                }
+
             }
 
             var promedioultimasemana = 0;
@@ -419,8 +429,13 @@
                 x: [Fechas[0], Fechas[Diarios.length - 1]],
                 y: [maximo, maximo],
                 mode: 'lines',
-                name: "Record " + FechaRecord,
-            }]
+                name: "Record Diario " + FechaRecord,
+            }, {
+                x: [Fechas[0], Fechas[Diarios.length - 1]],
+                y: [maximosemanal, maximosemanal],
+                mode: 'lines',
+                name: "Record Semanal " + FechaRecordSemanal,
+            }, ]
 
             var layout3 = {
                 title: {
