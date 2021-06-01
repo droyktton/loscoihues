@@ -6,12 +6,6 @@
 <body>
   <div id="myDiv" style="width: 480px; height: 400px;"><!-- Plotly chart will be drawn inside this DIV --></div>
   <script>
-  <!-- ENTER JAVASCRIPT CODE HERE -->
-  </script>
-</body>
-
-
-<script>
 function makeplot() {
   Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(data){ processData(data) } );
 
@@ -42,5 +36,8 @@ function makePlotly( x, y, standard_deviation ){
     {title: 'Plotting CSV data from AJAX call'});
 };
   makeplot();
-</script>
+  </script>
+</body>
+
+
 
