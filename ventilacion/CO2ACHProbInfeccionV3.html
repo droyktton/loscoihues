@@ -169,8 +169,10 @@ Calcular el ACH  <br>
 
     <h1> Probabilidad de Infección: Modelo de Wells-Riley </h1>
 
-    <br> Es deseable poder estimar una probabilidad de infección dada la presencia de al menos un infectado en una sala. De hecho, no es suficiente conocer el exceso de CO2, ni el ACH de un interior para determinarla cuantitativamente, ya que además de
-    no incluir el tiempo de ocupación, no incluye información concreta sobre la enfermedad. El modelo de Wells-Riley es muy modelo simple y posiblemente no preciso que sin embargo muestra claramente la dependencia entre las variables mas relevantes. La
+    <br> Es deseable poder estimar una probabilidad de infección dada la presencia de al menos un infectado en una sala. De hecho, 
+    no es suficiente conocer el exceso de CO2, ni el ACH de un interior para determinarla cuantitativamente, ya que además de
+    no incluir el tiempo de ocupación, no incluye información concreta sobre la enfermedad. El modelo de Wells-Riley es muy modelo simple 
+    y posiblemente muy impreciso que sin embargo muestra claramente la dependencia entre las variables mas relevantes. La
     calculadora está basada en aplicar el modelo con datos específicos de COVID19 como está descripto en el apéndice 1 de
     <a href="https://www.rehva.eu/fileadmin/user_upload/REHVA_COVID-19_guidance_document_V4_09122020.pdf">
  [3]
@@ -179,10 +181,17 @@ Calcular el ACH  <br>
 <br><br>
 
 <p>
-    En síntesis se define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. En base a este número se definen
+    En síntesis se define un "cuanto" de virus a la dosis requerida para provocar infección en 63% de las personas susceptibles, de 
+    modo que p=1-exp(-n) sea la probabilidad de infección de un ocupante que inhalo n cuantos. En base a este número se definen
     los siguientes parámetros:
-    <br><br> E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate")
-    <br> V [m^3] = el volumen de la sala<br> ACH [1/h] = los cambios de aire por hora de la sala<br> Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate") <br> D [h] = tiempo de ocupación del ocupante<br>
+    <br><br> E [cuanta/h] = tasa de emisión de "cuantos" de un infectado en la sala (ver mas abajo "Quanta emission rate") <br> 
+    V [m^3] = el volumen de la sala <br> 
+    ACH [1/h] = los cambios de aire por hora de la sala <br> 
+    Qb [ m^3/h ] = tasa de respiración volumétrica de un ocupante de la sala (ver mas abajo "Breathing rate")  <br> 
+    D [h] = tiempo de ocupación del ocupante <br><br>
+    
+    El siguiente cálculo presupone un infectado y no tiene en cuenta el efecto de los barbijos, ni de filtros de aerosoles. 
+    Es por lo tanto una sobreestimación de la probabilidad de contagio, pero con las dependencias esperadas con los distintos parámetros. 
 </p>
 <br>
 <br>
