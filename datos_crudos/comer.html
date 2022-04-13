@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<div id="map"></div>
+
+<style>
+#map{
+    width: 100%;
+    height: 100vh;
+}
+</style>
+
+<script>
+let mapOptions = {
+    center:[-41.117701,-71.409733],
+    zoom:14
+}
+
+
+let map = new L.map("map" , mapOptions);
+
+let layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
+map.addLayer(layer);
+
+let customIcon = {  iconUrl:"https://github.com/droyktton/loscoihues/blob/master/datos_crudos/rafa107.jpg?raw=true",
+ iconSize:[40,40]
+}
+
+let myIcon = L.icon(customIcon);
+
+//define options
+let iconOptions = {
+ title:"RAFA107",
+ icon:myIcon,
+ draggable:true,
+}
+
+//////////////////////////////////
+let marker = new L.Marker([-41.1181138,-71.4038103],{icon: myIcon});
+marker.addTo(map,iconOptions);
+marker.bindPopup("Dagda").openPopup();
+
+let marker2 = new L.Marker([-41.1203284,-71.3993042],{icon: myIcon});
+marker2.addTo(map,iconOptions);
+marker2.bindPopup("Kunstmann").openPopup();
+
+let marker3 = new L.Marker([-41.10684,-71.4379214],{icon: myIcon});
+marker3.addTo(map,iconOptions);
+marker3.bindPopup("Restaurante Bahía Serena").openPopup();
+
+
+/////////////////////////////////////////
+let customIconCAB = {  iconUrl:"https://github.com/droyktton/loscoihues/blob/7de19a4db162678e9845cd41dbe48197a54bb51e/datos_crudos/cnea.png?raw=true",
+ iconSize:[40,40]
+}
+
+let myIconCAB = L.icon(customIconCAB);
+
+//define options
+let iconOptionsCAB = {
+ title:"RAFA107",
+ icon:myIconCAB,
+ draggable:true,
+}
+
+let markerCAB = new L.Marker([-41.117701,-71.409733],{icon: myIconCAB});
+markerCAB.addTo(map,iconOptionsCAB);
+markerCAB.bindPopup("RAFA 107").openPopup();
+</script>
+
+</html>
